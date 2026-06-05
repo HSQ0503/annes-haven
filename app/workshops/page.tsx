@@ -1,0 +1,138 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Button } from "@/components/button";
+import { CtaBand } from "@/components/cta-band";
+import { Icon, type IconName } from "@/components/icon";
+import { ImagePlaceholder } from "@/components/image-placeholder";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Workshops & Classes",
+  description:
+    "See what women entrepreneurs are currently offering at Anne's Haven. Attend a workshop or class, or join our aspiring entrepreneur program.",
+};
+
+const offerings: { tag: string; tagClass: string; tagIcon: IconName }[] = [
+  { tag: "Healing Arts", tagClass: "gold", tagIcon: "palette" },
+  { tag: "Workshop", tagClass: "", tagIcon: "lightbulb" },
+  { tag: "Community", tagClass: "blue", tagIcon: "users" },
+];
+
+export default function WorkshopsPage() {
+  return (
+    <>
+      <section className="page-hero bg-sage">
+        <div className="container">
+          <p className="crumbs">
+            <Link href="/">Home</Link> &nbsp;/&nbsp; Our Programs &nbsp;/&nbsp;
+            Workshops &amp; Classes
+          </p>
+          <h1>Aspiring entrepreneurs&apos; workshops &amp; classes</h1>
+          <p className="lead">
+            See what women entrepreneurs are currently offering at Anne&apos;s
+            Haven — and find out how you can attend or join our program.
+          </p>
+          <div style={{ marginTop: 24 }}>
+            <Button href={`mailto:${site.email}`} large>
+              Email to Join or Attend <Icon name="arrowRight" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Current offerings */}
+      <section className="section">
+        <div className="container">
+          <div className="section-head center">
+            <p className="eyebrow center">Now Offering</p>
+            <h2>Current workshops &amp; classes</h2>
+            <p className="measure-center">
+              Flip through the current offerings from the women entrepreneurs of
+              Anne&apos;s Haven. Interested in attending an event or joining our
+              entrepreneur program? Email{" "}
+              <a className="textlink" href={`mailto:${site.email}`}>
+                {site.email}
+              </a>
+              .
+            </p>
+          </div>
+          <div className="grid grid-3">
+            {offerings.map((o, i) => (
+              <div className="card" key={o.tag}>
+                <div className="frame" style={{ borderRadius: 0 }}>
+                  <ImagePlaceholder
+                    caption={`Workshop flyer ${i + 1}`}
+                    icon="palette"
+                    className="aspect-[3/4]"
+                  />
+                </div>
+                <div className="card-pad">
+                  <span className={`tag ${o.tagClass}`.trim()}>
+                    <Icon name={o.tagIcon} /> {o.tag}
+                  </span>
+                  <h3 style={{ fontSize: "1.2rem", marginTop: 12 }}>
+                    Add your flyer
+                  </h3>
+                  <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
+                    Drop in a class flyer and details here.
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Interfaith / community */}
+      <section className="section bg-cream">
+        <div className="container">
+          <div className="split">
+            <div>
+              <p className="eyebrow gold">Community Healing</p>
+              <h2>Start the healing together</h2>
+              <p>
+                The traumatic impact recent events have had on our city will be
+                with us for years. Start the healing by supporting our immigrant
+                friends, neighbors, and family — join our Interfaith Gathering on
+                the last Sunday of each month.
+              </p>
+              <Button href="/contact" className="mt-2">
+                Join the Gathering <Icon name="arrowRight" />
+              </Button>
+            </div>
+            <div className="media">
+              <div className="frame bordered">
+                <ImagePlaceholder
+                  caption="Interfaith gathering photo"
+                  icon="hands"
+                  className="aspect-[4/3]"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Social band */}
+      <CtaBand
+        title="Follow Anne's Haven"
+        text="Catch the latest workshops, events, and stories on our social channels."
+        sectionClassName="section"
+        bandStyle={{
+          background:
+            "linear-gradient(120deg, var(--color-blue-700), var(--color-green-800))",
+        }}
+      >
+        <a className="btn btn-ghost btn-lg" href="https://www.instagram.com/annes_haven/" target="_blank" rel="noopener noreferrer">
+          <Icon name="instagram" /> @annes_haven
+        </a>
+        <a className="btn btn-ghost btn-lg" href="https://www.facebook.com/anneshaefen/" target="_blank" rel="noopener noreferrer">
+          <Icon name="facebook" /> Facebook
+        </a>
+        <Button href="/videos" variant="ghost" large>
+          <Icon name="youtube" /> YouTube
+        </Button>
+      </CtaBand>
+    </>
+  );
+}
