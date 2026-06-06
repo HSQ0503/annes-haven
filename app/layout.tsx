@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Spectral, Mulish } from "next/font/google";
+import { Spectral, Mulish, Caveat } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -19,20 +19,30 @@ const mulish = Mulish({
   display: "swap",
 });
 
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
-    default: "Anne's Haven — Women-Founded Peace Center",
-    template: "%s — Anne's Haven",
+    default: "Anne's Haven · Women-Founded Peace Center",
+    template: "%s · Anne's Haven",
   },
   description:
-    "Anne's Haven is a woman-founded peace center in Portage Park, Chicago — community events, youth programs, workshops, and support for women entrepreneurs.",
+    "Anne's Haven is a woman-founded peace center in Portage Park, Chicago, community events, youth programs, workshops, and support for women entrepreneurs.",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${spectral.variable} ${mulish.variable}`}>
+    <html
+      lang="en"
+      className={`${spectral.variable} ${mulish.variable} ${caveat.variable}`}
+    >
       <body>
         <Header />
         <main>{children}</main>

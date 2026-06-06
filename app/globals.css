@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Anne's Haven — design system (ported from the design handoff)
+   Anne's Haven, design system (ported from the design handoff)
    Green primary · gold accent (logo) · steel-blue secondary.
    ============================================================ */
 
@@ -19,22 +19,30 @@
   --color-gold-600: #bd8c1c;
   --color-gold-soft: #f6e9c8;
 
-  /* steel blue (secondary accent — heritage of the current site) */
+  /* blue + cyan (the tree-logo trunk, heritage brand accent) */
   --color-blue: #4b7fa8;
   --color-blue-700: #3c6c93;
-  --color-blue-soft: #e4eef4;
+  --color-blue-soft: #dfeaf3;
+  --color-cyan-soft: #e7f1f7; /* pale cyan info boxes */
+  --color-cyan-line: #bcd6e6;
 
-  /* neutrals */
-  --color-cream: #faf6ee;
-  --color-paper: #fffdf9;
-  --color-ink: #2b2b2b;
-  --color-muted: #5f655f;
-  --color-line: #e6e3da;
+  /* neutrals, a touch warmer / softer */
+  --color-cream: #f8f2e6;
+  --color-paper: #fffdf8;
+  --color-ink: #2f2c27;
+  --color-muted: #62655c;
+  --color-line: #e7e1d4;
+
+  /* wood, used as subtle warmth hints, never a full frame */
+  --color-wood-light: #c9a572;
+  --color-wood: #b88c52;
+  --color-wood-dark: #9a7038;
 
   /* type (wired in app/layout.tsx) */
   --font-display: var(--font-spectral), Georgia, "Times New Roman", serif;
   --font-body: var(--font-mulish), -apple-system, BlinkMacSystemFont, system-ui,
     sans-serif;
+  --font-hand: var(--font-caveat), "Segoe Script", cursive;
 }
 
 :root {
@@ -46,6 +54,9 @@
   --shadow: 0 10px 30px -12px rgba(27, 58, 48, 0.18),
     0 4px 10px -6px rgba(27, 58, 48, 0.1);
   --shadow-lg: 0 28px 60px -22px rgba(27, 58, 48, 0.3);
+
+  /* motion — gentle, slightly-decelerated curve for a calm, intentional feel */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* layout */
   --maxw: 1200px;
@@ -229,6 +240,10 @@ strong {
   --bg: var(--color-green-700);
   --fg: #fff;
   --bd: var(--color-green-700);
+  --btn-shadow: 47, 107, 88; /* shadow tint (rgb), overridden per variant */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   gap: 0.55em;
@@ -242,14 +257,39 @@ strong {
   color: var(--fg);
   border: 1.5px solid var(--bd);
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease,
-    color 0.2s ease;
-  box-shadow: 0 8px 18px -10px rgba(47, 107, 88, 0.55);
+  transition: transform 0.28s var(--ease-out), box-shadow 0.28s var(--ease-out),
+    background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+  box-shadow: 0 6px 16px -10px rgba(var(--btn-shadow), 0.5);
+}
+/* a soft band of light glides across on hover (filled variants) */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 70%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.6s var(--ease-out);
+  pointer-events: none;
 }
 .btn:hover {
   transform: translateY(-2px);
   color: #fff;
-  box-shadow: 0 14px 26px -12px rgba(47, 107, 88, 0.6);
+  box-shadow: 0 14px 28px -12px rgba(var(--btn-shadow), 0.55);
+}
+.btn:hover::before {
+  transform: translateX(130%);
+}
+/* tactile press — settles down and tightens its shadow */
+.btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 3px 9px -7px rgba(var(--btn-shadow), 0.6);
+  transition-duration: 0.09s;
 }
 .btn svg {
   width: 18px;
@@ -261,17 +301,20 @@ strong {
   --bd: #cdd8cf;
   box-shadow: none;
 }
+.btn-outline::before {
+  display: none; /* no sheen over a transparent fill */
+}
 .btn-outline:hover {
   --bg: var(--color-green-50);
   --fg: var(--color-green-800);
   --bd: var(--color-green-500);
-  box-shadow: none;
+  box-shadow: 0 10px 22px -14px rgba(var(--btn-shadow), 0.4);
 }
 .btn-gold {
   --bg: var(--color-gold);
   --fg: #3a2c06;
   --bd: var(--color-gold);
-  box-shadow: 0 8px 18px -10px rgba(216, 163, 43, 0.6);
+  --btn-shadow: 216, 163, 43;
 }
 .btn-gold:hover {
   --bg: var(--color-gold-600);
@@ -283,10 +326,19 @@ strong {
   --bd: rgba(255, 255, 255, 0.5);
   box-shadow: none;
 }
+.btn-ghost::before {
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 70%
+  );
+}
 .btn-ghost:hover {
-  --bg: rgba(255, 255, 255, 0.12);
+  --bg: rgba(255, 255, 255, 0.14);
   --fg: #fff;
   --bd: #fff;
+  box-shadow: none;
 }
 .btn-lg {
   font-size: 1.06rem;
@@ -298,17 +350,27 @@ strong {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
-  border-bottom: 2px solid transparent;
-  transition: 0.2s;
+  padding-bottom: 2px;
+  /* underline grows from the left on hover */
+  background-image: linear-gradient(var(--color-gold), var(--color-gold));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s var(--ease-out), gap 0.22s var(--ease-out),
+    color 0.22s ease;
 }
 .textlink:hover {
-  border-color: var(--color-gold);
-  gap: 0.6em;
+  color: var(--color-green-800);
+  background-size: 100% 2px;
+  gap: 0.58em;
+}
+.textlink:active {
+  opacity: 0.72;
 }
 .textlink svg {
   width: 16px;
   height: 16px;
-  transition: 0.2s;
+  transition: transform 0.25s var(--ease-out);
 }
 .textlink:hover svg {
   transform: translateX(3px);
@@ -403,6 +465,18 @@ strong {
   border-radius: 11px;
   display: grid;
   place-items: center;
+}
+.feature .ic.gold {
+  color: var(--color-gold-600);
+  background: var(--color-gold-soft);
+}
+.feature .ic.blue {
+  color: var(--color-blue-700);
+  background: var(--color-blue-soft);
+}
+.feature .ic.cyan {
+  color: var(--color-blue-700);
+  background: var(--color-cyan-soft);
 }
 .feature .ic svg {
   width: 22px;
@@ -504,7 +578,7 @@ strong {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 253, 249, 0.88);
+  background: rgba(250, 245, 234, 0.9);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-line);
 }
@@ -540,6 +614,21 @@ strong {
   font-size: 1.4rem;
   color: var(--color-green-900);
   line-height: 1.05;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  white-space: nowrap;
+}
+.brand .bt .c3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--color-gold-600);
+  background: var(--color-gold-soft);
+  border-radius: 6px;
+  padding: 0.25em 0.5em;
+  transform: translateY(-2px);
 }
 .brand .bs {
   font-size: 0.7rem;
@@ -749,10 +838,11 @@ body.nav-locked {
   overflow: hidden;
   background: radial-gradient(
       120% 95% at 88% -10%,
-      var(--color-green-50) 0%,
-      transparent 46%
+      var(--color-cyan-soft) 0%,
+      transparent 44%
     ),
-    linear-gradient(180deg, var(--color-cream) 0%, transparent 58%);
+    radial-gradient(90% 70% at 6% 8%, var(--color-gold-soft) 0%, transparent 40%),
+    linear-gradient(180deg, var(--color-cream) 0%, transparent 60%);
 }
 .hero-grid {
   display: grid;
@@ -803,6 +893,52 @@ body.nav-locked {
   position: relative;
   z-index: 2;
 }
+/* home hero: scrapbook (taped) frame wrapping the carousel */
+.hero-media .snap {
+  position: relative;
+  z-index: 2;
+}
+.hero-photo {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+/* crossfading hero slideshow */
+.hero-slides {
+  position: absolute;
+  inset: 0;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1400ms ease-in-out;
+  will-change: opacity;
+}
+.hero-slide.is-active {
+  opacity: 1;
+}
+/* slow Ken Burns drift on the slide that's showing */
+.hero-slide img {
+  transform: scale(1.01);
+}
+.hero-slide.is-active img {
+  transform: scale(1.08);
+  transition: transform 7000ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide {
+    transition: none;
+  }
+  .hero-slide img,
+  .hero-slide.is-active img {
+    transform: none;
+    transition: none;
+  }
+}
+
 .hero-media::after {
   content: "";
   position: absolute;
@@ -1110,13 +1246,25 @@ body.nav-locked {
   cursor: pointer;
   display: grid;
   place-items: center;
+  transition: background 0.22s ease, transform 0.28s var(--ease-out),
+    box-shadow 0.28s var(--ease-out);
 }
 .news-form button:hover {
   background: var(--color-green-600);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -12px rgba(47, 107, 88, 0.6);
+}
+.news-form button:active {
+  transform: translateY(0) scale(0.94);
+  transition-duration: 0.09s;
 }
 .news-form button svg {
   width: 18px;
   height: 18px;
+  transition: transform 0.25s var(--ease-out);
+}
+.news-form button:hover svg {
+  transform: translateX(2px);
 }
 .footer-bottom {
   background: var(--color-green-900);
@@ -1239,6 +1387,28 @@ body.nav-locked {
   color: var(--color-green-800);
   font-size: 0.96rem;
   margin-bottom: 0.6em;
+}
+/* avatar header — for text-led cards (directors) that still want a face */
+.person-head {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 16px;
+}
+.person-head .role {
+  margin-bottom: 2px;
+}
+.person-head h3 {
+  margin: 0;
+}
+.avatar {
+  width: 84px;
+  height: 84px;
+  flex: none;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--color-green-50);
+  box-shadow: var(--shadow-sm);
 }
 
 .founder {
@@ -1481,6 +1651,167 @@ body.nav-locked {
   box-shadow: var(--shadow);
 }
 
+/* ============================================================
+   WARMTH LAYER — wood hints, scrapbook photos, handwritten
+   accents, characterful dividers, pale-cyan boxes
+   ============================================================ */
+
+/* subtle wood grain, used on thin rails & footer base, never a full frame */
+.wood {
+  background-color: var(--color-wood);
+  background-image: repeating-linear-gradient(
+      90deg,
+      rgba(60, 38, 12, 0.1) 0 1px,
+      transparent 1px 5px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 240, 210, 0.1) 0 1px,
+      transparent 1px 9px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(60, 38, 12, 0.05) 0 2px,
+      transparent 2px 23px
+    ),
+    linear-gradient(
+      90deg,
+      var(--color-wood-light),
+      var(--color-wood) 42%,
+      var(--color-wood-dark) 70%,
+      var(--color-wood) 100%
+    );
+}
+/* a slim plank strip, the "hint" of the old wooden room */
+.plank-rail {
+  height: 9px;
+  width: 100%;
+  border-bottom: 1px solid rgba(60, 38, 12, 0.25);
+  box-shadow: inset 0 -2px 4px rgba(60, 38, 12, 0.18);
+}
+
+/* handwritten accent, used sparingly, like a note left on the table */
+.hand {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  line-height: 1.05;
+  color: var(--color-green-700);
+}
+.hand-note {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--color-gold-600);
+  transform: rotate(-3deg);
+  display: inline-block;
+}
+
+/* scrapbook photo, a warm white border like a print pinned to the wall */
+.snap {
+  background: #fff;
+  padding: 12px 12px 14px;
+  border-radius: 4px;
+  box-shadow: 0 14px 30px -16px rgba(47, 42, 30, 0.5),
+    0 3px 8px -4px rgba(47, 42, 30, 0.22);
+  position: relative;
+  transition: transform 0.35s var(--ease-out);
+}
+.snap img {
+  display: block;
+  width: 100%;
+  border-radius: 2px;
+}
+.snap .cap {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  font-size: 1.18rem;
+  color: var(--color-muted);
+  text-align: center;
+  margin: 8px 0 0;
+  line-height: 1.1;
+}
+.snap.tilt-l {
+  transform: rotate(-1.6deg);
+}
+.snap.tilt-r {
+  transform: rotate(1.6deg);
+}
+.snap.tilt-l:hover,
+.snap.tilt-r:hover {
+  transform: rotate(0) translateY(-3px);
+}
+/* a strip of "tape" at the top */
+.snap.taped::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 96px;
+  height: 26px;
+  background: rgba(216, 163, 43, 0.32);
+  border: 1px dashed rgba(216, 163, 43, 0.5);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* pale-cyan info box, the soft rounded boxes from the original */
+.info-box {
+  background: var(--color-cyan-soft);
+  border: 1px solid var(--color-cyan-line);
+  border-radius: var(--radius);
+  padding: clamp(22px, 3vw, 34px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.info-box.center {
+  text-align: center;
+}
+.info-box h2,
+.info-box h3 {
+  color: var(--color-blue-700);
+}
+
+/* characterful dotted dividers, teal/green dashes like the old site */
+.divider-dots {
+  height: 0;
+  border: 0;
+  border-top: 3px dotted var(--color-green-500);
+  opacity: 0.55;
+  margin-block: clamp(40px, 5vw, 72px);
+}
+.divider-dots.gold {
+  border-top-color: var(--color-gold);
+}
+.divider-dots.blue {
+  border-top-color: var(--color-blue);
+}
+.divider-dots.tight {
+  margin-block: clamp(22px, 3vw, 40px);
+}
+
+/* photo that sits cleanly inside a card (no tilt) */
+.snap-card {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--color-cream);
+}
+.snap-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.card:hover .snap-card img {
+  transform: scale(1.03);
+}
+
+/* handwritten note sitting on the dark CTA band */
+.cta-band .hand-note {
+  color: var(--color-gold-soft);
+  margin: 0 0 0.2em;
+  font-size: 1.7rem;
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 1000px) {
   :root {
@@ -1609,5 +1940,17 @@ body.nav-locked {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .btn,
+  .textlink,
+  .textlink svg {
+    transition: none;
+  }
+  .btn:hover,
+  .btn:active {
+    transform: none;
+  }
+  .btn::before {
+    display: none;
   }
 }

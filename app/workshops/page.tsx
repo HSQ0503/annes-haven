@@ -30,7 +30,7 @@ export default function WorkshopsPage() {
           <h1>Aspiring entrepreneurs&apos; workshops &amp; classes</h1>
           <p className="lead">
             See what women entrepreneurs are currently offering at Anne&apos;s
-            Haven — and find out how you can attend or join our program.
+            Haven, and find out how you can attend or join our program.
           </p>
           <div style={{ marginTop: 24 }}>
             <Button href={`mailto:${site.email}`} large>
@@ -93,7 +93,7 @@ export default function WorkshopsPage() {
               <p>
                 The traumatic impact recent events have had on our city will be
                 with us for years. Start the healing by supporting our immigrant
-                friends, neighbors, and family — join our Interfaith Gathering on
+                friends, neighbors, and family, join our Interfaith Gathering on
                 the last Sunday of each month.
               </p>
               <Button href="/contact" className="mt-2">

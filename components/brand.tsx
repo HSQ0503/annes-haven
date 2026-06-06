@@ -7,7 +7,7 @@ export function Brand({ onClick }: { onClick?: () => void }) {
     <Link
       href="/"
       className="brand"
-      aria-label={`${site.name} — home`}
+      aria-label={`${site.name}, home`}
       onClick={onClick}
     >
       <Image
@@ -18,7 +18,10 @@ export function Brand({ onClick }: { onClick?: () => void }) {
         priority
       />
       <span>
-        <span className="bt">{site.name}</span>
+        <span className="bt">
+          {site.name}
+          <span className="c3">501(c)(3)</span>
+        </span>
         <span className="bs">{site.tagline}</span>
       </span>
     </Link>

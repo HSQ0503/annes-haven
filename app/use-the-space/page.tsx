@@ -141,7 +141,7 @@ export default function UseTheSpacePage() {
               <h2>A casual, home-like atmosphere</h2>
               <p>
                 If you reserve the space, this warm, home-like atmosphere and any
-                of the following amenities are available to you — including
+                of the following amenities are available to you, including
                 living-room furniture such as couches, comfy chairs, and bean
                 bags.
               </p>

@@ -27,6 +27,7 @@ export function Header() {
   return (
     <>
       <header className="site-header">
+        <div className="plank-rail wood" aria-hidden="true" />
         <nav className="nav" aria-label="Primary">
           <Brand onClick={closeMenus} />
 

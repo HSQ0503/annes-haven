@@ -24,14 +24,14 @@ const stats = [
     icon: "hands",
     figure: "$0",
     color: "var(--color-green-700)",
-    body: "paid in salaries — this is a labor of love, run entirely by volunteers.",
+    body: "paid in salaries, this is a labor of love, run entirely by volunteers.",
   },
   {
     chip: "blue round",
     icon: "users",
     figure: "ALL",
     color: "var(--color-blue-700)",
-    body: "women welcome — Anne's is a safe space for everyone.",
+    body: "women welcome, Anne's is a safe space for everyone.",
   },
 ] as const;
 
@@ -77,7 +77,7 @@ export default function SupportPage() {
             <p className="eyebrow center">Why Give</p>
             <h2>There is no place like Anne&apos;s</h2>
             <p className="measure-center">
-              Anne&apos;s is freedom — women helping women grow in the direction
+              Anne&apos;s is freedom, women helping women grow in the direction
               they want and need. Anne&apos;s is exciting, life-changing, fertile
               ground for the seeds of the future of women in this country.
               Anne&apos;s is compassion, understanding, and love for{" "}
@@ -109,7 +109,7 @@ export default function SupportPage() {
           <h2 style={{ color: "#fff" }}>We can only survive with your help</h2>
           <p style={{ color: "#cdddd3", fontSize: "1.15rem" }}>
             Any size donation shows us you understand the value of Anne&apos;s
-            Haven. We survive for you — and for your children.
+            Haven. We survive for you, and for your children.
           </p>
           <div
             style={{

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon } from "@/components/icon";
-import { ImagePlaceholder } from "@/components/image-placeholder";
 import { Photo } from "@/components/photo";
 
 export const metadata: Metadata = {
@@ -17,25 +16,25 @@ const values = [
     chip: "",
     icon: "handshake",
     title: "Connection",
-    body: "At the core of women's strength is the ability to accept, connect with, and uplift sisters of all identities — fostering compassionate, peaceful communities.",
+    body: "At the core of women's strength is the ability to accept, connect with, and uplift sisters of all identities, fostering compassionate, peaceful communities.",
   },
   {
     chip: "gold",
     icon: "hands",
     title: "Collaboration",
-    body: "Working together is the only path toward change — to build sustainable peace and support women entrepreneurs.",
+    body: "Working together is the only path toward change, to build sustainable peace and support women entrepreneurs.",
   },
   {
     chip: "blue",
     icon: "sparkles",
     title: "Empowerment",
-    body: "Through entrepreneurship and peace education, we equip women with the knowledge and skills to take their businesses — and communities — to new heights.",
+    body: "Through entrepreneurship and peace education, we equip women with the knowledge and skills to take their businesses, and communities, to new heights.",
   },
   {
     chip: "",
     icon: "sun",
     title: "Resurrection",
-    body: "Our lives move through stages. We are constantly growing wiser — embracing our imperfection and beginning new chapters.",
+    body: "Our lives move through stages. We are constantly growing wiser, embracing our imperfection and beginning new chapters.",
   },
 ] as const;
 
@@ -72,8 +71,8 @@ export default function AboutPage() {
                 growth.
               </p>
               <p>
-                Our primary focus is supporting women entrepreneurs — especially
-                those in the healing arts — and building peace. We carry out our
+                Our primary focus is supporting women entrepreneurs, especially
+                those in the healing arts, and building peace. We carry out our
                 mission through programming dedicated to entrepreneurship and
                 peace education, and by creating space for a peace center and a
                 women&apos;s incubator.
@@ -95,10 +94,11 @@ export default function AboutPage() {
             </div>
             <div className="media">
               <div className="frame bordered">
-                <ImagePlaceholder
-                  caption="Dove / peace photo"
-                  icon="dove"
-                  className="aspect-[4/3]"
+                <Photo
+                  src="/images/dovephoto.webp"
+                  alt="A white dove carrying an olive branch against a golden sunset"
+                  ratio="1/1"
+                  sizes="(max-width: 1000px) 100vw, 560px"
                 />
               </div>
             </div>
@@ -135,10 +135,11 @@ export default function AboutPage() {
           <div className="split media-left">
             <div className="media">
               <div className="frame bordered">
-                <ImagePlaceholder
-                  caption="Workshop / gathering photo"
-                  icon="palette"
-                  className="aspect-[4/3]"
+                <Photo
+                  src="/images/entrepreneurship-peace.jpeg"
+                  alt="People gathered around tables for a workshop in the warm, plant-filled room"
+                  ratio="4/3"
+                  sizes="(max-width: 1000px) 100vw, 560px"
                 />
               </div>
             </div>
@@ -147,7 +148,7 @@ export default function AboutPage() {
               <h2>Entrepreneurship &amp; peace education</h2>
               <p>
                 Our Aspiring Entrepreneur program supports women in the healing
-                arts as they pursue their passions — while strengthening
+                arts as they pursue their passions, while strengthening
                 collaboration. It&apos;s conducted as a collective, engaging each
                 individual&apos;s voice and demonstrating the power of{" "}
                 <strong>&ldquo;WE.&rdquo;</strong>
@@ -178,7 +179,7 @@ export default function AboutPage() {
               <p className="eyebrow gold">In Loving Memory</p>
               <h2>About Anne</h2>
               <p>
-                Meet Anne McNicholas-Giangrasse — a woman so inspiring that
+                Meet Anne McNicholas-Giangrasse, a woman so inspiring that
                 Anne&apos;s Haven was founded in her name and memory by her
                 daughter Janet.
               </p>
@@ -190,7 +191,7 @@ export default function AboutPage() {
               </p>
               <p>
                 Anne&apos;s Haven is a tribute to Anne&apos;s life and the legacy
-                of what she envisioned — a life without barriers for women, where
+                of what she envisioned, a life without barriers for women, where
                 each individual can thrive in peaceful and just communities.
                 Anne&apos;s passion for peace was inherent, given her Irish
                 heritage.

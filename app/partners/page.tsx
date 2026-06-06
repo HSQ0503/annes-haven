@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon } from "@/components/icon";
-import { ImagePlaceholder } from "@/components/image-placeholder";
 
 export const metadata: Metadata = {
   title: "Our Partners",
@@ -33,7 +33,18 @@ export default function PartnersPage() {
         <div className="container" style={{ maxWidth: 980 }}>
           <div className="partner">
             <div className="logo">
-              <ImagePlaceholder caption="&Rise logo" icon="image" />
+              <Image
+                src="/images/partners/rise.webp"
+                alt="&Rise logo"
+                width={2078}
+                height={1055}
+                sizes="(max-width: 760px) 100vw, 300px"
+                style={{
+                  maxWidth: "82%",
+                  height: "auto",
+                  objectFit: "contain",
+                }}
+              />
             </div>
             <div>
               <p className="eyebrow gold">Partner</p>
@@ -41,7 +52,7 @@ export default function PartnersPage() {
               <p>
                 The vision of &amp;Rise is to put millions of single mothers
                 through college, as well as putting millions of trauma survivors
-                through therapy — so they can heal and become the ultimate version
+                through therapy, so they can heal and become the ultimate version
                 of themselves.
               </p>
               <p>

@@ -1,43 +1,71 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
-import { Icon } from "@/components/icon";
-import { ImagePlaceholder } from "@/components/image-placeholder";
+import { HeroCarousel, type HeroSlide } from "@/components/hero-carousel";
+import { Icon, type IconName } from "@/components/icon";
 import { Photo } from "@/components/photo";
 
-const features = [
-  { icon: "users", label: ["Community", "Events"] },
-  { icon: "sprout", label: ["Youth", "Programs"] },
-  { icon: "palette", label: ["Workshops", "& Classes"] },
-  { icon: "storefront", label: ["Women", "Entrepreneurs"] },
-] as const;
+const features: { icon: IconName; tone: string; label: [string, string] }[] = [
+  { icon: "users", tone: "", label: ["Community", "Events"] },
+  { icon: "sprout", tone: "gold", label: ["Youth", "Programs"] },
+  { icon: "palette", tone: "blue", label: ["Workshops", "& Classes"] },
+  { icon: "storefront", tone: "cyan", label: ["Women", "Entrepreneurs"] },
+];
 
-const missionIcons = [
+const missionIcons: { icon: IconName; label: string }[] = [
   { icon: "shield", label: "Safe Spaces" },
   { icon: "users", label: "Relationships" },
   { icon: "gradCap", label: "Education" },
   { icon: "sprout", label: "Growth" },
   { icon: "dove", label: "Peace" },
-] as const;
+];
+
+const heroSlides: HeroSlide[] = [
+  {
+    src: "/images/hero_images/hero-1.jpeg",
+    alt: "Inside Anne's Haven — a sunlit community room with burlap drapes, braided rugs, and handmade décor",
+  },
+  {
+    src: "/images/hero_images/hero-4.jpeg",
+    alt: "The main gathering room with a burlap canopy, children's table, and cozy floor cushions",
+  },
+  {
+    src: "/images/hero_images/hero-2.jpeg",
+    alt: "A serene meditation nook with a forest mural, plants, and soft natural light",
+  },
+  {
+    src: "/images/hero_images/hero-3.jpeg",
+    alt: "A reading corner framed by an autumn-woodland mural and comfortable chairs",
+  },
+  {
+    src: "/images/hero_images/hero-5-anne.png",
+    alt: "A vintage photograph of Anne, the namesake of Anne's Haven, smiling on a garden swing",
+  },
+];
 
 const testimonials = [
   {
     quote:
-      "Beautiful, welcoming place. Hosted a community meeting there, but it's a space for all sorts of events. Portage Park's hidden gem.",
+      "Beautiful, welcoming place. We hosted a community meeting there, but it's a space for all sorts of events. Portage Park's hidden gem.",
     cite: "— Terrie",
   },
   {
     quote:
-      "Great place to be with friends and family. Such a peaceful & welcoming space — you feel like you're at home. Love it for any gathering, and it's affordable.",
+      "Such a peaceful, welcoming space — you feel like you're at home. Great for being with friends and family, and it's affordable too.",
     cite: "— Delilah",
   },
   {
     quote:
-      "The potential for peace and opportunities to build peace are ever-present in our communities. We just have to learn to recognize them.",
+      "The potential for peace is always there in our communities. We just have to learn to recognize it — and make a little room for it.",
     cite: "— Anne's Haven",
   },
 ];
+
+const cardMuted = {
+  color: "var(--color-muted)",
+  margin: "0 0 12px",
+  fontSize: ".96rem",
+} as const;
 
 export default function HomePage() {
   return (
@@ -46,17 +74,20 @@ export default function HomePage() {
       <section className="hero">
         <div className="container-wide hero-grid">
           <div className="hero-copy">
-            <p className="kicker">Anne&apos;s Haven · A Women-Founded Peace Center</p>
-            <h1>Where women rise, and communities find peace.</h1>
+            <p className="kicker">
+              A women-founded peace center · Portage Park, Chicago
+            </p>
+            <h1>Come on in. There&apos;s a place for you here.</h1>
             <p className="lead">
-              A welcoming home in Portage Park for community events, youth
-              programs, and workshops to host or attend — and a haven of support
-              for women entrepreneurs.
+              Anne&apos;s Haven is a homey little spot for the whole
+              neighborhood — community gatherings, youth programs, and classes to
+              take or teach. And for women building something of their own,
+              it&apos;s a soft place to grow.
             </p>
             <div className="features">
               {features.map((f) => (
                 <div className="feature" key={f.label.join(" ")}>
-                  <span className="ic">
+                  <span className={`ic ${f.tone}`.trim()}>
                     <Icon name={f.icon} />
                   </span>
                   <span>
@@ -69,28 +100,23 @@ export default function HomePage() {
             </div>
             <div className="hero-actions">
               <Button href="/programs" large>
-                Explore Our Programs <Icon name="arrowRight" />
+                See what&apos;s happening <Icon name="arrowRight" />
               </Button>
               <Button href="/get-involved" variant="outline" large>
-                Volunteer With Us
+                Lend a hand
               </Button>
             </div>
           </div>
 
           <div className="hero-media">
-            <div className="frame">
-              <Image
-                src="/images/hero-space.png"
-                alt="Inside Anne's Haven — a warm, burlap-draped community room with handmade décor"
-                fill
-                priority
-                sizes="(max-width: 1000px) 100vw, 600px"
-                className="object-cover"
-              />
+            <div className="snap taped">
+              <div className="hero-photo">
+                <HeroCarousel slides={heroSlides} />
+              </div>
             </div>
             <div
               className="hero-badge"
-              style={{ left: "-14px", bottom: "-22px" }}
+              style={{ right: "-14px", bottom: "-26px" }}
             >
               <span className="chip gold round">
                 <Icon name="star" />
@@ -107,15 +133,15 @@ export default function HomePage() {
       {/* Mission strip */}
       <section className="mission-strip">
         <div className="container-wide in">
-          <div style={{ maxWidth: "30ch" }}>
+          <div style={{ maxWidth: "32ch" }}>
             <p className="eyebrow gold" style={{ color: "var(--color-gold)" }}>
-              Our Mission
+              What we&apos;re about
             </p>
-            <h3>Safe spaces. Real relationships. Lasting peace.</h3>
+            <h3>Safe spaces, real relationships, and a little more peace.</h3>
             <p>
-              We create safe spaces, build relationships, educate, and promote
-              personal growth — with a focus on supporting women entrepreneurs in
-              the healing arts.
+              We make room for people to gather, learn, and grow — with a soft
+              spot for women entrepreneurs in the healing arts. Everyone&apos;s
+              welcome at the table.
             </p>
           </div>
           <div className="mission-icons" style={{ marginLeft: "auto" }}>
@@ -133,45 +159,46 @@ export default function HomePage() {
       <section className="section">
         <div className="container">
           <div className="section-head center">
-            <p className="eyebrow center">Explore Anne&apos;s Haven</p>
+            <p className="eyebrow center">Have a look around</p>
             <h2>There&apos;s a place here for you</h2>
             <p className="measure-center">
-              Whether you want to host a class, attend an event, reserve the
-              space, or meet the women behind it all — start here.
+              Want to host a class, drop in for an event, borrow the space, or
+              just meet the women who keep it running? Start wherever feels right.
             </p>
           </div>
           <div className="grid grid-4">
             <Link className="card" href="/use-the-space">
-              <div className="frame" style={{ borderRadius: 0 }}>
+              <div className="snap-card">
                 <Photo
-                  src="/images/meditation.png"
-                  alt="Meditation room with floor cushions"
+                  src="/images/usespace.jpeg"
+                  alt="A cozy seating corner at Anne's Haven with plants and warm lamplight"
                   ratio="4/3"
                   sizes="(max-width: 620px) 100vw, 300px"
                 />
               </div>
               <div className="card-pad">
                 <h3 style={{ fontSize: "1.25rem" }}>Use the Space</h3>
-                <p style={{ color: "var(--color-muted)", margin: "0 0 12px", fontSize: ".96rem" }}>
-                  A casual, home-like space for your class, gathering, or event.
+                <p style={cardMuted}>
+                  A casual, home-like room for your class, gathering, or event.
                 </p>
                 <span className="textlink">
-                  Reserve it <Icon name="arrowRight" />
+                  Borrow it <Icon name="arrowRight" />
                 </span>
               </div>
             </Link>
 
             <Link className="card" href="/programs">
-              <div className="frame" style={{ borderRadius: 0 }}>
-                <ImagePlaceholder
-                  caption="Programs & events photo"
-                  icon="calendar"
-                  className="aspect-[4/3]"
+              <div className="snap-card">
+                <Photo
+                  src="/images/currentprogramsevents.jpeg"
+                  alt="Flyer for Women of Anne's virtual workshops and seminars"
+                  ratio="4/3"
+                  sizes="(max-width: 620px) 100vw, 300px"
                 />
               </div>
               <div className="card-pad">
                 <h3 style={{ fontSize: "1.25rem" }}>Programs &amp; Events</h3>
-                <p style={{ color: "var(--color-muted)", margin: "0 0 12px", fontSize: ".96rem" }}>
+                <p style={cardMuted}>
                   Workshops, markets, support circles, and peace education.
                 </p>
                 <span className="textlink">
@@ -181,18 +208,17 @@ export default function HomePage() {
             </Link>
 
             <Link className="card" href="/use-the-space#amenities">
-              <div className="frame" style={{ borderRadius: 0 }}>
+              <div className="snap-card">
                 <Photo
-                  src="/images/living.png"
-                  alt="Cozy living-room area with comfy chairs"
+                  src="/images/amenities.jpeg"
+                  alt="Kitchenette amenities including a popcorn popper and refreshments"
                   ratio="4/3"
-                  position="center 35%"
                   sizes="(max-width: 620px) 100vw, 300px"
                 />
               </div>
               <div className="card-pad">
                 <h3 style={{ fontSize: "1.25rem" }}>Amenities</h3>
-                <p style={{ color: "var(--color-muted)", margin: "0 0 12px", fontSize: ".96rem" }}>
+                <p style={cardMuted}>
                   Comfy furniture, a kitchenette, screens, wi-fi, and more.
                 </p>
                 <span className="textlink">
@@ -202,20 +228,22 @@ export default function HomePage() {
             </Link>
 
             <Link className="card" href="/team">
-              <div className="frame" style={{ borderRadius: 0 }}>
-                <ImagePlaceholder
-                  caption="Women of Anne's photo"
-                  icon="users"
-                  className="aspect-[4/3]"
+              <div className="snap-card">
+                <Photo
+                  src="/images/meetthewomen.jpeg"
+                  alt="'Women of Anne's' artwork of four faces growing from a tree"
+                  ratio="4/3"
+                  sizes="(max-width: 620px) 100vw, 300px"
                 />
               </div>
               <div className="card-pad">
                 <h3 style={{ fontSize: "1.25rem" }}>Meet the Women</h3>
-                <p style={{ color: "var(--color-muted)", margin: "0 0 12px", fontSize: ".96rem" }}>
-                  The founder, staff, and board who make Anne&apos;s Haven home.
+                <p style={cardMuted}>
+                  The founder, staff, and board who make Anne&apos;s feel like
+                  home.
                 </p>
                 <span className="textlink">
-                  Meet the team <Icon name="arrowRight" />
+                  Say hello <Icon name="arrowRight" />
                 </span>
               </div>
             </Link>
@@ -223,12 +251,16 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="container">
+        <hr className="divider-dots" />
+      </div>
+
       {/* Split: more than a space */}
       <section className="section bg-sage">
         <div className="container">
           <div className="split media-left">
             <div className="media">
-              <div className="frame bordered">
+              <div className="snap tilt-l">
                 <Photo
                   src="/images/living.png"
                   alt="Warm living-room nook with handmade pillows and plants"
@@ -236,28 +268,36 @@ export default function HomePage() {
                   position="center 40%"
                   sizes="(max-width: 1000px) 100vw, 560px"
                 />
+                <p className="cap">thrifted, mismatched, and loved</p>
               </div>
             </div>
             <div>
-              <p className="eyebrow">Our Story</p>
+              <p className="eyebrow">How it started</p>
               <h2>More than a space — a haven.</h2>
               <p>
-                Anne&apos;s Haven 501(c)(3) provides programming and dedicated
-                space for people of all ethnic, racial, sexual, and religious
-                identities. Our primary focus is supporting women entrepreneurs —
-                especially those in the healing arts — and building peace.
+                Anne&apos;s Haven opened in 2016, started by Janet in memory of
+                her mom, Anne McNicholas-Giangrasse. The idea was simple: a place
+                where women help women grow in the direction they want and need.
               </p>
               <p>
-                Founded in 2016 in memory of Anne McNicholas-Giangrasse by her
-                daughter Janet, Anne&apos;s is freedom: women helping women grow
-                in the direction they want and need.
+                We&apos;re a 501(c)(3) open to people of every background,
+                identity, and walk of life. Our heart is with women entrepreneurs
+                — especially in the healing arts — and with building a little
+                more peace, one gathering at a time.
               </p>
-              <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 24 }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 14,
+                  flexWrap: "wrap",
+                  marginTop: 24,
+                }}
+              >
                 <Button href="/about">
-                  Our Mission &amp; What We Do <Icon name="arrowRight" />
+                  Our story <Icon name="arrowRight" />
                 </Button>
                 <Button href="/team" variant="outline">
-                  Meet Anne&apos;s Story
+                  Meet Anne
                 </Button>
               </div>
             </div>
@@ -269,8 +309,8 @@ export default function HomePage() {
       <section className="section">
         <div className="container">
           <div className="section-head center">
-            <p className="eyebrow center gold">Kind Words</p>
-            <h2>A place that feels like home</h2>
+            <p className="eyebrow center gold">Kind words</p>
+            <h2>People say it feels like home</h2>
           </div>
           <div className="grid grid-3">
             {testimonials.map((t) => (
@@ -286,15 +326,16 @@ export default function HomePage() {
 
       {/* CTA */}
       <CtaBand
-        title="Be part of something bigger"
-        text="Together, we can support women entrepreneurs and build a more peaceful community — one gathering, one class, one connection at a time."
+        note="join us!"
+        title="Be part of something good"
+        text="However you pitch in — a class, a donation, a Saturday morning — you're helping women grow and a neighborhood find its footing."
         deco="dove"
       >
         <Button href="/support" variant="gold" large>
           <Icon name="heart" /> Donate
         </Button>
         <Button href="/contact" variant="ghost" large>
-          Get in Touch
+          Say hello
         </Button>
       </CtaBand>
     </>

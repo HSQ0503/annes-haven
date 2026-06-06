@@ -7,12 +7,13 @@ import { footerLinks, socials, site } from "@/lib/site";
 export function Footer() {
   return (
     <footer className="site-footer">
+      <div className="plank-rail wood" aria-hidden="true" />
       <div className="container-wide footer-main">
         <div className="footer-brand">
           <Brand />
           <p>
-            A woman-founded peace center in Portage Park — creating safe spaces,
-            supporting women entrepreneurs, and building peace since 2016.
+            A little house in Portage Park where women help women grow, created
+            to serve women in 2016, and building peace ever since.
           </p>
           <div className="socials">
             {socials.map((s) => (
@@ -78,7 +79,8 @@ export function Footer() {
       <div className="footer-bottom">
         <div className="container-wide in">
           <span>
-            © 2026 Anne&apos;s Haven — 501(c)(3) nonprofit. All rights reserved.
+            © 2026 Anne&apos;s Haven, a 501(c)(3) nonprofit. Made with care in
+            Chicago.
           </span>
           <span className="tag-line">
             Safe spaces · Women without barriers · Communities without borders

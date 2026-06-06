@@ -4,6 +4,8 @@ import { Icon, type IconName } from "@/components/icon";
 type CtaBandProps = {
   title: string;
   text: string;
+  /** Optional handwritten note shown above the title. */
+  note?: string;
   deco?: IconName;
   children: ReactNode;
   sectionClassName?: string;
@@ -13,6 +15,7 @@ type CtaBandProps = {
 export function CtaBand({
   title,
   text,
+  note,
   deco,
   children,
   sectionClassName = "section-sm",
@@ -23,6 +26,7 @@ export function CtaBand({
       <div className="container">
         <div className="cta-band" style={bandStyle}>
           <div>
+            {note && <p className="hand-note">{note}</p>}
             <h2>{title}</h2>
             <p>{text}</p>
           </div>

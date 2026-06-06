@@ -22,7 +22,7 @@ export default function VideosPage() {
           </p>
           <h1>Anne&apos;s Haven videos</h1>
           <p className="lead">
-            Hear from the women whose lives Anne&apos;s Haven has touched — in
+            Hear from the women whose lives Anne&apos;s Haven has touched, in
             their own words.
           </p>
         </div>

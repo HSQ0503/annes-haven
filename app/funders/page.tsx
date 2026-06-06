@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const previous = [
-  "City of Chicago — Chicago Biz Strong Grant",
+  "City of Chicago, Chicago Biz Strong Grant",
   "Allies for Community Business",
   "Union Pacific Foundation",
   "Ross Stores Foundation",
@@ -33,7 +33,7 @@ export default function FundersPage() {
           </p>
           <h1>Our funders</h1>
           <p className="lead">
-            We sincerely thank our funders for supporting women — and for helping
+            We sincerely thank our funders for supporting women, and for helping
             Anne&apos;s Haven grow as an oasis, an incubator, and a learning hub
             in the community.
           </p>
@@ -97,7 +97,7 @@ export default function FundersPage() {
 
       <CtaBand
         title="Help fund the future of Anne's"
-        text="Foundation, business, or individual — every gift keeps the doors open."
+        text="Foundation, business, or individual, every gift keeps the doors open."
         deco="sprout"
       >
         <Button href="/support" variant="gold" large>

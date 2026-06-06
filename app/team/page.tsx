@@ -2,29 +2,38 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
-import { ImagePlaceholder } from "@/components/image-placeholder";
+import { Photo } from "@/components/photo";
 
 export const metadata: Metadata = {
   title: "Meet Our Team",
   description:
-    "Meet the founder, staff, board, and supporters of Anne's Haven — the women and friends who make our peace center home.",
+    "Meet the founder, staff, board, and supporters of Anne's Haven, the women and friends who make our peace center home.",
 };
 
 const boardMembers = [
   {
     name: "Tram Le",
     role: "Working Board Member",
-    body: "A tax CPA and small business advisor based in Chicago. Born and raised in Vietnam, Tram earned her degree in accounting and finance and her Master of Taxation. She's passionate about making financial literacy accessible — especially for women and underserved communities.",
+    photo: "/images/team/tram.jpeg",
+    body: "A tax CPA and small business advisor based in Chicago. Born and raised in Vietnam, Tram earned her degree in accounting and finance and her Master of Taxation. She's passionate about making financial literacy accessible, especially for women and underserved communities.",
   },
   {
     name: "Linda Bonesteel",
     role: "Board Member",
+    photo: "/images/team/linda.png",
     body: "A graduate of DePaul University with a degree in American Studies concentrating in Media & Pop-Culture, and a minor in LGBTQ+ Studies. Linda is passionate about empowering women and building community through shared learning, drawn to Anne's commitment to inclusivity and equity.",
   },
   {
     name: "Lili Sukenic",
     role: "Marketing Intern",
+    photo: "/images/team/lili.jpeg",
     body: "A senior at Lake Forest College majoring in Communication and Theater. With a background in media analysis and community organizing, Lili creates strategic content to amplify Anne's Haven's mission and support outreach to women and local vendors.",
+  },
+  {
+    name: "Maria",
+    role: "Working Board Member",
+    photo: "/images/team/maria.jpeg",
+    body: "A free spirit, proud parent, and grandmother with a deep care for everyone she meets and an ever-ready listening ear. Maria brings experience across sales, customer service, management, and visual and showroom merchandising, along with a lifelong drive to get involved and give back. She believes in the power of a place to step away, network, and be part of women's empowerment.",
   },
 ];
 
@@ -32,21 +41,25 @@ const advisors = [
   {
     name: "Chloe Bentley",
     note: "",
+    photo: "/images/team/chloe.jpeg",
     body: 'Former CPS teacher and mother of two. She ran the Moms Meetup at Anne\'s Haven and hosted our podcast, "Live from Anne\'s!" A strong supporter and friend since the beginning.',
   },
   {
     name: "George Borovik",
     note: "",
+    photo: "/images/team/george.jpeg",
     body: "Executive Director of the Portage Park Chamber of Commerce since 2002. A longtime friend of Anne's Haven and one of the Chamber's biggest supporters of Janet's work.",
   },
   {
     name: "Fredelyn Calla",
     note: "(she/her)",
+    photo: "/images/team/fredelyn.png",
     body: "An art therapist with Head/Heart Therapy focusing on BIPOC mental health and social-justice advocacy. She also works with Gilda's Club Chicago and lectures at SAIC.",
   },
   {
     name: "Leslie Jaeger",
     note: "(he/him)",
+    photo: "/images/team/leslie.jpeg",
     body: "Served as Interim Pastor of Big Shoulders Church, a partner of Anne's Haven, in 2022–2023. Believes every situation can become a learning opportunity.",
   },
 ];
@@ -96,7 +109,12 @@ export default function TeamPage() {
           </div>
           <div className="founder">
             <div className="ph">
-              <ImagePlaceholder caption="Janet's photo" icon="user" />
+              <Photo
+                src="/images/team/janet.jpeg"
+                alt="Janet Giangrasse, founder of Anne's Haven"
+                ratio="4/5"
+                sizes="(max-width: 760px) 100vw, 340px"
+              />
             </div>
             <div>
               <p>
@@ -111,7 +129,7 @@ export default function TeamPage() {
               <p className="quote-sm">
                 &ldquo;Anne&apos;s Haven is a tribute to my very dear mother and
                 all women. We do so much for those around us, often having nothing
-                left to give to ourselves. Anne&apos;s is for us — a safe place to
+                left to give to ourselves. Anne&apos;s is for us, a safe place to
                 create opportunities, grow friendships, learn skills… sit with our
                 thoughts. Anne&apos;s is there for whatever we need it for.&rdquo;
               </p>
@@ -135,8 +153,20 @@ export default function TeamPage() {
           <div className="grid grid-2">
             <article className="card person">
               <div className="bd">
-                <p className="role">Executive Director</p>
-                <h3>Carmen Torres</h3>
+                <div className="person-head">
+                  <span className="avatar">
+                    <Photo
+                      src="/images/team/carmen.jpeg"
+                      alt="Carmen Torres"
+                      ratio="1/1"
+                      sizes="84px"
+                    />
+                  </span>
+                  <div>
+                    <p className="role">Executive Director</p>
+                    <h3>Carmen Torres</h3>
+                  </div>
+                </div>
                 <p className="quote-sm">
                   &ldquo;I am a Wife, Mother, Grandmother, Employee, and twice
                   Cancer SURVIVOR. My mission is to inspire, encourage, motivate,
@@ -152,8 +182,20 @@ export default function TeamPage() {
             </article>
             <article className="card person">
               <div className="bd">
-                <p className="role">Director of Peace Education Programs</p>
-                <h3>Jacopo DeMarinis</h3>
+                <div className="person-head">
+                  <span className="avatar">
+                    <Photo
+                      src="/images/team/jacopo.jpeg"
+                      alt="Jacopo DeMarinis"
+                      ratio="1/1"
+                      sizes="84px"
+                    />
+                  </span>
+                  <div>
+                    <p className="role">Director of Peace Education Programs</p>
+                    <h3>Jacopo DeMarinis</h3>
+                  </div>
+                </div>
                 <p>
                   Jacopo joined the board of Anne&apos;s Haven in 2021 and
                   transitioned to his current position in 2025. He recently
@@ -162,8 +204,8 @@ export default function TeamPage() {
                   featured on BBC Northern Ireland.
                 </p>
                 <p>
-                  He is passionate about introducing communities — especially
-                  young people — to peacebuilding, building skills like nonviolent
+                  He is passionate about introducing communities, especially
+                  young people, to peacebuilding, building skills like nonviolent
                   communication and mediation, and encouraging creative thinking
                   about peace.
                 </p>
@@ -189,7 +231,12 @@ export default function TeamPage() {
             {boardMembers.map((m) => (
               <article className="card person tall" key={m.name}>
                 <div className="ph">
-                  <ImagePlaceholder caption={m.name} icon="user" />
+                  <Photo
+                    src={m.photo}
+                    alt={m.name}
+                    ratio="4/5"
+                    sizes="(max-width: 620px) 100vw, 360px"
+                  />
                 </div>
                 <div className="bd">
                   <p className="role">{m.role}</p>
@@ -213,7 +260,12 @@ export default function TeamPage() {
             {advisors.map((a) => (
               <article className="card person" key={a.name}>
                 <div className="ph">
-                  <ImagePlaceholder caption={a.name} icon="user" />
+                  <Photo
+                    src={a.photo}
+                    alt={a.name}
+                    ratio="1/1"
+                    sizes="(max-width: 620px) 50vw, 280px"
+                  />
                 </div>
                 <div className="bd">
                   <h3 style={{ fontSize: "1.18rem" }}>

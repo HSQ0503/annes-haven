@@ -86,7 +86,7 @@ export default function GetInvolvedPage() {
             </p>
             <p className="lead">
               Join a community dedicated to supporting women entrepreneurs and
-              building peace — right here in Portage Park.
+              building peace, right here in Portage Park.
             </p>
             <div className="hero-actions" style={{ margin: "28px 0 30px" }}>
               <Button href="/contact" large>
@@ -146,7 +146,7 @@ export default function GetInvolvedPage() {
             <h3>Why your time matters</h3>
             <p>
               Our mission is to create safe spaces, build relationships, educate,
-              and promote personal growth — with a focus on supporting women
+              and promote personal growth, with a focus on supporting women
               entrepreneurs and building peace.
             </p>
           </div>
@@ -223,7 +223,7 @@ export default function GetInvolvedPage() {
 
       <CtaBand
         title="Be part of something bigger"
-        text="Together, we can support women entrepreneurs and build a more peaceful world — one connection at a time."
+        text="Together, we can support women entrepreneurs and build a more peaceful world, one connection at a time."
         deco="hands"
         sectionClassName="section-sm bg-cream"
       >
