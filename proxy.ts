@@ -1,7 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(
@@ -25,17 +25,14 @@ export async function middleware(request: NextRequest) {
     },
   );
 
-  // Refreshes the session and tells us who's logged in.
+  // Refreshes the session and tells us who's signed in.
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const path = request.nextUrl.pathname;
-  if (path.startsWith("/admin") && path !== "/admin/login" && !user) {
-    return NextResponse.redirect(new URL("/admin/login", request.url));
+  if (!user) {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
-
-  response.headers.set("x-pathname", path);
   return response;
 }
 

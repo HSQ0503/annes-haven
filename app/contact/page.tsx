@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
 import { Icon } from "@/components/icon";
 import { ImagePlaceholder } from "@/components/image-placeholder";
-import { site } from "@/lib/site";
+import { getSettings } from "@/lib/content/db";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -11,7 +11,10 @@ export const metadata: Metadata = {
     "Contact Anne's Haven to sign up for a program, volunteer, or share an idea. Call 773-512-8115 or use our contact form.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const s = await getSettings();
+  const phoneHref = `tel:${s.phone.replace(/[^\d]/g, "")}`;
+  const cellHref = `tel:${s.cell.replace(/[^\d]/g, "")}`;
   return (
     <>
       <section className="page-hero bg-sage">
@@ -43,8 +46,8 @@ export default function ContactPage() {
                   </span>
                   <div>
                     <b>Call us</b>
-                    <a href={site.cellHref}>{site.cell}</a> &nbsp;·&nbsp;{" "}
-                    <a href={site.phoneHref}>{site.phone}</a>
+                    <a href={cellHref}>{s.cell}</a> &nbsp;·&nbsp;{" "}
+                    <a href={phoneHref}>{s.phone}</a>
                   </div>
                 </div>
                 <div className="info-row">
@@ -53,7 +56,7 @@ export default function ContactPage() {
                   </span>
                   <div>
                     <b>Email</b>
-                    <a href={`mailto:${site.email}`}>{site.email}</a>
+                    <a href={`mailto:${s.email}`}>{s.email}</a>
                   </div>
                 </div>
                 <div className="info-row">
@@ -63,7 +66,7 @@ export default function ContactPage() {
                   <div>
                     <b>Visit</b>
                     <span>
-                      {site.address.street}, {site.address.city}
+                      {s.address_street}, {s.address_city}
                     </span>
                   </div>
                 </div>

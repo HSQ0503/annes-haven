@@ -1,10 +1,20 @@
 import Link from "next/link";
 import { Brand } from "@/components/brand";
-import { Icon } from "@/components/icon";
+import { Icon, type IconName } from "@/components/icon";
 import { NewsletterForm } from "@/components/newsletter-form";
-import { footerLinks, socials, site } from "@/lib/site";
+import { footerLinks } from "@/lib/site";
+import { getSettings } from "@/lib/content/db";
 
-export function Footer() {
+export async function Footer() {
+  const s = await getSettings();
+  const phoneHref = `tel:${s.phone.replace(/[^\d]/g, "")}`;
+  const socials: { label: string; icon: IconName; href: string }[] = [
+    { label: "Instagram", icon: "instagram", href: s.instagram_url },
+    { label: "Facebook", icon: "facebook", href: s.facebook_url },
+    { label: "YouTube", icon: "youtube", href: s.youtube_url },
+    { label: "LinkedIn", icon: "linkedin", href: s.linkedin_url },
+  ].filter((x) => x.href.trim());
+
   return (
     <footer className="site-footer">
       <div className="plank-rail wood" aria-hidden="true" />
@@ -58,18 +68,18 @@ export function Footer() {
             <div className="row">
               <Icon name="mapPin" />
               <span>
-                {site.address.street}
+                {s.address_street}
                 <br />
-                {site.address.city}
+                {s.address_city}
               </span>
             </div>
             <div className="row">
               <Icon name="phone" />
-              <a href={site.phoneHref}>{site.phone}</a>
+              <a href={phoneHref}>{s.phone}</a>
             </div>
             <div className="row">
               <Icon name="mail" />
-              <a href={`mailto:${site.email}`}>{site.email}</a>
+              <a href={`mailto:${s.email}`}>{s.email}</a>
             </div>
           </div>
           <NewsletterForm />
@@ -79,12 +89,10 @@ export function Footer() {
       <div className="footer-bottom">
         <div className="container-wide in">
           <span>
-            © 2026 Anne&apos;s Haven, a 501(c)(3) nonprofit. Made with care in
-            Chicago.
+            © {s.footer_year} Anne&apos;s Haven, a 501(c)(3) nonprofit. Made with
+            care in Chicago.
           </span>
-          <span className="tag-line">
-            Safe spaces · Women without barriers · Communities without borders
-          </span>
+          <span className="tag-line">{s.footer_tagline}</span>
         </div>
       </div>
     </footer>

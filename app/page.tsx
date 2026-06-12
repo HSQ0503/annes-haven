@@ -4,6 +4,7 @@ import { CtaBand } from "@/components/cta-band";
 import { HeroCarousel, type HeroSlide } from "@/components/hero-carousel";
 import { Icon, type IconName } from "@/components/icon";
 import { Photo } from "@/components/photo";
+import { getTestimonials } from "@/lib/content/db";
 
 const features: { icon: IconName; tone: string; label: [string, string] }[] = [
   { icon: "users", tone: "", label: ["Community", "Events"] },
@@ -67,7 +68,11 @@ const cardMuted = {
   fontSize: ".96rem",
 } as const;
 
-export default function HomePage() {
+export default async function HomePage() {
+  const dbTestimonials = await getTestimonials();
+  const quotes = dbTestimonials.length
+    ? dbTestimonials.map((t) => ({ quote: t.quote, cite: t.author ?? "" }))
+    : testimonials;
   return (
     <>
       {/* Hero */}
@@ -313,11 +318,11 @@ export default function HomePage() {
             <h2>People say it feels like home</h2>
           </div>
           <div className="grid grid-3">
-            {testimonials.map((t) => (
-              <figure className="tcard" key={t.cite}>
+            {quotes.map((t, i) => (
+              <figure className="tcard" key={i}>
                 <div className="mark">&ldquo;</div>
                 <p>{t.quote}</p>
-                <cite>{t.cite}</cite>
+                {t.cite && <cite>{t.cite}</cite>}
               </figure>
             ))}
           </div>
