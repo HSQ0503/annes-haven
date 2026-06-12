@@ -11,7 +11,8 @@ import type {
   Workshop,
 } from "./types";
 
-/** Fallbacks so the public site still renders if a row/table is empty. */
+/** Fallbacks so the public site still renders if a row/table is empty or the
+ *  database isn't configured (e.g. env vars missing during a build). */
 const SETTINGS_FALLBACK: SiteSettings = {
   phone: "(773) 340-1678",
   cell: "773-512-8115",
@@ -30,7 +31,9 @@ const SETTINGS_FALLBACK: SiteSettings = {
 };
 
 export async function getSettings(): Promise<SiteSettings> {
-  const { data } = await supabasePublic
+  const sb = supabasePublic();
+  if (!sb) return SETTINGS_FALLBACK;
+  const { data } = await sb
     .from("site_settings")
     .select("*")
     .eq("id", 1)
@@ -45,66 +48,21 @@ export async function getSettings(): Promise<SiteSettings> {
   return merged;
 }
 
-export async function getTeam(): Promise<TeamMember[]> {
-  const { data } = await supabasePublic
-    .from("team_members")
+async function readCollection<T>(table: string): Promise<T[]> {
+  const sb = supabasePublic();
+  if (!sb) return [];
+  const { data } = await sb
+    .from(table)
     .select("*")
     .order("sort_order", { ascending: true });
-  return (data ?? []) as TeamMember[];
+  return (data ?? []) as T[];
 }
 
-export async function getTestimonials(): Promise<Testimonial[]> {
-  const { data } = await supabasePublic
-    .from("testimonials")
-    .select("*")
-    .order("sort_order", { ascending: true });
-  return (data ?? []) as Testimonial[];
-}
-
-export async function getVideos(): Promise<Video[]> {
-  const { data } = await supabasePublic
-    .from("videos")
-    .select("*")
-    .order("sort_order", { ascending: true });
-  return (data ?? []) as Video[];
-}
-
-export async function getPrograms(): Promise<Program[]> {
-  const { data } = await supabasePublic
-    .from("programs")
-    .select("*")
-    .order("sort_order", { ascending: true });
-  return (data ?? []) as Program[];
-}
-
-export async function getVolunteerRoles(): Promise<VolunteerRole[]> {
-  const { data } = await supabasePublic
-    .from("volunteer_roles")
-    .select("*")
-    .order("sort_order", { ascending: true });
-  return (data ?? []) as VolunteerRole[];
-}
-
-export async function getPartners(): Promise<Partner[]> {
-  const { data } = await supabasePublic
-    .from("partners")
-    .select("*")
-    .order("sort_order", { ascending: true });
-  return (data ?? []) as Partner[];
-}
-
-export async function getFunders(): Promise<Funder[]> {
-  const { data } = await supabasePublic
-    .from("funders")
-    .select("*")
-    .order("sort_order", { ascending: true });
-  return (data ?? []) as Funder[];
-}
-
-export async function getWorkshops(): Promise<Workshop[]> {
-  const { data } = await supabasePublic
-    .from("workshops")
-    .select("*")
-    .order("sort_order", { ascending: true });
-  return (data ?? []) as Workshop[];
-}
+export const getTeam = () => readCollection<TeamMember>("team_members");
+export const getTestimonials = () => readCollection<Testimonial>("testimonials");
+export const getVideos = () => readCollection<Video>("videos");
+export const getPrograms = () => readCollection<Program>("programs");
+export const getVolunteerRoles = () => readCollection<VolunteerRole>("volunteer_roles");
+export const getPartners = () => readCollection<Partner>("partners");
+export const getFunders = () => readCollection<Funder>("funders");
+export const getWorkshops = () => readCollection<Workshop>("workshops");

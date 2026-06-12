@@ -9,11 +9,10 @@ const EMPTY: SiteSettings = {
 };
 
 export default async function SettingsPage() {
-  const { data } = await supabasePublic
-    .from("site_settings")
-    .select("*")
-    .eq("id", 1)
-    .maybeSingle();
+  const sb = supabasePublic();
+  const { data } = sb
+    ? await sb.from("site_settings").select("*").eq("id", 1).maybeSingle()
+    : { data: null };
 
   const initial = { ...EMPTY };
   if (data) {

@@ -147,7 +147,9 @@ export type PageSlug = keyof typeof PAGE_CONFIGS;
 export async function getPage(slug: PageSlug): Promise<Record<string, string>> {
   const config = PAGE_CONFIGS[slug];
   const merged = { ...config.defaults };
-  const { data } = await supabasePublic
+  const sb = supabasePublic();
+  if (!sb) return merged;
+  const { data } = await sb
     .from("page_content")
     .select("data")
     .eq("slug", slug)
