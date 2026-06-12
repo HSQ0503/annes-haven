@@ -8,6 +8,7 @@ import type {
   VolunteerRole,
   Partner,
   Funder,
+  Workshop,
 } from "./types";
 
 /** Fallbacks so the public site still renders if a row/table is empty. */
@@ -98,4 +99,12 @@ export async function getFunders(): Promise<Funder[]> {
     .select("*")
     .order("sort_order", { ascending: true });
   return (data ?? []) as Funder[];
+}
+
+export async function getWorkshops(): Promise<Workshop[]> {
+  const { data } = await supabasePublic
+    .from("workshops")
+    .select("*")
+    .order("sort_order", { ascending: true });
+  return (data ?? []) as Workshop[];
 }

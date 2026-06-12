@@ -79,3 +79,14 @@ export type Funder = {
   status: "current" | "previous";
   sort_order: number;
 };
+
+export type Workshop = {
+  id: string;
+  flyer_url: string | null;
+  tag: string | null;
+  tone: string | null;
+  icon: string | null;
+  title: string;
+  blurb: string | null;
+  sort_order: number;
+};

@@ -8,6 +8,7 @@ const SECTIONS = [
   { href: "/admin/pages", label: "Page Text" },
   { href: "/admin/team", label: "Team & Board" },
   { href: "/admin/programs", label: "Programs" },
+  { href: "/admin/workshops", label: "Workshops" },
   { href: "/admin/volunteer-roles", label: "Volunteer Roles" },
   { href: "/admin/testimonials", label: "Testimonials" },
   { href: "/admin/videos", label: "Videos" },

@@ -4,7 +4,8 @@ import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon, type IconName } from "@/components/icon";
 import { ImagePlaceholder } from "@/components/image-placeholder";
-import { site } from "@/lib/site";
+import { Photo } from "@/components/photo";
+import { getSettings, getWorkshops } from "@/lib/content/db";
 
 export const metadata: Metadata = {
   title: "Workshops & Classes",
@@ -12,13 +13,15 @@ export const metadata: Metadata = {
     "See what women entrepreneurs are currently offering at Anne's Haven. Attend a workshop or class, or join our aspiring entrepreneur program.",
 };
 
-const offerings: { tag: string; tagClass: string; tagIcon: IconName }[] = [
+const PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconName }[] = [
   { tag: "Healing Arts", tagClass: "gold", tagIcon: "palette" },
   { tag: "Workshop", tagClass: "", tagIcon: "lightbulb" },
   { tag: "Community", tagClass: "blue", tagIcon: "users" },
 ];
 
-export default function WorkshopsPage() {
+export default async function WorkshopsPage() {
+  const s = await getSettings();
+  const workshops = await getWorkshops();
   return (
     <>
       <section className="page-hero bg-sage">
@@ -33,7 +36,7 @@ export default function WorkshopsPage() {
             Haven, and find out how you can attend or join our program.
           </p>
           <div style={{ marginTop: 24 }}>
-            <Button href={`mailto:${site.email}`} large>
+            <Button href={`mailto:${s.email}`} large>
               Email to Join or Attend <Icon name="arrowRight" />
             </Button>
           </div>
@@ -50,35 +53,65 @@ export default function WorkshopsPage() {
               Flip through the current offerings from the women entrepreneurs of
               Anne&apos;s Haven. Interested in attending an event or joining our
               entrepreneur program? Email{" "}
-              <a className="textlink" href={`mailto:${site.email}`}>
-                {site.email}
+              <a className="textlink" href={`mailto:${s.email}`}>
+                {s.email}
               </a>
               .
             </p>
           </div>
           <div className="grid grid-3">
-            {offerings.map((o, i) => (
-              <div className="card" key={o.tag}>
-                <div className="frame" style={{ borderRadius: 0 }}>
-                  <ImagePlaceholder
-                    caption={`Workshop flyer ${i + 1}`}
-                    icon="palette"
-                    className="aspect-[3/4]"
-                  />
-                </div>
-                <div className="card-pad">
-                  <span className={`tag ${o.tagClass}`.trim()}>
-                    <Icon name={o.tagIcon} /> {o.tag}
-                  </span>
-                  <h3 style={{ fontSize: "1.2rem", marginTop: 12 }}>
-                    Add your flyer
-                  </h3>
-                  <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
-                    Drop in a class flyer and details here.
-                  </p>
-                </div>
-              </div>
-            ))}
+            {workshops.length > 0
+              ? workshops.map((w) => (
+                  <div className="card" key={w.id}>
+                    <div className="frame" style={{ borderRadius: 0 }}>
+                      {w.flyer_url ? (
+                        <Photo
+                          src={w.flyer_url}
+                          alt={`Flyer for ${w.title}`}
+                          ratio="3/4"
+                          sizes="(max-width: 620px) 100vw, 380px"
+                        />
+                      ) : (
+                        <ImagePlaceholder caption="Flyer" icon="palette" className="aspect-[3/4]" />
+                      )}
+                    </div>
+                    <div className="card-pad">
+                      {w.tag && (
+                        <span className={`tag ${w.tone ?? ""}`.trim()}>
+                          <Icon name={(w.icon || "palette") as IconName} /> {w.tag}
+                        </span>
+                      )}
+                      <h3 style={{ fontSize: "1.2rem", marginTop: 12 }}>{w.title}</h3>
+                      {w.blurb && (
+                        <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
+                          {w.blurb}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))
+              : PLACEHOLDER_TAGS.map((o, i) => (
+                  <div className="card" key={o.tag}>
+                    <div className="frame" style={{ borderRadius: 0 }}>
+                      <ImagePlaceholder
+                        caption={`Workshop flyer ${i + 1}`}
+                        icon="palette"
+                        className="aspect-[3/4]"
+                      />
+                    </div>
+                    <div className="card-pad">
+                      <span className={`tag ${o.tagClass}`.trim()}>
+                        <Icon name={o.tagIcon} /> {o.tag}
+                      </span>
+                      <h3 style={{ fontSize: "1.2rem", marginTop: 12 }}>
+                        Add your flyer
+                      </h3>
+                      <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
+                        Drop in a class flyer and details here.
+                      </p>
+                    </div>
+                  </div>
+                ))}
           </div>
         </div>
       </section>
