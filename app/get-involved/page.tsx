@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon, type IconName } from "@/components/icon";
-import { ImagePlaceholder } from "@/components/image-placeholder";
+import { Photo } from "@/components/photo";
 
 export const metadata: Metadata = {
   title: "Volunteer With Us",
@@ -114,10 +114,11 @@ export default function GetInvolvedPage() {
 
           <div className="hero-media">
             <div className="frame">
-              <ImagePlaceholder
-                caption="Volunteers / community photo"
-                icon="users"
-                className="h-full"
+              <Photo
+                src="/images/volunteer/image1.jpg"
+                alt="A framed collage of vintage family photographs at Anne's Haven"
+                ratio="5/4"
+                sizes="(max-width: 1000px) 100vw, 560px"
               />
             </div>
             <div

@@ -78,8 +78,8 @@ export default function UseTheSpacePage() {
           <div className="hero-media">
             <div className="frame">
               <Image
-                src="/images/meditation.png"
-                alt="Meditation room with floor cushions and warm lighting"
+                src="/images/usethespace/image1.jpg"
+                alt="The main room at Anne's Haven with burlap drapes, braided rugs, floor cushions, and warm lantern light"
                 fill
                 priority
                 sizes="(max-width: 1000px) 100vw, 600px"

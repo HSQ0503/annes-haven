@@ -72,6 +72,12 @@
 }
 html {
   scroll-behavior: smooth;
+  /* Hide the default scrollbar while keeping scroll functionality. */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge/IE */
+}
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 body {
   margin: 0;
@@ -1583,6 +1589,67 @@ body.nav-locked {
   font-weight: 600;
   font-size: 1.4rem;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Video embeds (responsive 16:9 YouTube iframes) ---- */
+.video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--color-green-900);
+}
+.video-embed.lg {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+/* sits flush inside a card that already provides the frame */
+.video-embed.flush {
+  border-radius: 0;
+  box-shadow: none;
+}
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+/* "coming soon" slot for videos not yet produced */
+.video-embed.soon {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    160deg,
+    var(--color-green-800),
+    var(--color-green-900)
+  );
+  color: #cdddd3;
+}
+.video-embed.soon .inner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+}
+.video-embed.soon svg {
+  width: 38px;
+  height: 38px;
+  color: var(--color-gold);
+  opacity: 0.9;
+}
+.video-embed.soon b {
+  font-family: var(--font-display);
+  color: #fff;
+  font-size: 1.05rem;
+}
+.video-embed.soon span {
+  font-size: 0.85rem;
+  color: #a9c3b6;
 }
 
 /* ---- Contact page ---- */

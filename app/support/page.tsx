@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon } from "@/components/icon";
-import { ImagePlaceholder } from "@/components/image-placeholder";
+import { Photo } from "@/components/photo";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -60,10 +60,11 @@ export default function SupportPage() {
           </div>
           <div className="hero-media">
             <div className="frame bordered">
-              <ImagePlaceholder
-                caption="Framed family / Anne photo"
-                icon="heart"
-                className="aspect-[4/5]"
+              <Photo
+                src="/images/volunteer/image1.jpg"
+                alt="A framed collage of vintage family photographs at Anne's Haven"
+                ratio="4/5"
+                sizes="(max-width: 1000px) 100vw, 560px"
               />
             </div>
           </div>

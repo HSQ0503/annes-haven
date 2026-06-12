@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Icon } from "@/components/icon";
-import { ImagePlaceholder } from "@/components/image-placeholder";
 
 export const metadata: Metadata = {
   title: "Videos",
@@ -9,8 +8,95 @@ export const metadata: Metadata = {
     "Watch videos about Anne's Haven and hear from the women whose lives the center has touched.",
 };
 
-const youtube =
-  "https://www.youtube.com/channel/UCjtbZydkIzWmLytsFxnfSGw";
+const youtube = "https://www.youtube.com/channel/UCjtbZydkIzWmLytsFxnfSGw";
+
+/**
+ * Each video is a YouTube id (the value after watch?v=) plus a title and blurb.
+ * id: null renders a "coming soon" slot — drop the id in once the film is ready.
+ * Add or remove entries freely; the grid is responsive to however many there are.
+ */
+type Video = { id: string | null; title: string; blurb: string };
+
+const featured: Video = {
+  id: "M7MxP_GfHm4",
+  title: "The Anne's Haven Video",
+  blurb:
+    "Want to know more about Anne's Haven? Hear from several women about how the center has helped them in their lives. Founder Janet also speaks about the mission of Anne's and what's happening right now.",
+};
+
+const videos: Video[] = [
+  {
+    id: "4c0DIDXnnZs",
+    title: "Meet Jacopo DeMarinis",
+    blurb: "Director of our Community Service 2.0 Program.",
+  },
+  {
+    id: "h2Uwge4x2sQ",
+    title: "Elena Pozo Perez on Your Health",
+    blurb: "Our guest speaker from Spain visits Anne's.",
+  },
+  {
+    id: "z7XvZS49QWA",
+    title: "Sketch, Sip & Self-Care",
+    blurb: "An event in support of our Gathering of Moms.",
+  },
+  {
+    id: "a3pB3ttnb3k",
+    title: "Mary Joyce — a Woman of Anne's",
+    blurb: "One of the women at the heart of Anne's Haven.",
+  },
+  {
+    id: "H3IICjkNBio",
+    title: "Aga, Artist & Leader at Anne's",
+    blurb: "Creativity and leadership in our community.",
+  },
+  {
+    id: "2V5FEAsflBs",
+    title: "Memoir for Me at Anne's Haven",
+    blurb: "Telling our stories, one page at a time.",
+  },
+  {
+    id: "KziRuAsDgzo",
+    title: "Living a Blissful Life",
+    blurb: "A session on finding peace in everyday life.",
+  },
+  {
+    id: null,
+    title: "A Decade In",
+    blurb: "Our newest film, celebrating ten years of Anne's. Coming soon.",
+  },
+  {
+    id: null,
+    title: "A Film by Chimbuani",
+    blurb: "A video from our partner Chimbuani. Coming soon.",
+  },
+];
+
+function Embed({ video, large = false }: { video: Video; large?: boolean }) {
+  if (!video.id) {
+    return (
+      <div className={`video-embed soon${large ? " lg" : " flush"}`}>
+        <div className="inner">
+          <Icon name="play" />
+          <b>Coming soon</b>
+          <span>Check back shortly</span>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className={`video-embed${large ? " lg" : " flush"}`}>
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${video.id}`}
+        title={video.title}
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+      />
+    </div>
+  );
+}
 
 export default function VideosPage() {
   return (
@@ -32,31 +118,11 @@ export default function VideosPage() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">Featured</p>
-            <h2>The Anne&apos;s Haven Video (2016–2025)</h2>
+            <h2>{featured.title}</h2>
           </div>
-          <div className="video-hero">
-            <div className="absolute inset-0">
-              <ImagePlaceholder caption="Video thumbnail" icon="play" />
-            </div>
-            <a
-              className="play"
-              href={youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Play video"
-            >
-              <span className="btn-play">
-                <Icon name="play" />
-              </span>
-            </a>
-            <span className="label">The Anne&apos;s Haven Video</span>
-          </div>
+          <Embed video={featured} large />
           <p className="lead" style={{ maxWidth: "70ch", marginTop: 28 }}>
-            Want to know more about Anne&apos;s Haven? Watch this video to hear
-            from several women about how the center has helped them in their
-            lives. Anne&apos;s Haven&apos;s owner and founder, Janet, also speaks
-            about the mission of Anne&apos;s and current events happening right
-            now.
+            {featured.blurb}
           </p>
         </div>
       </section>
@@ -68,31 +134,36 @@ export default function VideosPage() {
             <h2>From our channel</h2>
           </div>
           <div className="grid grid-3">
-            {[0, 1, 2].map((i) => (
-              <div className="card" key={i}>
-                <div className="frame" style={{ borderRadius: 0, position: "relative" }}>
-                  <ImagePlaceholder
-                    caption="Video thumbnail"
-                    icon="play"
-                    className="aspect-video"
-                  />
-                </div>
+            {videos.map((v) => (
+              <article className="card" key={v.title}>
+                <Embed video={v} />
                 <div className="card-pad">
                   <span className="tag">
                     <Icon name="play" /> Watch
                   </span>
                   <h3 style={{ fontSize: "1.15rem", marginTop: 12 }}>
-                    Add a video
+                    {v.title}
                   </h3>
-                  <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
-                    Link a clip from your channel here.
+                  <p
+                    style={{
+                      color: "var(--color-muted)",
+                      fontSize: ".92rem",
+                      margin: 0,
+                    }}
+                  >
+                    {v.blurb}
                   </p>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
           <div className="center" style={{ marginTop: 36 }}>
-            <a className="btn" href={youtube} target="_blank" rel="noopener noreferrer">
+            <a
+              className="btn"
+              href={youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Icon name="youtube" /> Visit our YouTube
             </a>
           </div>
