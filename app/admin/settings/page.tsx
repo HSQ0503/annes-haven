@@ -13,7 +13,7 @@ export default async function SettingsPage() {
     .from("site_settings")
     .select("*")
     .eq("id", 1)
-    .single();
+    .maybeSingle();
 
   const initial = { ...EMPTY };
   if (data) {

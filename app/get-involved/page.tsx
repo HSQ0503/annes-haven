@@ -3,6 +3,8 @@ import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon, type IconName } from "@/components/icon";
 import { Photo } from "@/components/photo";
+import { getVolunteerRoles } from "@/lib/content/db";
+import { getPage } from "@/lib/content/pages";
 
 export const metadata: Metadata = {
   title: "Volunteer With Us",
@@ -25,45 +27,32 @@ const missionIcons: { icon: IconName; label: string }[] = [
   { icon: "dove", label: "Peace" },
 ];
 
-const roles: { chip: string; icon: IconName; title: string; body: string; items: string[] }[] = [
-  {
-    chip: "",
-    icon: "book",
-    title: "Grant Research & Writing",
-    body: "Support fundraising by researching grants and helping craft compelling proposals.",
-    items: ["Grant research", "Draft writing support", "Donor reporting"],
-  },
-  {
-    chip: "gold",
-    icon: "megaphone",
-    title: "Social Media & Marketing",
-    body: "Amplify our voice and grow our community through creative, strategic marketing.",
-    items: ["Content creation", "Social media strategy", "Campaign management"],
-  },
-  {
-    chip: "blue",
-    icon: "handshake",
-    title: "Outreach & Partnerships",
-    body: "Build meaningful partnerships and expand our reach within the community.",
-    items: ["Partner outreach", "Relationship building", "Community engagement"],
-  },
-  {
-    chip: "",
-    icon: "users",
-    title: "Volunteer Coordinator",
-    body: "Recruit, engage, and support volunteers for a positive, impactful experience.",
-    items: ["Volunteer onboarding", "Engagement & retention", "Communication"],
-  },
-  {
-    chip: "gold",
-    icon: "calendar",
-    title: "Program & Events Admin",
-    body: "Help plan and organize programs and events that empower and inspire.",
-    items: ["Event coordination", "Logistics & scheduling", "Administrative support"],
-  },
+type RoleCard = { icon: IconName; title: string; body: string; items: string[]; link: string };
+
+const ROLES_FALLBACK: Omit<RoleCard, "link">[] = [
+  { icon: "book", title: "Grant Research & Writing", body: "Support fundraising by researching grants and helping craft compelling proposals.", items: ["Grant research", "Draft writing support", "Donor reporting"] },
+  { icon: "megaphone", title: "Social Media & Marketing", body: "Amplify our voice and grow our community through creative, strategic marketing.", items: ["Content creation", "Social media strategy", "Campaign management"] },
+  { icon: "handshake", title: "Outreach & Partnerships", body: "Build meaningful partnerships and expand our reach within the community.", items: ["Partner outreach", "Relationship building", "Community engagement"] },
+  { icon: "users", title: "Volunteer Coordinator", body: "Recruit, engage, and support volunteers for a positive, impactful experience.", items: ["Volunteer onboarding", "Engagement & retention", "Communication"] },
+  { icon: "calendar", title: "Program & Events Admin", body: "Help plan and organize programs and events that empower and inspire.", items: ["Event coordination", "Logistics & scheduling", "Administrative support"] },
 ];
 
-export default function GetInvolvedPage() {
+const TONES = ["", "gold", "blue"];
+
+export default async function GetInvolvedPage() {
+  const page = await getPage("get-involved");
+  const applyHref = page.apply_url || "/contact";
+  const dbRoles = await getVolunteerRoles();
+  const roles: RoleCard[] = dbRoles.length
+    ? dbRoles.map((r) => ({
+        icon: (r.icon || "users") as IconName,
+        title: r.title,
+        body: r.body ?? "",
+        items: r.items ?? [],
+        link: r.description_url || applyHref,
+      }))
+    : ROLES_FALLBACK.map((r) => ({ ...r, link: applyHref }));
+
   return (
     <>
       {/* Hero */}
@@ -71,7 +60,7 @@ export default function GetInvolvedPage() {
         <div className="container-wide hero-grid">
           <div className="hero-copy">
             <p className="kicker">Get Involved</p>
-            <h1>Volunteer with us.</h1>
+            <h1>{page.hero_heading}</h1>
             <p
               className="serif"
               style={{
@@ -84,12 +73,9 @@ export default function GetInvolvedPage() {
               Create safe spaces. Build relationships. Educate. Promote personal
               growth.
             </p>
-            <p className="lead">
-              Join a community dedicated to supporting women entrepreneurs and
-              building peace, right here in Portage Park.
-            </p>
+            <p className="lead">{page.hero_lead}</p>
             <div className="hero-actions" style={{ margin: "28px 0 30px" }}>
-              <Button href="/contact" large>
+              <Button href={applyHref} large>
                 Apply to Volunteer <Icon name="arrowRight" />
               </Button>
               <Button href="#roles" variant="outline" large>
@@ -174,20 +160,22 @@ export default function GetInvolvedPage() {
             </p>
           </div>
           <div className="grid grid-3">
-            {roles.map((r) => (
+            {roles.map((r, i) => (
               <article className="card card-pad" key={r.title}>
-                <span className={`chip ${r.chip}`.trim()}>
+                <span className={`chip ${TONES[i % TONES.length]}`.trim()}>
                   <Icon name={r.icon} />
                 </span>
                 <h3 style={{ fontSize: "1.3rem" }}>{r.title}</h3>
                 <p style={{ color: "var(--color-muted)", fontSize: ".98rem" }}>{r.body}</p>
-                <ul className="checklist" style={{ fontSize: ".95rem", margin: "18px 0 22px" }}>
-                  {r.items.map((i) => (
-                    <li key={i}>{i}</li>
-                  ))}
-                </ul>
-                <a className="textlink" href="/contact">
-                  Apply <Icon name="arrowRight" />
+                {r.items.length > 0 && (
+                  <ul className="checklist" style={{ fontSize: ".95rem", margin: "18px 0 22px" }}>
+                    {r.items.map((it) => (
+                      <li key={it}>{it}</li>
+                    ))}
+                  </ul>
+                )}
+                <a className="textlink" href={r.link}>
+                  {r.link === applyHref ? "Apply" : "Learn more"} <Icon name="arrowRight" />
                 </a>
               </article>
             ))}
@@ -223,12 +211,12 @@ export default function GetInvolvedPage() {
       </section>
 
       <CtaBand
-        title="Be part of something bigger"
-        text="Together, we can support women entrepreneurs and build a more peaceful world, one connection at a time."
+        title={page.cta_title}
+        text={page.cta_text}
         deco="hands"
         sectionClassName="section-sm bg-cream"
       >
-        <Button href="/contact" variant="gold" large>
+        <Button href={applyHref} variant="gold" large>
           Apply Now
         </Button>
         <Button href="/contact" variant="ghost" large>

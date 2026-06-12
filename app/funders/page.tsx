@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon } from "@/components/icon";
 import { ImagePlaceholder } from "@/components/image-placeholder";
+import { getFunders } from "@/lib/content/db";
 
 export const metadata: Metadata = {
   title: "Our Funders",
@@ -11,7 +13,7 @@ export const metadata: Metadata = {
     "We sincerely thank our funders for supporting women and helping Anne's Haven grow as an oasis, an incubator, and a learning hub in the community.",
 };
 
-const previous = [
+const PREVIOUS_FALLBACK = [
   "City of Chicago, Chicago Biz Strong Grant",
   "Allies for Community Business",
   "Union Pacific Foundation",
@@ -22,7 +24,12 @@ const previous = [
   "The Chicago Foundation for Women",
 ];
 
-export default function FundersPage() {
+export default async function FundersPage() {
+  const all = await getFunders();
+  const current = all.filter((f) => f.status === "current");
+  const previous = all.filter((f) => f.status === "previous");
+  const previousNames = previous.length ? previous.map((f) => f.name) : PREVIOUS_FALLBACK;
+
   return (
     <>
       <section className="page-hero bg-sage">
@@ -48,18 +55,31 @@ export default function FundersPage() {
             <h2>Current funders</h2>
           </div>
           <div className="grid grid-3" style={{ maxWidth: 840, marginInline: "auto" }}>
-            <div className="logo-cell">
-              <ImagePlaceholder
-                caption="Chicago Foundation for Women logo"
-                icon="image"
-              />
-            </div>
-            <div className="logo-cell">
-              <ImagePlaceholder caption="Funder logo" icon="image" />
-            </div>
-            <div className="logo-cell">
-              <ImagePlaceholder caption="Funder logo" icon="image" />
-            </div>
+            {current.length > 0
+              ? current.map((f) => (
+                  <div className="logo-cell" key={f.id}>
+                    {f.logo_url ? (
+                      <div style={{ position: "relative", width: "100%", aspectRatio: "3/2" }}>
+                        <Image
+                          src={f.logo_url}
+                          alt={`${f.name} logo`}
+                          fill
+                          sizes="(max-width: 760px) 100vw, 260px"
+                          style={{ objectFit: "contain" }}
+                        />
+                      </div>
+                    ) : (
+                      <span style={{ fontWeight: 600, color: "var(--color-green-900)" }}>
+                        {f.name}
+                      </span>
+                    )}
+                  </div>
+                ))
+              : [0, 1, 2].map((i) => (
+                  <div className="logo-cell" key={i}>
+                    <ImagePlaceholder caption="Funder logo" icon="image" />
+                  </div>
+                ))}
           </div>
         </div>
       </section>
@@ -85,7 +105,7 @@ export default function FundersPage() {
               marginInline: "auto",
             }}
           >
-            {previous.map((f) => (
+            {previousNames.map((f) => (
               <span className="funder-pill" key={f}>
                 <Icon name="star" />
                 {f}

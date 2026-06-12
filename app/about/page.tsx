@@ -4,6 +4,7 @@ import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon } from "@/components/icon";
 import { Photo } from "@/components/photo";
+import { getPage } from "@/lib/content/pages";
 
 export const metadata: Metadata = {
   title: "About",
@@ -40,7 +41,8 @@ const values = [
 
 const left = { justifyContent: "flex-start" } as const;
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const page = await getPage("about");
   return (
     <>
       <section className="page-hero bg-sage">
@@ -48,12 +50,8 @@ export default function AboutPage() {
           <p className="crumbs">
             <Link href="/">Home</Link> &nbsp;/&nbsp; About Us
           </p>
-          <h1>About Anne&apos;s Haven</h1>
-          <p className="lead">
-            A woman-founded peace center providing programming and dedicated
-            space for people of all ethnic, racial, sexual, and religious
-            identities.
-          </p>
+          <h1>{page.hero_heading}</h1>
+          <p className="lead">{page.hero_lead}</p>
         </div>
       </section>
 
@@ -219,8 +217,8 @@ export default function AboutPage() {
       </section>
 
       <CtaBand
-        title="Carry the vision forward"
-        text="Help us promote women without barriers and communities without borders."
+        title={page.cta_title}
+        text={page.cta_text}
         deco="dove"
       >
         <Button href="/support" variant="gold" large>

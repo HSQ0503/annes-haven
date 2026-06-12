@@ -4,6 +4,7 @@ import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon, type IconName } from "@/components/icon";
 import { Photo } from "@/components/photo";
+import { getPage } from "@/lib/content/pages";
 
 export const metadata: Metadata = {
   title: "Use the Space",
@@ -44,7 +45,8 @@ const amenities: { icon: IconName; label: string }[] = [
   { icon: "heart", label: "Changing table" },
 ];
 
-export default function UseTheSpacePage() {
+export default async function UseTheSpacePage() {
+  const page = await getPage("use-the-space");
   return (
     <>
       {/* Hero */}
@@ -52,12 +54,8 @@ export default function UseTheSpacePage() {
         <div className="container-wide hero-grid">
           <div className="hero-copy">
             <p className="kicker">Get Involved</p>
-            <h1>Use the space.</h1>
-            <p className="lead">
-              We welcome teachers, activity leaders, motivators, and ALL those
-              whose gifts align with our mission to share their passions at
-              Anne&apos;s Haven.
-            </p>
+            <h1>{page.hero_heading}</h1>
+            <p className="lead">{page.hero_lead}</p>
             <p
               className="serif"
               style={{ fontSize: "1.2rem", color: "var(--color-green-700)", fontStyle: "italic" }}
@@ -162,8 +160,8 @@ export default function UseTheSpacePage() {
       </section>
 
       <CtaBand
-        title="Ready to share your gift?"
-        text="Tell us what you'd like to host, and we'll help you make it happen."
+        title={page.cta_title}
+        text={page.cta_text}
         deco="key"
         sectionClassName="section-sm bg-cream"
       >

@@ -3,7 +3,8 @@ import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon } from "@/components/icon";
 import { Photo } from "@/components/photo";
-import { site } from "@/lib/site";
+import { getSettings } from "@/lib/content/db";
+import { getPage } from "@/lib/content/pages";
 
 export const metadata: Metadata = {
   title: "Support Us",
@@ -35,7 +36,9 @@ const stats = [
   },
 ] as const;
 
-export default function SupportPage() {
+export default async function SupportPage() {
+  const page = await getPage("support");
+  const s = await getSettings();
   return (
     <>
       {/* Hero */}
@@ -43,12 +46,8 @@ export default function SupportPage() {
         <div className="container-wide hero-grid">
           <div className="hero-copy">
             <p className="kicker">Support Us</p>
-            <h1>100% keeps the doors open.</h1>
-            <p className="lead">
-              When you donate to Anne&apos;s Haven, every dollar goes to keeping
-              the doors open. No one is paid for their time maintaining or
-              overseeing this amazing gift for women.
-            </p>
+            <h1>{page.hero_heading}</h1>
+            <p className="lead">{page.hero_lead}</p>
             <div className="hero-actions" style={{ marginTop: 26 }}>
               <Button href="#donate" variant="gold" large>
                 <Icon name="heart" /> Donate Now
@@ -122,12 +121,12 @@ export default function SupportPage() {
             }}
           >
             {["$25", "$50", "$100", "$250", "Any amount"].map((amt) => (
-              <a className="btn btn-ghost" href={site.donateUrl} target="_blank" rel="noopener noreferrer" key={amt}>
+              <a className="btn btn-ghost" href={s.donate_url} target="_blank" rel="noopener noreferrer" key={amt}>
                 {amt}
               </a>
             ))}
           </div>
-          <Button href={site.donateUrl} variant="gold" large>
+          <Button href={s.donate_url} variant="gold" large>
             <Icon name="gift" /> Donate via Zeffy
           </Button>
           <p style={{ color: "#a9c3b6", fontSize: ".88rem", marginTop: 14 }}>
@@ -138,8 +137,8 @@ export default function SupportPage() {
       </section>
 
       <CtaBand
-        title="Prefer to give your time?"
-        text="Volunteering is another beautiful way to support Anne's Haven."
+        title={page.cta_title}
+        text={page.cta_text}
         deco="gift"
       >
         <Button href="/get-involved" variant="gold" large>

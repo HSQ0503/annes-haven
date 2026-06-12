@@ -5,6 +5,7 @@ import { CtaBand } from "@/components/cta-band";
 import { Icon, type IconName } from "@/components/icon";
 import { Photo } from "@/components/photo";
 import { site } from "@/lib/site";
+import { getPage } from "@/lib/content/pages";
 
 export const metadata: Metadata = {
   title: "Peace Education",
@@ -94,7 +95,8 @@ const programs: Program[] = [
   },
 ];
 
-export default function PeaceEducationPage() {
+export default async function PeaceEducationPage() {
+  const page = await getPage("peace-education");
   return (
     <>
       <section className="page-hero bg-sage">
@@ -103,14 +105,12 @@ export default function PeaceEducationPage() {
             <Link href="/">Home</Link> &nbsp;/&nbsp; Our Programs &nbsp;/&nbsp;
             Peace Education
           </p>
-          <h1>Our peace education programs</h1>
+          <h1>{page.hero_heading}</h1>
           <p
             className="quote"
             style={{ maxWidth: "46ch", marginInline: "auto", marginTop: ".6em" }}
           >
-            &ldquo;The potential for peace and opportunities to build peace are
-            ever-present in our communities. We just have to learn to recognize
-            them.&rdquo;
+            &ldquo;{page.hero_quote}&rdquo;
           </p>
         </div>
       </section>
@@ -240,8 +240,8 @@ export default function PeaceEducationPage() {
       </section>
 
       <CtaBand
-        title="Bring peace education to your community"
-        text="Partner with us, host a workshop, or join a program."
+        title={page.cta_title}
+        text={page.cta_text}
         deco="dove"
       >
         <Button href="/contact" variant="gold" large>

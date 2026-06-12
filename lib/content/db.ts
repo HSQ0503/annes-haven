@@ -1,5 +1,14 @@
 import { supabasePublic } from "@/utils/supabase/public";
-import type { SiteSettings, TeamMember, Testimonial, Video } from "./types";
+import type {
+  SiteSettings,
+  TeamMember,
+  Testimonial,
+  Video,
+  Program,
+  VolunteerRole,
+  Partner,
+  Funder,
+} from "./types";
 
 /** Fallbacks so the public site still renders if a row/table is empty. */
 const SETTINGS_FALLBACK: SiteSettings = {
@@ -24,7 +33,7 @@ export async function getSettings(): Promise<SiteSettings> {
     .from("site_settings")
     .select("*")
     .eq("id", 1)
-    .single();
+    .maybeSingle();
   if (!data) return SETTINGS_FALLBACK;
   // Replace null/empty fields with fallbacks so nothing renders blank.
   const merged = { ...SETTINGS_FALLBACK };
@@ -57,4 +66,36 @@ export async function getVideos(): Promise<Video[]> {
     .select("*")
     .order("sort_order", { ascending: true });
   return (data ?? []) as Video[];
+}
+
+export async function getPrograms(): Promise<Program[]> {
+  const { data } = await supabasePublic
+    .from("programs")
+    .select("*")
+    .order("sort_order", { ascending: true });
+  return (data ?? []) as Program[];
+}
+
+export async function getVolunteerRoles(): Promise<VolunteerRole[]> {
+  const { data } = await supabasePublic
+    .from("volunteer_roles")
+    .select("*")
+    .order("sort_order", { ascending: true });
+  return (data ?? []) as VolunteerRole[];
+}
+
+export async function getPartners(): Promise<Partner[]> {
+  const { data } = await supabasePublic
+    .from("partners")
+    .select("*")
+    .order("sort_order", { ascending: true });
+  return (data ?? []) as Partner[];
+}
+
+export async function getFunders(): Promise<Funder[]> {
+  const { data } = await supabasePublic
+    .from("funders")
+    .select("*")
+    .order("sort_order", { ascending: true });
+  return (data ?? []) as Funder[];
 }

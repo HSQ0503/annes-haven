@@ -5,6 +5,7 @@ import { CtaBand } from "@/components/cta-band";
 import { HeroCarousel, type HeroSlide } from "@/components/hero-carousel";
 import { Icon } from "@/components/icon";
 import { Photo } from "@/components/photo";
+import { getPrograms } from "@/lib/content/db";
 
 export const metadata: Metadata = {
   title: "Programs & Events",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     "Anne's Haven supports women entrepreneurs and peace education. Explore the many programs and events we've hosted over the years.",
 };
 
-const entrepreneurship = [
+const ENTRE_FALLBACK = [
   "Vendor markets",
   "Women's Networking & Bartering Collective",
   "Business Expos",
@@ -21,7 +22,7 @@ const entrepreneurship = [
   "Financial advisory workshops",
 ];
 
-const peaceEducation = [
+const PEACE_FALLBACK = [
   "Conflict Resolution Forums",
   "Immigrant Appreciation Days",
   "Support groups",
@@ -39,7 +40,12 @@ const aboutSlides: HeroSlide[] = [
   { src: "/images/Programs/about/6.jpeg", alt: "Attendees sharing a moment at Anne's Haven" },
 ];
 
-export default function ProgramsPage() {
+export default async function ProgramsPage() {
+  const all = await getPrograms();
+  const entre = all.filter((p) => p.category === "entrepreneurship");
+  const peace = all.filter((p) => p.category === "peace");
+  const entreItems = entre.length ? entre.map((p) => p.title) : ENTRE_FALLBACK;
+  const peaceItems = peace.length ? peace.map((p) => p.title) : PEACE_FALLBACK;
   return (
     <>
       <section className="page-hero bg-sage">
@@ -141,7 +147,7 @@ export default function ProgramsPage() {
               </span>
               <h3>Women Entrepreneurship</h3>
               <ul className="checklist" style={{ marginTop: 14 }}>
-                {entrepreneurship.map((i) => (
+                {entreItems.map((i) => (
                   <li key={i}>{i}</li>
                 ))}
               </ul>
@@ -163,7 +169,7 @@ export default function ProgramsPage() {
               </span>
               <h3>Peace Education</h3>
               <ul className="checklist" style={{ marginTop: 14 }}>
-                {peaceEducation.map((i) => (
+                {peaceItems.map((i) => (
                   <li key={i}>{i}</li>
                 ))}
               </ul>

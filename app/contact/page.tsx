@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/contact-form";
 import { Icon } from "@/components/icon";
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import { getSettings } from "@/lib/content/db";
+import { getPage } from "@/lib/content/pages";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 
 export default async function ContactPage() {
   const s = await getSettings();
+  const page = await getPage("contact");
   const phoneHref = `tel:${s.phone.replace(/[^\d]/g, "")}`;
   const cellHref = `tel:${s.cell.replace(/[^\d]/g, "")}`;
   return (
@@ -22,11 +24,8 @@ export default async function ContactPage() {
           <p className="crumbs">
             <Link href="/">Home</Link> &nbsp;/&nbsp; Contact Us
           </p>
-          <h1>Contact us</h1>
-          <p className="lead">
-            Please contact us to sign up for a program! You can also use this form
-            to volunteer, or to come to us with any idea or concern you may have.
-          </p>
+          <h1>{page.hero_heading}</h1>
+          <p className="lead">{page.hero_lead}</p>
         </div>
       </section>
 

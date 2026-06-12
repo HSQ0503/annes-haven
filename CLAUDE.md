@@ -39,9 +39,24 @@ remaining work; it's derived from the client email thread (May 28 – Jun 4, 202
 
 ---
 
+## ✅ Admin panel (built — Supabase-backed)
+A self-service `/admin` (magic-link login, `ADMIN_EMAILS` allowlist) lets Janet edit
+everything live; saves write to Supabase + `revalidatePath`, so changes appear with no
+redeploy. Editors: Site Settings, Page Text (home/about/peace-education/use-the-space/
+get-involved/support/contact via `lib/content/pages.ts`), Team & Board, Programs,
+Volunteer Roles (incl. per-role description links), Testimonials, Videos, Partners, Funders.
+Photos upload to Supabase Storage. Public pages read from `lib/content/db.ts` with
+hardcoded fallbacks. Schema/seed in `supabase/migrations/`. Get Involved apply-now URL +
+LinkedIn/socials/footer-year are now editable fields.
+
 ## 🚧 Outstanding work
 
-### 1. Admin panel / CMS — THE major feature (not started)
+### 0. Remaining polish (post-admin)
+- Functional contact + newsletter forms (still UI-only — wire to Resend/route handler).
+- Deeply-structured page content not yet editable (About values cards, Peace Education
+  5 pillars + current-programs cards) — currently still hardcoded in their pages.
+
+### 1. Admin panel / CMS — DONE (see above)
 Everything is currently hardcoded in `.tsx` files and `lib/site.ts`. Janet needs a
 self-service admin UI to edit content live, without touching code. Required editable areas
 (from the client list):

@@ -5,9 +5,14 @@ import { signOut } from "./actions";
 const SECTIONS = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/settings", label: "Site Settings" },
+  { href: "/admin/pages", label: "Page Text" },
   { href: "/admin/team", label: "Team & Board" },
+  { href: "/admin/programs", label: "Programs" },
+  { href: "/admin/volunteer-roles", label: "Volunteer Roles" },
   { href: "/admin/testimonials", label: "Testimonials" },
   { href: "/admin/videos", label: "Videos" },
+  { href: "/admin/partners", label: "Partners" },
+  { href: "/admin/funders", label: "Funders" },
 ];
 
 export default async function AdminLayout({

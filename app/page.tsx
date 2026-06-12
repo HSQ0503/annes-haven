@@ -5,6 +5,7 @@ import { HeroCarousel, type HeroSlide } from "@/components/hero-carousel";
 import { Icon, type IconName } from "@/components/icon";
 import { Photo } from "@/components/photo";
 import { getTestimonials } from "@/lib/content/db";
+import { getPage } from "@/lib/content/pages";
 
 const features: { icon: IconName; tone: string; label: [string, string] }[] = [
   { icon: "users", tone: "", label: ["Community", "Events"] },
@@ -69,6 +70,7 @@ const cardMuted = {
 } as const;
 
 export default async function HomePage() {
+  const page = await getPage("home");
   const dbTestimonials = await getTestimonials();
   const quotes = dbTestimonials.length
     ? dbTestimonials.map((t) => ({ quote: t.quote, cite: t.author ?? "" }))
@@ -79,16 +81,9 @@ export default async function HomePage() {
       <section className="hero">
         <div className="container-wide hero-grid">
           <div className="hero-copy">
-            <p className="kicker">
-              A women-founded peace center · Portage Park, Chicago
-            </p>
-            <h1>Come on in. There&apos;s a place for you here.</h1>
-            <p className="lead">
-              Anne&apos;s Haven is a homey little spot for the whole
-              neighborhood — community gatherings, youth programs, and classes to
-              take or teach. And for women building something of their own,
-              it&apos;s a soft place to grow.
-            </p>
+            <p className="kicker">{page.hero_kicker}</p>
+            <h1>{page.hero_heading}</h1>
+            <p className="lead">{page.hero_lead}</p>
             <div className="features">
               {features.map((f) => (
                 <div className="feature" key={f.label.join(" ")}>
@@ -142,12 +137,8 @@ export default async function HomePage() {
             <p className="eyebrow gold" style={{ color: "var(--color-gold)" }}>
               What we&apos;re about
             </p>
-            <h3>Safe spaces, real relationships, and a little more peace.</h3>
-            <p>
-              We make room for people to gather, learn, and grow — with a soft
-              spot for women entrepreneurs in the healing arts. Everyone&apos;s
-              welcome at the table.
-            </p>
+            <h3>{page.mission_heading}</h3>
+            <p>{page.mission_body}</p>
           </div>
           <div className="mission-icons" style={{ marginLeft: "auto" }}>
             {missionIcons.map((m) => (
@@ -332,8 +323,8 @@ export default async function HomePage() {
       {/* CTA */}
       <CtaBand
         note="join us!"
-        title="Be part of something good"
-        text="However you pitch in — a class, a donation, a Saturday morning — you're helping women grow and a neighborhood find its footing."
+        title={page.cta_title}
+        text={page.cta_text}
         deco="dove"
       >
         <Button href="/support" variant="gold" large>

@@ -42,3 +42,40 @@ export type Video = {
   featured: boolean;
   sort_order: number;
 };
+
+export type Program = {
+  id: string;
+  title: string;
+  category: "entrepreneurship" | "peace";
+  sort_order: number;
+};
+
+export type VolunteerRole = {
+  id: string;
+  title: string;
+  icon: string | null;
+  body: string | null;
+  items: string[];
+  description_url: string | null;
+  sort_order: number;
+};
+
+export type Partner = {
+  id: string;
+  name: string;
+  logo_url: string | null;
+  blurb: string | null;
+  website_url: string | null;
+  newsletter_url: string | null;
+  instagram_url: string | null;
+  facebook_url: string | null;
+  sort_order: number;
+};
+
+export type Funder = {
+  id: string;
+  name: string;
+  logo_url: string | null;
+  status: "current" | "previous";
+  sort_order: number;
+};
