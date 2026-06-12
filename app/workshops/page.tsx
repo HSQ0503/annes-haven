@@ -135,10 +135,11 @@ export default async function WorkshopsPage() {
             </div>
             <div className="media">
               <div className="frame bordered">
-                <ImagePlaceholder
-                  caption="Interfaith gathering photo"
-                  icon="hands"
-                  className="aspect-[4/3]"
+                <Photo
+                  src="/images/PeacePrograms/adult.jpeg"
+                  alt="Spiritual & Cultural Exchange — Anne's Haven interfaith gathering, last Sunday of each month"
+                  ratio="4/5"
+                  sizes="(max-width: 1000px) 100vw, 460px"
                 />
               </div>
             </div>
