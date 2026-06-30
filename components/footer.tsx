@@ -23,7 +23,7 @@ export async function Footer() {
           <Brand />
           <p>
             A little house in Portage Park where women help women grow, created
-            to serve women in 2016, and building peace ever since.
+            to serve women in 2016 and inspired to build peace since 2026.
           </p>
           <div className="socials">
             {socials.map((s) => (
@@ -89,8 +89,8 @@ export async function Footer() {
       <div className="footer-bottom">
         <div className="container-wide in">
           <span>
-            © {s.footer_year} Anne&apos;s Haven, a 501(c)(3) nonprofit. Made with
-            care in Chicago.
+            © {s.footer_year}{" "}Anne&apos;s Haven, a 501(c)(3) nonprofit. Made
+            with care in Chicago.
           </span>
           <span className="tag-line">{s.footer_tagline}</span>
         </div>

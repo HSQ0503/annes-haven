@@ -37,11 +37,12 @@ const amenities: { icon: IconName; label: string }[] = [
   { icon: "coffee", label: "Toaster oven" },
   { icon: "coffee", label: "Microwave" },
   { icon: "coffee", label: "Hot plate" },
-  { icon: "tv", label: "A large screen" },
+  { icon: "tv", label: "A large screen/projector" },
   { icon: "wifi", label: "Wi-fi" },
   { icon: "users", label: "A 10ft folding table" },
   { icon: "users", label: "Two 4ft folding tables" },
   { icon: "users", label: "20 folding chairs" },
+  { icon: "coffee", label: "Coffee & Tea Station" },
   { icon: "heart", label: "Changing table" },
 ];
 

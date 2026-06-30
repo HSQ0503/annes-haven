@@ -1,6 +1,11 @@
 import { getFunders } from "@/lib/content/db";
 import { Field } from "@/components/admin/field";
 import { ImageUpload } from "@/components/admin/image-upload";
+import { SubmitButton } from "@/components/admin/submit-button";
+import { PageHead } from "@/components/admin/page-head";
+import { AdminItem, AdminAdd } from "@/components/admin/admin-item";
+import { EmptyState } from "@/components/admin/empty-state";
+import { ConfirmDelete } from "@/components/admin/confirm-delete";
 import { saveFunder, deleteFunder } from "./actions";
 
 function StatusSelect({ value = "current" }: { value?: string }) {
@@ -15,41 +20,70 @@ function StatusSelect({ value = "current" }: { value?: string }) {
   );
 }
 
+const STATUS_LABEL: Record<string, string> = {
+  current: "Current",
+  previous: "Previous",
+};
+
 export default async function FundersAdmin() {
   const funders = await getFunders();
   return (
     <>
-      <h1 style={{ fontSize: "2rem" }}>Funders</h1>
-      <p className="lead">
-        Current funders show a logo; previous funders show as a name pill.
-      </p>
+      <PageHead
+        icon="gift"
+        kicker="Supporters"
+        title="Funders"
+        subtitle="The people and foundations who make the work possible. Add a logo for current funders or list past ones as name pills — changes go live the moment you save."
+      />
 
-      {funders.map((f, i) => (
-        <form className="admin-card" action={saveFunder} key={f.id}>
-          <input type="hidden" name="id" value={f.id} />
-          <ImageUpload name="logo_url" folder="funders" defaultUrl={f.logo_url ?? ""} />
-          <Field label="Name" name="name" defaultValue={f.name} required />
-          <StatusSelect value={f.status} />
-          <Field label="Order" name="sort_order" type="number" defaultValue={String(f.sort_order ?? i)} />
-          <div className="admin-actions">
-            <button className="btn">Save</button>
-            <button className="admin-del" formAction={deleteFunder}>Delete</button>
-          </div>
-        </form>
-      ))}
+      <div className="admin-list">
+        <AdminAdd label="Add a funder">
+          <form action={saveFunder}>
+            <ImageUpload name="logo_url" folder="funders" />
+            <Field label="Name" name="name" required />
+            <StatusSelect />
+            <Field label="Order" name="sort_order" type="number" defaultValue={String(funders.length)} />
+            <div className="admin-rowbar">
+              <SubmitButton label="Add funder" variant="btn-gold" />
+            </div>
+          </form>
+        </AdminAdd>
 
-      <form className="admin-card" action={saveFunder}>
-        <div className="admin-card-head">
-          <h3>Add a funder</h3>
-        </div>
-        <ImageUpload name="logo_url" folder="funders" />
-        <Field label="Name" name="name" required />
-        <StatusSelect />
-        <Field label="Order" name="sort_order" type="number" defaultValue={String(funders.length)} />
-        <div className="admin-actions">
-          <button className="btn btn-gold">Add</button>
-        </div>
-      </form>
+        {funders.length === 0 && (
+          <EmptyState
+            icon="gift"
+            hand="Let's thank the first supporter."
+            title="No funders yet"
+            note="Add the foundations and donors who make Anne's Haven possible so visitors can see who stands behind the work."
+          />
+        )}
+
+        {funders.map((f, i) => (
+          <AdminItem
+            key={f.id}
+            thumbUrl={f.logo_url}
+            icon="gift"
+            title={f.name}
+            badge={STATUS_LABEL[f.status]}
+          >
+            <form action={saveFunder}>
+              <input type="hidden" name="id" value={f.id} />
+              <ImageUpload name="logo_url" folder="funders" defaultUrl={f.logo_url ?? ""} />
+              <Field label="Name" name="name" defaultValue={f.name} required />
+              <StatusSelect value={f.status} />
+              <Field label="Order" name="sort_order" type="number" defaultValue={String(f.sort_order ?? i)} />
+              <div className="admin-rowbar">
+                <SubmitButton />
+                <ConfirmDelete itemName={f.name}>
+                  <button className="btn btn-danger" formAction={deleteFunder}>
+                    Yes, delete
+                  </button>
+                </ConfirmDelete>
+              </div>
+            </form>
+          </AdminItem>
+        ))}
+      </div>
     </>
   );
 }

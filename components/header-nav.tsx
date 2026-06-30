@@ -61,7 +61,7 @@ export function HeaderNav({ donateUrl }: { donateUrl: string }) {
                         <li key={c.href}>
                           <Link href={c.href} onClick={closeMenus}>
                             {c.label}
-                            <small>{c.desc}</small>
+                            {c.desc && <small>{c.desc}</small>}
                           </Link>
                         </li>
                       ))}

@@ -24,13 +24,13 @@ export const PAGE_CONFIGS: Record<string, PageConfig> = {
       { name: "cta_text", label: "Bottom call-to-action text", textarea: true },
     ],
     defaults: {
-      hero_kicker: "A women-founded peace center · Portage Park, Chicago",
+      hero_kicker: "A woman-founded 501(c)(3) peace center · Portage Park, Chicago",
       hero_heading: "Come on in. There's a place for you here.",
       hero_lead:
-        "Anne's Haven is a homey little spot for the whole neighborhood — community gatherings, youth programs, and classes to take or teach. And for women building something of their own, it's a soft place to grow.",
+        "Anne's Haven is a homey little spot for Chicagoans — community gatherings, youth programs, and classes to take or teach. And for women building something of their own, it's a soft place to grow.",
       mission_heading: "Safe spaces, real relationships, and a little more peace.",
       mission_body:
-        "We make room for people to gather, learn, and grow — with a soft spot for women entrepreneurs in the healing arts. Everyone's welcome at the table.",
+        "We make room for people to gather, learn, grow, and ponder peace — with a soft spot for women entrepreneurs in the healing arts. Everyone's welcome at the table.",
       cta_title: "Be part of something good",
       cta_text:
         "However you pitch in — a class, a donation, a Saturday morning — you're helping women grow and a neighborhood find its footing.",
@@ -48,7 +48,7 @@ export const PAGE_CONFIGS: Record<string, PageConfig> = {
     defaults: {
       hero_heading: "About Anne's Haven",
       hero_lead:
-        "A woman-founded peace center providing programming and dedicated space for people of all ethnic, racial, sexual, and religious identities.",
+        "A woman-founded peace center and women's incubator providing programming and dedicated space for people of all ethnic, racial, sexual, religious, and nondiscriminatory ideological identities.",
       cta_title: "Carry the vision forward",
       cta_text:
         "Help us promote women without barriers and communities without borders.",
@@ -102,8 +102,9 @@ export const PAGE_CONFIGS: Record<string, PageConfig> = {
     defaults: {
       hero_heading: "Volunteer with us.",
       hero_lead:
-        "Join a community dedicated to supporting women entrepreneurs and building peace, right here in Portage Park.",
-      apply_url: "",
+        "Join a community, in-person or virtually, dedicated to supporting women entrepreneurs and building peace.",
+      apply_url:
+        "https://docs.google.com/forms/d/e/1FAIpQLSfje4iSaZ8R62BQXrEao3J7M0CCIkB_8TOv2StJZ9PhYyjRzQ/viewform?usp=header",
       cta_title: "Be part of something bigger",
       cta_text:
         "Together, we can support women entrepreneurs and build a more peaceful world, one connection at a time.",
@@ -136,7 +137,7 @@ export const PAGE_CONFIGS: Record<string, PageConfig> = {
     defaults: {
       hero_heading: "Contact us",
       hero_lead:
-        "Please contact us to sign up for a program! You can also use this form to volunteer, or to come to us with any idea or concern you may have.",
+        "Please contact us to sign up for a program! You can also use this form to come to us with any idea or concern you may have.",
     },
   },
 };

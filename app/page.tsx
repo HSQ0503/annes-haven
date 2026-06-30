@@ -9,7 +9,7 @@ import { getPage } from "@/lib/content/pages";
 
 const features: { icon: IconName; tone: string; label: [string, string] }[] = [
   { icon: "users", tone: "", label: ["Community", "Events"] },
-  { icon: "sprout", tone: "gold", label: ["Youth", "Programs"] },
+  { icon: "sprout", tone: "gold", label: ["Peace", "Education"] },
   { icon: "palette", tone: "blue", label: ["Workshops", "& Classes"] },
   { icon: "storefront", tone: "cyan", label: ["Women", "Entrepreneurs"] },
 ];
@@ -18,7 +18,7 @@ const missionIcons: { icon: IconName; label: string }[] = [
   { icon: "shield", label: "Safe Spaces" },
   { icon: "users", label: "Relationships" },
   { icon: "gradCap", label: "Education" },
-  { icon: "sprout", label: "Growth" },
+  { icon: "sprout", label: "Personal Growth" },
   { icon: "dove", label: "Peace" },
 ];
 
@@ -84,6 +84,10 @@ export default async function HomePage() {
             <p className="kicker">{page.hero_kicker}</p>
             <h1>{page.hero_heading}</h1>
             <p className="lead">{page.hero_lead}</p>
+            <p className="hero-tagline">
+              Women learning from Women since 2016 · inspiring all to build peace
+              since 2026
+            </p>
             <div className="features">
               {features.map((f) => (
                 <div className="feature" key={f.label.join(" ")}>
@@ -223,7 +227,7 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link className="card" href="/team">
+            <Link className="card" href="/videos">
               <div className="snap-card">
                 <Photo
                   src="/images/meetthewomen.jpeg"
@@ -292,9 +296,6 @@ export default async function HomePage() {
                 <Button href="/about">
                   Our story <Icon name="arrowRight" />
                 </Button>
-                <Button href="/team" variant="outline">
-                  Meet Anne
-                </Button>
               </div>
             </div>
           </div>
@@ -308,14 +309,20 @@ export default async function HomePage() {
             <p className="eyebrow center gold">Kind words</p>
             <h2>People say it feels like home</h2>
           </div>
-          <div className="grid grid-3">
-            {quotes.map((t, i) => (
-              <figure className="tcard" key={i}>
-                <div className="mark">&ldquo;</div>
-                <p>{t.quote}</p>
-                {t.cite && <cite>{t.cite}</cite>}
-              </figure>
-            ))}
+          <div className="marquee testimonial-marquee">
+            <div className="marquee-track">
+              {[...quotes, ...quotes].map((t, i) => (
+                <figure
+                  className="tcard"
+                  key={i}
+                  aria-hidden={i >= quotes.length}
+                >
+                  <div className="mark">&ldquo;</div>
+                  <p>{t.quote}</p>
+                  {t.cite && <cite>{t.cite}</cite>}
+                </figure>
+              ))}
+            </div>
           </div>
         </div>
       </section>

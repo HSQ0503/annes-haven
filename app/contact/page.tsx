@@ -45,8 +45,10 @@ export default async function ContactPage() {
                   </span>
                   <div>
                     <b>Call us</b>
-                    <a href={cellHref}>{s.cell}</a> &nbsp;·&nbsp;{" "}
-                    <a href={phoneHref}>{s.phone}</a>
+                    <span>
+                      Office: <a href={phoneHref}>{s.phone}</a>
+                      &nbsp;·&nbsp; Cell: <a href={cellHref}>{s.cell}</a>
+                    </span>
                   </div>
                 </div>
                 <div className="info-row">

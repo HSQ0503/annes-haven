@@ -179,7 +179,7 @@ export default async function ProgramsPage() {
       </section>
 
       <CtaBand
-        title="Have an idea for a program?"
+        title="Have an idea for a program that aligns with our mission?"
         text="Whether you want to host, attend, or collaborate, let's make it happen at Anne's."
         deco="calendar"
       >

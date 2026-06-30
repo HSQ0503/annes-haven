@@ -3,8 +3,13 @@
 import { useActionState } from "react";
 import { Field } from "@/components/admin/field";
 import { SubmitButton } from "@/components/admin/submit-button";
+import { SaveBar } from "@/components/admin/save-bar";
+import { SaveToast } from "@/components/admin/save-toast";
+import { PageHead } from "@/components/admin/page-head";
 import { savePage } from "./actions";
 import type { PageConfig } from "@/lib/content/pages";
+
+const publicPath = (slug: string) => (slug === "home" ? "/" : `/${slug}`);
 
 export function PageForm({
   config,
@@ -17,10 +22,24 @@ export function PageForm({
   return (
     <form action={action}>
       <input type="hidden" name="slug" value={config.slug} />
-      <h1 style={{ fontSize: "2rem" }}>{config.title}</h1>
-      <p className="lead">Edit the wording on this page.</p>
+      <PageHead
+        icon="book"
+        kicker="Page text"
+        title={config.title}
+        subtitle="Edit the words on this page. Changes go live the moment you save."
+        action={
+          <a
+            className="btn btn-outline"
+            href={publicPath(config.slug)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View page
+          </a>
+        }
+      />
 
-      <div className="admin-card">
+      <section className="admin-section">
         {config.fields.map((f) => (
           <Field
             key={f.name}
@@ -28,16 +47,15 @@ export function PageForm({
             name={f.name}
             defaultValue={initial[f.name] ?? ""}
             textarea={f.textarea}
+            hint={f.name.endsWith("_url") ? "Paste the full https:// link." : undefined}
           />
         ))}
-      </div>
+      </section>
 
-      <div className="admin-actions">
+      <SaveBar resetSignal={state?.ok ? state : undefined}>
         <SubmitButton />
-        {state?.message && (
-          <span className={`tag ${state.ok ? "gold" : ""}`}>{state.message}</span>
-        )}
-      </div>
+      </SaveBar>
+      <SaveToast state={state} />
     </form>
   );
 }

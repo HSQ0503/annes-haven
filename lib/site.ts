@@ -2,7 +2,7 @@ import type { IconName } from "@/components/icon";
 
 export const site = {
   name: "Anne's Haven",
-  tagline: "Women-Founded Peace Center",
+  tagline: "Woman-Founded Peace Center",
   logo: "/brand/AH-logo.png",
   address: {
     street: "5629 W. Irving Park Road",
@@ -41,8 +41,8 @@ export const nav: NavItem[] = [
     label: "Our Programs",
     key: "programs",
     children: [
-      { label: "Peace Education", href: "/peace-education", desc: "Our 5 pillars" },
-      { label: "Workshops & Classes", href: "/workshops", desc: "Women entrepreneurs" },
+      { label: "Peace Education", href: "/peace-education", desc: "" },
+      { label: "Women Entrepreneurs", href: "/workshops", desc: "Workshops & Classes" },
       { label: "Programs & Events", href: "/programs", desc: "Past & present" },
     ],
   },

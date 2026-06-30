@@ -17,7 +17,7 @@ const values = [
     chip: "",
     icon: "handshake",
     title: "Connection",
-    body: "At the core of women's strength is the ability to accept, connect with, and uplift sisters of all identities, fostering compassionate, peaceful communities.",
+    body: "At the core of our strength is the ability to accept, connect with, and uplift other people of all identities, fostering compassionate, peaceful communities.",
   },
   {
     chip: "gold",
@@ -29,7 +29,7 @@ const values = [
     chip: "blue",
     icon: "sparkles",
     title: "Empowerment",
-    body: "Through entrepreneurship and peace education, we equip women with the knowledge and skills to take their businesses, and communities, to new heights.",
+    body: "Through entrepreneurship and peace education, we equip people with the knowledge and skills to take their businesses, and communities, to new heights.",
   },
   {
     chip: "",
@@ -86,7 +86,7 @@ export default async function AboutPage() {
                   <Icon name="gradCap" /> Educate
                 </div>
                 <div className="tag" style={left}>
-                  <Icon name="sprout" /> Promote growth
+                  <Icon name="sprout" /> Promote personal growth
                 </div>
               </div>
             </div>
@@ -143,18 +143,17 @@ export default async function AboutPage() {
             </div>
             <div>
               <p className="eyebrow">What We Do</p>
-              <h2>Entrepreneurship &amp; peace education</h2>
+              <h2>Women Entrepreneurship &amp; Peace Education</h2>
               <p>
-                Our Aspiring Entrepreneur program supports women in the healing
-                arts as they pursue their passions, while strengthening
-                collaboration. It&apos;s conducted as a collective, engaging each
-                individual&apos;s voice and demonstrating the power of{" "}
-                <strong>&ldquo;WE.&rdquo;</strong>
+                Our Aspiring Entrepreneur program supports women, with a soft
+                spot on those in the healing arts, as they pursue their passions,
+                while strengthening collaboration. It&apos;s conducted as a
+                collective, engaging each individual&apos;s voice and
+                demonstrating the power of <strong>&ldquo;WE.&rdquo;</strong>
               </p>
               <p>
-                Our Peace Education programs center on five key pillars: inner
-                peace, youth programs, adult programs, peace activism, and
-                community-based coalition building.
+                Our Peace Education programs, also operating as a collective,
+                center on our &ldquo;Peace Payoff&rdquo; framework.
               </p>
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 22 }}>
                 <Button href="/peace-education">

@@ -1,15 +1,25 @@
 import Link from "next/link";
 import { PAGE_CONFIGS } from "@/lib/content/pages";
+import { PageHead } from "@/components/admin/page-head";
+import { Icon } from "@/components/icon";
 
 export default function PagesIndex() {
   return (
     <>
-      <h1 style={{ fontSize: "2rem" }}>Page Text</h1>
-      <p className="lead">Pick a page to edit its headings and wording.</p>
-      <div style={{ display: "grid", gap: 10 }}>
+      <PageHead
+        icon="book"
+        kicker="Page text"
+        title="Page Text"
+        subtitle="Pick a page to edit its headings and wording. Changes go live the moment you save."
+      />
+      <div className="admin-quick">
         {Object.values(PAGE_CONFIGS).map((c) => (
-          <Link className="admin-card" key={c.slug} href={`/admin/pages/${c.slug}`} style={{ display: "block", marginBottom: 0 }}>
-            <strong>{c.title}</strong>
+          <Link className="admin-quick-card" key={c.slug} href={`/admin/pages/${c.slug}`}>
+            <span className="chip">
+              <Icon name="book" />
+            </span>
+            <h3>{c.title}</h3>
+            <p>Headings and paragraphs.</p>
           </Link>
         ))}
       </div>

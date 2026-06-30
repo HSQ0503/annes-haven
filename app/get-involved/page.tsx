@@ -23,7 +23,7 @@ const missionIcons: { icon: IconName; label: string }[] = [
   { icon: "shield", label: "Safe Spaces" },
   { icon: "users", label: "Relationships" },
   { icon: "gradCap", label: "Education" },
-  { icon: "sprout", label: "Growth" },
+  { icon: "sprout", label: "Personal Growth" },
   { icon: "dove", label: "Peace" },
 ];
 
@@ -174,8 +174,14 @@ export default async function GetInvolvedPage() {
                     ))}
                   </ul>
                 )}
-                <a className="textlink" href={r.link}>
-                  {r.link === applyHref ? "Apply" : "Learn more"} <Icon name="arrowRight" />
+                <a
+                  className="textlink"
+                  href={r.link}
+                  {...(r.link.startsWith("http")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  Learn More <Icon name="arrowRight" />
                 </a>
               </article>
             ))}

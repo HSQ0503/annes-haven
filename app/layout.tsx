@@ -3,6 +3,7 @@ import { Spectral, Mulish, Caveat } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { SiteFrame } from "@/components/site-frame";
 
 const spectral = Spectral({
   variable: "--font-spectral",
@@ -28,7 +29,7 @@ const caveat = Caveat({
 
 export const metadata: Metadata = {
   title: {
-    default: "Anne's Haven · Women-Founded Peace Center",
+    default: "Anne's Haven · Woman-Founded Peace Center",
     template: "%s · Anne's Haven",
   },
   description:
@@ -44,9 +45,9 @@ export default function RootLayout({
       className={`${spectral.variable} ${mulish.variable} ${caveat.variable}`}
     >
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <SiteFrame header={<Header />} footer={<Footer />}>
+          {children}
+        </SiteFrame>
       </body>
     </html>
   );

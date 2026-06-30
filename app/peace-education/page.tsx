@@ -10,39 +10,39 @@ import { getPage } from "@/lib/content/pages";
 export const metadata: Metadata = {
   title: "Peace Education",
   description:
-    "Our peace education programs are centered around five pillars: inner peace, youth programming, adult programming, peace activism, and community-based coalition building.",
+    "Our Peace Education programs are centered around our Peace Payoff framework, helping individuals and whole communities become agents of peace.",
 };
 
-const pillars: { chip: string; icon: IconName; title: string; body: string }[] = [
+const payoff: { icon: IconName; term: string; body: string }[] = [
   {
-    chip: "",
-    icon: "lightbulb",
-    title: "1 · Inner Peace",
-    body: "The foundation of societal peace is personal peace and healing. We host workshops and classes including yoga, mindfulness meditation, and mind mapping. We're particularly focused on women entrepreneurs in the healing arts who have unique, effective approaches to building inner peace but lack the means to bring their classes to the public.",
+    icon: "dove",
+    term: "Peace Payoff",
+    body: "The clear economic, emotional, social, and community benefits of embracing peaceful practices in your personal life and professional career.",
   },
   {
-    chip: "gold",
-    icon: "sprout",
-    title: "2 · Youth Programming",
-    body: "Our youth programs foster young people's awareness of peacebuilding and build skills like dialogue, mediation, and nonviolent communication, encouraging youth to think creatively about peace and commit to public service. We help inspire the leaders of tomorrow to build a peaceful, just society in both their everyday lives and careers.",
+    icon: "book",
+    term: "Peace Knowledge",
+    body: "Knowledge of the key goals of peacebuilding and conflict resolution, and of the basic peaceful practices you can commit to in your everyday life, in your community, and in your professional career.",
   },
   {
-    chip: "blue",
-    icon: "users",
-    title: "3 · Adult Programming",
-    body: "Our adult programs enhance awareness of the peacebuilding field and strengthen skills through workshops and gatherings that build trust and foster dialogue across racial, ethnic, religious, and political differences.",
+    icon: "gift",
+    term: "Peace Assets",
+    body: "A clear understanding of the many benefits of peace and what specific benefits you connect with the most — why you are a peacebuilder.",
   },
   {
-    chip: "",
-    icon: "megaphone",
-    title: "4 · Peace Activism",
-    body: "We provide space for workshops and seminars, hosted by Anne's Haven and other organizations and movements, to promote collective action for peace and justice in our communities.",
+    icon: "sun",
+    term: "Peace Awareness",
+    body: "Being aware of your and your community's exceptional potential to build peace, the unique abilities of other people and communities, and opportunities to work together.",
   },
   {
-    chip: "gold",
-    icon: "globe",
-    title: "5 · Community-Based Coalition Building",
-    body: "We unite local schools, media organizations, businesses, houses of worship, and more to raise awareness of our programs, get involved in community peace efforts, and share their own ideas for community peacebuilding.",
+    icon: "key",
+    term: "Peace Tools",
+    body: "Personal qualities and aspects of a community that are needed to build peace, and obtain all the economic, emotional, social, and community benefits that come with peace.",
+  },
+  {
+    icon: "sparkles",
+    term: "Peace Skills",
+    body: "The concrete, learned skills (communication, conflict resolution, emotional regulation, etc.) that are necessary to effectively engage in peaceful practices in your everyday life, professional career, and community.",
   },
 ];
 
@@ -120,12 +120,12 @@ export default async function PeaceEducationPage() {
         <div className="container">
           <div className="split">
             <div>
-              <p className="eyebrow">Five Pillars</p>
+              <p className="eyebrow">Peace Education</p>
               <h2>Rooted in a simple conviction</h2>
               <p>
-                Our peace education programs are centered around five pillars,
-                with each program focused on at least one. Together, they help
-                individuals and whole communities become agents of peace.
+                Our Peace Education programs are centered around our
+                &ldquo;Peace Payoff&rdquo; framework. They help individuals and
+                whole communities become agents of peace.
               </p>
               <p>
                 Have questions? Reach out to Jacopo DeMarinis, our Director of
@@ -149,32 +149,75 @@ export default async function PeaceEducationPage() {
         </div>
       </section>
 
-      {/* Pillars */}
+      {/* Peace Payoff Framework */}
       <section className="section bg-blue">
         <div className="container">
           <div className="section-head center">
             <p className="eyebrow center">The Work</p>
-            <h2>Our 5 pillars of peace education</h2>
+            <h2>Our Peace Payoff Framework</h2>
           </div>
-          <div className="grid" style={{ gap: 20 }}>
-            {pillars.map((p) => (
-              <div
-                className="card card-pad"
-                key={p.title}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "64px 1fr",
-                  gap: 22,
-                  alignItems: "start",
-                }}
-              >
-                <span className={`chip ${p.chip}`.trim()} style={{ margin: 0 }}>
+
+          <div className="payoff-diagram">
+            <svg viewBox="0 0 400 360" role="img" aria-label="The Peace Payoff at the center, surrounded by Peace Skills, Peace Knowledge, Peace Assets, Peace Awareness, and Peace Tools">
+              <g className="payoff-lines">
+                <line x1="200" y1="170" x2="138" y2="62" />
+                <line x1="200" y1="170" x2="262" y2="62" />
+                <line x1="200" y1="170" x2="318" y2="213" />
+                <line x1="200" y1="170" x2="200" y2="295" />
+                <line x1="200" y1="170" x2="83" y2="213" />
+              </g>
+              <g className="payoff-node payoff-sat">
+                <circle cx="138" cy="62" r="46" />
+                <text x="138" y="58">Peace</text>
+                <text x="138" y="74">Skills</text>
+              </g>
+              <g className="payoff-node payoff-sat">
+                <circle cx="262" cy="62" r="46" />
+                <text x="262" y="58">Peace</text>
+                <text x="262" y="74">Knowledge</text>
+              </g>
+              <g className="payoff-node payoff-sat">
+                <circle cx="318" cy="213" r="46" />
+                <text x="318" y="209">Peace</text>
+                <text x="318" y="225">Assets</text>
+              </g>
+              <g className="payoff-node payoff-sat">
+                <circle cx="200" cy="295" r="46" />
+                <text x="200" y="291">Peace</text>
+                <text x="200" y="307">Awareness</text>
+              </g>
+              <g className="payoff-node payoff-sat">
+                <circle cx="83" cy="213" r="46" />
+                <text x="83" y="209">Peace</text>
+                <text x="83" y="225">Tools</text>
+              </g>
+              <g className="payoff-node payoff-core">
+                <circle cx="200" cy="170" r="54" />
+                <text x="200" y="165">THE PEACE</text>
+                <text x="200" y="183">PAYOFF</text>
+              </g>
+            </svg>
+          </div>
+
+          <div
+            className="grid grid-3"
+            style={{ marginTop: "clamp(28px, 4vw, 44px)" }}
+          >
+            {payoff.map((p) => (
+              <div className="card card-pad" key={p.term}>
+                <span className="chip">
                   <Icon name={p.icon} />
                 </span>
-                <div>
-                  <h3 style={{ fontSize: "1.4rem" }}>{p.title}</h3>
-                  <p style={{ color: "var(--color-muted)", margin: 0 }}>{p.body}</p>
-                </div>
+                <h3 style={{ fontSize: "1.25rem" }}>{p.term}</h3>
+                <p
+                  style={{
+                    color: "var(--color-muted)",
+                    margin: 0,
+                    fontSize: ".96rem",
+                  }}
+                >
+                  {p.body}
+                </p>
               </div>
             ))}
           </div>
@@ -187,10 +230,7 @@ export default async function PeaceEducationPage() {
           <div className="section-head center">
             <p className="eyebrow center">On Offer Now</p>
             <h2>Current peace education programs</h2>
-            <p style={{ maxWidth: "52ch" }}>
-              Our current programs, categorized according to the pillar they
-              fall under, include:
-            </p>
+            <p style={{ maxWidth: "52ch" }}>Our current programs include:</p>
           </div>
 
           <div style={{ display: "grid", gap: "clamp(48px, 7vw, 88px)" }}>
@@ -224,18 +264,6 @@ export default async function PeaceEducationPage() {
               </div>
             ))}
           </div>
-
-          <p
-            className="quote center"
-            style={{
-              maxWidth: "44ch",
-              marginInline: "auto",
-              marginTop: "clamp(48px, 7vw, 88px)",
-            }}
-          >
-            We&rsquo;re currently developing our Peace Activism and Coalition
-            Building programs&hellip; more to come!
-          </p>
         </div>
       </section>
 

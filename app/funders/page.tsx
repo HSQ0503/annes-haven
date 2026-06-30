@@ -4,13 +4,12 @@ import Link from "next/link";
 import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon } from "@/components/icon";
-import { ImagePlaceholder } from "@/components/image-placeholder";
 import { getFunders } from "@/lib/content/db";
 
 export const metadata: Metadata = {
   title: "Our Funders",
   description:
-    "We sincerely thank our funders for supporting women and helping Anne's Haven grow as an oasis, an incubator, and a learning hub in the community.",
+    "We sincerely thank our funders for supporting women and helping Anne's Haven grow as a peace center, incubator, oasis, and a learning hub for the city of Chicago.",
 };
 
 const PREVIOUS_FALLBACK = [
@@ -23,6 +22,9 @@ const PREVIOUS_FALLBACK = [
   "Little Caesars Foundation",
   "The Chicago Foundation for Women",
 ];
+
+// Shown under "Current funders" until logos are uploaded via the admin panel.
+const CURRENT_FALLBACK = ["The Chicago Foundation for Women"];
 
 export default async function FundersPage() {
   const all = await getFunders();
@@ -41,8 +43,8 @@ export default async function FundersPage() {
           <h1>Our funders</h1>
           <p className="lead">
             We sincerely thank our funders for supporting women, and for helping
-            Anne&apos;s Haven grow as an oasis, an incubator, and a learning hub
-            in the community.
+            Anne&apos;s Haven grow as a peace center, incubator, oasis, and a
+            learning hub for the city of Chicago.
           </p>
         </div>
       </section>
@@ -75,9 +77,13 @@ export default async function FundersPage() {
                     )}
                   </div>
                 ))
-              : [0, 1, 2].map((i) => (
-                  <div className="logo-cell" key={i}>
-                    <ImagePlaceholder caption="Funder logo" icon="image" />
+              : CURRENT_FALLBACK.map((name) => (
+                  <div className="logo-cell" key={name}>
+                    <span
+                      style={{ fontWeight: 600, color: "var(--color-green-900)" }}
+                    >
+                      {name}
+                    </span>
                   </div>
                 ))}
           </div>
@@ -95,22 +101,19 @@ export default async function FundersPage() {
               Anne&apos;s Haven is today.
             </p>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 14,
-              justifyContent: "center",
-              maxWidth: 900,
-              marginInline: "auto",
-            }}
-          >
-            {previousNames.map((f) => (
-              <span className="funder-pill" key={f}>
-                <Icon name="star" />
-                {f}
-              </span>
-            ))}
+          <div className="marquee funder-marquee">
+            <div className="marquee-track">
+              {[...previousNames, ...previousNames].map((f, i) => (
+                <span
+                  className="funder-pill"
+                  key={`${f}-${i}`}
+                  aria-hidden={i >= previousNames.length}
+                >
+                  <Icon name="star" />
+                  {f}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>

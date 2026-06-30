@@ -6,6 +6,7 @@ type FieldProps = {
   textarea?: boolean;
   required?: boolean;
   placeholder?: string;
+  hint?: string;
 };
 
 export function Field({
@@ -16,6 +17,7 @@ export function Field({
   textarea = false,
   required = false,
   placeholder,
+  hint,
 }: FieldProps) {
   return (
     <div className="field">
@@ -29,6 +31,7 @@ export function Field({
           defaultValue={defaultValue}
           required={required}
           placeholder={placeholder}
+          aria-describedby={hint ? `${name}-hint` : undefined}
         />
       ) : (
         <input
@@ -38,7 +41,13 @@ export function Field({
           defaultValue={defaultValue}
           required={required}
           placeholder={placeholder}
+          aria-describedby={hint ? `${name}-hint` : undefined}
         />
+      )}
+      {hint && (
+        <small className="hint" id={`${name}-hint`}>
+          {hint}
+        </small>
       )}
     </div>
   );
