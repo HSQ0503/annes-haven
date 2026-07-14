@@ -104,7 +104,7 @@ export const PAGE_CONFIGS: Record<string, PageConfig> = {
       hero_lead:
         "Join a community, in-person or virtually, dedicated to supporting women entrepreneurs and building peace.",
       apply_url:
-        "https://docs.google.com/forms/d/e/1FAIpQLSfje4iSaZ8R62BQXrEao3J7M0CCIkB_8TOv2StJZ9PhYyjRzQ/viewform?usp=header",
+        "https://docs.google.com/forms/d/e/1FAIpQLSfje4iSaZ8R62BQXrEao3J7M0CClkB_8TOv2StJZ9PhYyjRzQ/viewform?usp=header",
       cta_title: "Be part of something bigger",
       cta_text:
         "Together, we can support women entrepreneurs and build a more peaceful world, one connection at a time.",

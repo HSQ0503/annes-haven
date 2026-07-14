@@ -169,7 +169,7 @@ export default async function UseTheSpacePage() {
         <Button href="/contact" variant="gold" large>
           Contact Us
         </Button>
-        <Button href="/programs" variant="ghost" large>
+        <Button href="/peace-education" variant="ghost" large>
           See Programs
         </Button>
       </CtaBand>

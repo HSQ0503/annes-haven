@@ -85,8 +85,8 @@ export default async function HomePage() {
             <h1>{page.hero_heading}</h1>
             <p className="lead">{page.hero_lead}</p>
             <p className="hero-tagline">
-              Women learning from Women since 2016 · inspiring all to build peace
-              since 2026
+              Inspiring women to learn from each other since 2016 &amp; expanding
+              to build peace for all since 2026
             </p>
             <div className="features">
               {features.map((f) => (

@@ -12,16 +12,23 @@ export const metadata: Metadata = {
     "We sincerely thank our funders for supporting women and helping Anne's Haven grow as a peace center, incubator, oasis, and a learning hub for the city of Chicago.",
 };
 
-const PREVIOUS_FALLBACK = [
-  "City of Chicago, Chicago Biz Strong Grant",
-  "Allies for Community Business",
-  "Union Pacific Foundation",
-  "Ross Stores Foundation",
-  "Awesome Foundation",
-  "Women's Club of Wilmette",
-  "Little Caesars Foundation",
-  "The Chicago Foundation for Women",
-];
+/** Each previous funder links out to the org (URLs provided by the client). */
+const FUNDER_LINKS: Record<string, string> = {
+  "City of Chicago, Chicago Biz Strong Grant":
+    "https://www.chicago.gov/city/en/depts/mopd/provdrs/advoc/alerts/2021/november/Chi_Biz_Strong-Grant_Program.html",
+  "Allies for Community Business": "https://a4cb.org/",
+  "Union Pacific Foundation":
+    "https://www.up.com/communities/philanthropic-giving/local-grants",
+  "Ross Stores Foundation":
+    "https://corp.rossstores.com/responsibility/supporting-our-communities/",
+  "Awesome Foundation": "https://www.awesomefoundation.org/en",
+  "Women's Club of Wilmette":
+    "https://womansclubofwilmette.org/content.aspx?page_id=22&club_id=220133&module_id=399627",
+  "Little Caesars Foundation":
+    "https://littlecaesars.com/en-us/about-us/giving-back/",
+};
+
+const PREVIOUS_FALLBACK = Object.keys(FUNDER_LINKS);
 
 // Shown under "Current funders" until logos are uploaded via the admin panel.
 const CURRENT_FALLBACK = ["The Chicago Foundation for Women"];
@@ -30,7 +37,10 @@ export default async function FundersPage() {
   const all = await getFunders();
   const current = all.filter((f) => f.status === "current");
   const previous = all.filter((f) => f.status === "previous");
-  const previousNames = previous.length ? previous.map((f) => f.name) : PREVIOUS_FALLBACK;
+  const previousFunders: { name: string; logo: string | null }[] =
+    previous.length
+      ? previous.map((f) => ({ name: f.name, logo: f.logo_url }))
+      : PREVIOUS_FALLBACK.map((name) => ({ name, logo: null }));
 
   return (
     <>
@@ -103,16 +113,46 @@ export default async function FundersPage() {
           </div>
           <div className="marquee funder-marquee">
             <div className="marquee-track">
-              {[...previousNames, ...previousNames].map((f, i) => (
-                <span
-                  className="funder-pill"
-                  key={`${f}-${i}`}
-                  aria-hidden={i >= previousNames.length}
-                >
-                  <Icon name="star" />
-                  {f}
-                </span>
-              ))}
+              {[...previousFunders, ...previousFunders].map((f, i) => {
+                const href = FUNDER_LINKS[f.name];
+                const inner = f.logo ? (
+                  <span className="funder-logo">
+                    <Image
+                      src={f.logo}
+                      alt={`${f.name} logo`}
+                      fill
+                      sizes="180px"
+                      style={{ objectFit: "contain" }}
+                    />
+                  </span>
+                ) : (
+                  <>
+                    <Icon name="star" />
+                    {f.name}
+                  </>
+                );
+                return href ? (
+                  <a
+                    className="funder-pill"
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    key={`${f.name}-${i}`}
+                    aria-hidden={i >= previousFunders.length}
+                    tabIndex={i >= previousFunders.length ? -1 : undefined}
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <span
+                    className="funder-pill"
+                    key={`${f.name}-${i}`}
+                    aria-hidden={i >= previousFunders.length}
+                  >
+                    {inner}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>
