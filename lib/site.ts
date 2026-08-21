@@ -12,7 +12,7 @@ export const site = {
   phoneHref: "tel:7733401678",
   cell: "773-512-8115",
   cellHref: "tel:7735128115",
-  email: "anneshaefene@gmail.com",
+  email: "AnnesHaven.Chicago@gmail.com",
   donateUrl:
     "https://www.zeffy.com/en-US/donation-form/donate-to-make-a-difference-9976",
   peaceEmail: "annespeacecenter@gmail.com",
@@ -42,7 +42,16 @@ export const nav: NavItem[] = [
     key: "programs",
     children: [
       { label: "Peace Education", href: "/peace-education", desc: "" },
-      { label: "Women Entrepreneurs", href: "/workshops", desc: "Workshops & Classes" },
+      {
+        label: "Women Entrepreneurs",
+        href: "/workshops#entrepreneurs",
+        desc: "Our aspiring entrepreneur program",
+      },
+      {
+        label: "Workshops & Classes",
+        href: "/workshops#workshops",
+        desc: "Current offerings",
+      },
       { label: "Programs & Events", href: "/programs", desc: "Past & present" },
     ],
   },
@@ -82,13 +91,18 @@ export const socials: { label: string; icon: IconName; href: string }[] = [
   { label: "Instagram", icon: "instagram", href: "https://www.instagram.com/annes_haven/" },
   { label: "Facebook", icon: "facebook", href: "https://www.facebook.com/anneshaefen/" },
   { label: "YouTube", icon: "youtube", href: "https://www.youtube.com/channel/UCjtbZydkIzWmLytsFxnfSGw" },
-  { label: "LinkedIn", icon: "linkedin", href: "#" },
+  {
+    label: "LinkedIn",
+    icon: "linkedin",
+    href: "https://www.linkedin.com/company/anne-s-haven-501c3",
+  },
 ];
 
 export const footerLinks = {
   explore: [
     { label: "About Us", href: "/about" },
     { label: "Meet Our Team", href: "/team" },
+    { label: "Our Funders", href: "/funders" },
     { label: "Peace Education", href: "/peace-education" },
     { label: "Workshops & Classes", href: "/workshops" },
     { label: "Use the Space", href: "/use-the-space" },

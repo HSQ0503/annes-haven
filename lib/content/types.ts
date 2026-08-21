@@ -76,6 +76,7 @@ export type Funder = {
   id: string;
   name: string;
   logo_url: string | null;
+  website_url: string | null;
   status: "current" | "previous";
   sort_order: number;
 };

@@ -605,8 +605,8 @@ strong {
   flex: none;
 }
 .brand img {
-  width: 50px;
-  height: 50px;
+  width: 58px;
+  height: 58px;
   object-fit: contain;
 }
 .brand > span {
@@ -617,7 +617,7 @@ strong {
 .brand .bt {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.55rem;
   color: var(--color-green-900);
   line-height: 1.05;
   display: flex;
@@ -1486,9 +1486,12 @@ body.nav-locked {
 .funder-pill {
   background: #fff;
   border: 1px solid var(--color-line);
-  border-radius: 999px;
-  padding: 0.7em 1.3em;
+  border-radius: var(--radius);
+  padding: 0.8em 1.3em;
+  min-width: 220px;
+  min-height: 92px;
   font-weight: 600;
+  font-family: var(--font-body);
   color: var(--color-green-900);
   box-shadow: var(--shadow-sm);
   display: inline-flex;
@@ -1511,8 +1514,14 @@ a.funder-pill:hover {
 .funder-logo {
   position: relative;
   display: inline-block;
-  width: 150px;
-  height: 44px;
+  width: 180px;
+  height: 66px;
+}
+.funders-page {
+  font-family: var(--font-body);
+}
+[id^="role-"] {
+  scroll-margin-top: calc(var(--nav-h) + 24px);
 }
 
 /* ---- Partners page ---- */
@@ -2498,6 +2507,11 @@ a.funder-pill:hover {
 }
 
 /* ---- Video embeds (responsive 16:9 YouTube iframes) ---- */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+  gap: 24px;
+}
 .video-embed {
   position: relative;
   width: 100%;

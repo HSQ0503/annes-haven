@@ -13,8 +13,8 @@ export function Brand({ onClick }: { onClick?: () => void }) {
       <Image
         src={site.logo}
         alt="Anne's Haven logo"
-        width={50}
-        height={50}
+        width={58}
+        height={58}
         priority
       />
       <span>

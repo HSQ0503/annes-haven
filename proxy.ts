@@ -2,11 +2,6 @@ import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function proxy(request: NextRequest) {
-  // ⚠️ TEMP DEMO BYPASS — see lib/auth/guard.ts. Skips the /admin login gate.
-  if (process.env.DISABLE_ADMIN_AUTH === "true") {
-    return NextResponse.next({ request });
-  }
-
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(

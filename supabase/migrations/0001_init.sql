@@ -54,7 +54,8 @@ create table if not exists partners (
 );
 create table if not exists funders (
   id uuid primary key default gen_random_uuid(),
-  name text not null, logo_url text, sort_order int not null default 0,
+  name text not null, logo_url text, website_url text,
+  sort_order int not null default 0,
   updated_at timestamptz default now()
 );
 

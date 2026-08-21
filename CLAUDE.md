@@ -32,7 +32,7 @@ remaining work; it's derived from the client email thread (May 28 – Jun 4, 202
 ## ✅ Done (redesign / design handoff)
 - Full modern rebuild: all 13 pages, responsive, design system, hero carousel, dropdown nav.
 - Color palette implemented per `annes_haven_color_palette.png`.
-- Correct logo (`public/brand/AH-logo.png`), footer email `anneshaefene@gmail.com`.
+- Correct logo (`public/brand/AH-logo.png`), footer email `AnnesHaven.Chicago@gmail.com`.
 - Footer "quick links" — no "resources" link; Explore/Connect groups wired to pages.
 - Socials wired: Instagram, Facebook, YouTube. Footer year reads 2026.
 - Testimonials section exists (homepage, 3 quotes).
@@ -53,8 +53,7 @@ LinkedIn/socials/footer-year are now editable fields.
 
 ### 0. Remaining polish (post-admin)
 - Functional contact + newsletter forms (still UI-only — wire to Resend/route handler).
-- Deeply-structured page content not yet editable (About values cards, Peace Education
-  5 pillars + current-programs cards) — currently still hardcoded in their pages.
+- Deeply-structured current-program cards remain hardcoded in their pages.
 
 ### 1. Admin panel / CMS — DONE (see above)
 Everything is currently hardcoded in `.tsx` files and `lib/site.ts`. Janet needs a
@@ -79,7 +78,6 @@ editable records + image upload. Decide architecture (e.g. headless CMS vs. Supa
   (admin-editable). Currently every role's "Apply" → `/contact`.
 - **"Be part of something bigger" CTA**: "Apply Now" must be an embeddable link;
   "Contact Us" should route to contact. Currently both → `/contact`.
-- **LinkedIn social link**: still `href="#"` in `lib/site.ts` — needs the real URL.
 
 ### 3. Videos page (`/videos`) — make video count dynamic
 - Keep the original Anne's Haven video; add a new one titled **"A Decade In."**

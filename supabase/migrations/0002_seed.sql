@@ -5,7 +5,7 @@
 update site_settings set
   phone = '(773) 340-1678',
   cell = '773-512-8115',
-  email = 'anneshaefene@gmail.com',
+  email = 'AnnesHaven.Chicago@gmail.com',
   peace_email = 'annespeacecenter@gmail.com',
   address_street = '5629 W. Irving Park Road',
   address_city = 'Chicago, IL 60634',
@@ -13,7 +13,7 @@ update site_settings set
   instagram_url = 'https://www.instagram.com/annes_haven/',
   facebook_url = 'https://www.facebook.com/anneshaefen/',
   youtube_url = 'https://www.youtube.com/channel/UCjtbZydkIzWmLytsFxnfSGw',
-  linkedin_url = '',
+  linkedin_url = 'https://www.linkedin.com/company/anne-s-haven-501c3',
   footer_year = '2026',
   footer_tagline = 'Safe spaces · Women without barriers · Communities without borders'
 where id = 1;
@@ -30,16 +30,18 @@ where not exists (select 1 from testimonials);
 -- Videos ------------------------------------------------------------------
 insert into videos (youtube_id, title, blurb, featured, sort_order)
 select v.youtube_id, v.title, v.blurb, v.featured, v.sort_order from (values
-  ('M7MxP_GfHm4'::text, 'The Anne''s Haven Video', 'Want to know more about Anne''s Haven? Hear from several women about how the center has helped them in their lives. Founder Janet also speaks about the mission of Anne''s and what''s happening right now.', true, 0),
-  ('4c0DIDXnnZs', 'Meet Jacopo DeMarinis', 'Director of our Community Service 2.0 Program.', false, 1),
-  ('h2Uwge4x2sQ', 'Elena Pozo Perez on Your Health', 'Our guest speaker from Spain visits Anne''s.', false, 2),
-  ('z7XvZS49QWA', 'Sketch, Sip & Self-Care', 'An event in support of our Gathering of Moms.', false, 3),
-  ('a3pB3ttnb3k', 'Mary Joyce — a Woman of Anne''s', 'One of the women at the heart of Anne''s Haven.', false, 4),
-  ('H3IICjkNBio', 'Aga, Artist & Leader at Anne''s', 'Creativity and leadership in our community.', false, 5),
-  ('2V5FEAsflBs', 'Memoir for Me at Anne''s Haven', 'Telling our stories, one page at a time.', false, 6),
-  ('KziRuAsDgzo', 'Living a Blissful Life', 'A session on finding peace in everyday life.', false, 7),
-  (null, 'A Decade In', 'Our newest film, celebrating ten years of Anne''s. Coming soon.', false, 8),
-  (null, 'A Film by Chimbuani', 'A video from our partner Chimbuani. Coming soon.', false, 9)
+  ('8OHpawJ41ig'::text, 'Anne''s Haven Announcement Video', 'An update from Anne''s Haven about the center and the work ahead.', true, 0),
+  ('8C1BeWK4PSI', 'Meet Jacopo DeMarinis, the Director of Peace Education programs at Anne''s Haven!', 'Meet the director guiding Anne''s Haven''s Peace Education programs.', false, 1),
+  ('M7MxP_GfHm4', 'The Anne''s Haven Video', 'Want to know more about Anne''s Haven? Hear from several women about how the center has helped them in their lives. Founder Janet also speaks about the mission of Anne''s and what''s happening right now.', false, 2),
+  ('4c0DIDXnnZs', 'Meet Jacopo DeMarinis', 'Director of our Community Service 2.0 Program.', false, 3),
+  ('h2Uwge4x2sQ', 'Elena Pozo Perez on Your Health', 'Our guest speaker from Spain visits Anne''s.', false, 4),
+  ('z7XvZS49QWA', 'Sketch, Sip & Self-Care', 'An event in support of our Gathering of Moms.', false, 5),
+  ('a3pB3ttnb3k', 'Mary Joyce — a Woman of Anne''s', 'One of the women at the heart of Anne''s Haven.', false, 6),
+  ('H3IICjkNBio', 'Aga, Artist & Leader at Anne''s', 'Creativity and leadership in our community.', false, 7),
+  ('2V5FEAsflBs', 'Memoir for Me at Anne''s Haven', 'Telling our stories, one page at a time.', false, 8),
+  ('KziRuAsDgzo', 'Living a Blissful Life', 'A session on finding peace in everyday life.', false, 9),
+  (null, 'A Decade In', 'Our newest film, celebrating ten years of Anne''s. Coming soon.', false, 10),
+  (null, 'A Film by Chimbuani', 'A video from our partner Chimbuani. Coming soon.', false, 11)
 ) as v(youtube_id, title, blurb, featured, sort_order)
 where not exists (select 1 from videos);
 

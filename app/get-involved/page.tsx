@@ -30,18 +30,28 @@ const missionIcons: { icon: IconName; label: string }[] = [
 type RoleCard = { icon: IconName; title: string; body: string; items: string[]; link: string };
 
 const ROLES_FALLBACK: Omit<RoleCard, "link">[] = [
-  { icon: "book", title: "Grant Research & Writing", body: "Support fundraising by researching grants and helping craft compelling proposals.", items: ["Grant research", "Draft writing support", "Donor reporting"] },
-  { icon: "megaphone", title: "Social Media & Marketing", body: "Amplify our voice and grow our community through creative, strategic marketing.", items: ["Content creation", "Social media strategy", "Campaign management"] },
-  { icon: "handshake", title: "Outreach & Partnerships", body: "Build meaningful partnerships and expand our reach within the community.", items: ["Partner outreach", "Relationship building", "Community engagement"] },
-  { icon: "users", title: "Volunteer Coordinator", body: "Recruit, engage, and support volunteers for a positive, impactful experience.", items: ["Volunteer onboarding", "Engagement & retention", "Communication"] },
-  { icon: "calendar", title: "Program & Events Admin", body: "Help plan and organize programs and events that empower and inspire.", items: ["Event coordination", "Logistics & scheduling", "Administrative support"] },
+  { icon: "handshake", title: "Partnerships Lead", body: "Build meaningful relationships with community organizations, businesses, and people who share Anne's Haven's mission.", items: ["Partner outreach", "Relationship building", "Community engagement"] },
+  { icon: "book", title: "Grant Research & Writing Assistant", body: "Support fundraising by researching aligned opportunities and helping craft clear, compelling grant proposals.", items: ["Grant research", "Draft writing support", "Donor reporting"] },
+  { icon: "calendar", title: "Program & Events Admin", body: "Help plan and organize programs and events that empower, connect, and inspire.", items: ["Event coordination", "Logistics & scheduling", "Administrative support"] },
+  { icon: "megaphone", title: "Social Media & Marketing Manager", body: "Amplify Anne's Haven's voice and welcome more people into the community through thoughtful, creative marketing.", items: ["Content creation", "Social media strategy", "Campaign management"] },
+  { icon: "users", title: "Volunteer Coordinator", body: "Recruit, welcome, and support volunteers so everyone has a positive and meaningful experience.", items: ["Volunteer onboarding", "Engagement & retention", "Communication"] },
 ];
 
 const TONES = ["", "gold", "blue"];
+const APPLY_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfje4iSaZ8R62BQXrEao3J7M0CClkB_8TOv2StJZ9PhYyjRzQ/viewform?usp=header";
+
+function roleAnchor(title: string) {
+  return `role-${title
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")}`;
+}
 
 export default async function GetInvolvedPage() {
   const page = await getPage("get-involved");
-  const applyHref = page.apply_url || "/contact";
+  const applyHref = page.apply_now_url || APPLY_URL;
   const dbRoles = await getVolunteerRoles();
   const roles: RoleCard[] = dbRoles.length
     ? dbRoles.map((r) => ({
@@ -49,9 +59,12 @@ export default async function GetInvolvedPage() {
         title: r.title,
         body: r.body ?? "",
         items: r.items ?? [],
-        link: r.description_url || applyHref,
+        link: r.description_url || `#${roleAnchor(r.title)}`,
       }))
-    : ROLES_FALLBACK.map((r) => ({ ...r, link: applyHref }));
+    : ROLES_FALLBACK.map((r) => ({
+        ...r,
+        link: `#${roleAnchor(r.title)}`,
+      }));
 
   return (
     <>
@@ -75,11 +88,8 @@ export default async function GetInvolvedPage() {
             </p>
             <p className="lead">{page.hero_lead}</p>
             <div className="hero-actions" style={{ margin: "28px 0 30px" }}>
-              <Button href={applyHref} large>
-                Apply to Volunteer <Icon name="arrowRight" />
-              </Button>
-              <Button href="#roles" variant="outline" large>
-                See the Roles
+              <Button href="#roles" large>
+                View Opportunities <Icon name="arrowRight" />
               </Button>
             </div>
             <div className="features">
@@ -161,7 +171,11 @@ export default async function GetInvolvedPage() {
           </div>
           <div className="grid grid-3">
             {roles.map((r, i) => (
-              <article className="card card-pad" key={r.title}>
+              <article
+                className="card card-pad"
+                id={roleAnchor(r.title)}
+                key={r.title}
+              >
                 <span className={`chip ${TONES[i % TONES.length]}`.trim()}>
                   <Icon name={r.icon} />
                 </span>

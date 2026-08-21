@@ -10,39 +10,43 @@ import { getPage } from "@/lib/content/pages";
 export const metadata: Metadata = {
   title: "Peace Education",
   description:
-    "Our Peace Education programs are centered around our Peace Payoff framework, helping individuals and whole communities become agents of peace.",
+    "Our Peace Education programs are centered around our Peace Payoff framework, helping people and communities become agents of peace.",
 };
 
-const payoff: { icon: IconName; term: string; body: string }[] = [
+const payoff: {
+  icon: IconName;
+  titleField: string;
+  bodyField: string;
+}[] = [
   {
     icon: "dove",
-    term: "Peace Payoff",
-    body: "The clear economic, emotional, social, and community benefits of embracing peaceful practices in your personal life and professional career.",
+    titleField: "payoff_1_title",
+    bodyField: "payoff_1_body",
   },
   {
     icon: "book",
-    term: "Peace Knowledge",
-    body: "Knowledge of the key goals of peacebuilding and conflict resolution, and of the basic peaceful practices you can commit to in your everyday life, in your community, and in your professional career.",
+    titleField: "payoff_2_title",
+    bodyField: "payoff_2_body",
   },
   {
     icon: "gift",
-    term: "Peace Assets",
-    body: "A clear understanding of the many benefits of peace and what specific benefits you connect with the most — why you are a peacebuilder.",
+    titleField: "payoff_3_title",
+    bodyField: "payoff_3_body",
   },
   {
     icon: "sun",
-    term: "Peace Awareness",
-    body: "Being aware of your and your community's exceptional potential to build peace, the unique abilities of other people and communities, and opportunities to work together.",
+    titleField: "payoff_4_title",
+    bodyField: "payoff_4_body",
   },
   {
     icon: "key",
-    term: "Peace Tools",
-    body: "Personal qualities and aspects of a community that are needed to build peace, and obtain all the economic, emotional, social, and community benefits that come with peace.",
+    titleField: "payoff_5_title",
+    bodyField: "payoff_5_body",
   },
   {
     icon: "sparkles",
-    term: "Peace Skills",
-    body: "The concrete, learned skills (communication, conflict resolution, emotional regulation, etc.) that are necessary to effectively engage in peaceful practices in your everyday life, professional career, and community.",
+    titleField: "payoff_6_title",
+    bodyField: "payoff_6_body",
   },
 ];
 
@@ -122,11 +126,7 @@ export default async function PeaceEducationPage() {
             <div>
               <p className="eyebrow">Peace Education</p>
               <h2>Rooted in a simple conviction</h2>
-              <p>
-                Our Peace Education programs are centered around our
-                &ldquo;Peace Payoff&rdquo; framework. They help individuals and
-                whole communities become agents of peace.
-              </p>
+              <p>{page.intro_text}</p>
               <p>
                 Have questions? Reach out to Jacopo DeMarinis, our Director of
                 Peace Education Programs.
@@ -204,11 +204,13 @@ export default async function PeaceEducationPage() {
             style={{ marginTop: "clamp(28px, 4vw, 44px)" }}
           >
             {payoff.map((p) => (
-              <div className="card card-pad" key={p.term}>
+              <div className="card card-pad" key={p.titleField}>
                 <span className="chip">
                   <Icon name={p.icon} />
                 </span>
-                <h3 style={{ fontSize: "1.25rem" }}>{p.term}</h3>
+                <h3 style={{ fontSize: "1.25rem" }}>
+                  {page[p.titleField]}
+                </h3>
                 <p
                   style={{
                     color: "var(--color-muted)",
@@ -216,7 +218,7 @@ export default async function PeaceEducationPage() {
                     fontSize: ".96rem",
                   }}
                 >
-                  {p.body}
+                  {page[p.bodyField]}
                 </p>
               </div>
             ))}
@@ -272,7 +274,7 @@ export default async function PeaceEducationPage() {
         text={page.cta_text}
         deco="dove"
       >
-        <Button href="/contact" variant="gold" large>
+        <Button href="/get-involved" variant="gold" large>
           Get Involved
         </Button>
         <Button href="/programs" variant="ghost" large>

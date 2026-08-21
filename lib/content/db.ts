@@ -16,7 +16,7 @@ import type {
 const SETTINGS_FALLBACK: SiteSettings = {
   phone: "(773) 340-1678",
   cell: "773-512-8115",
-  email: "anneshaefene@gmail.com",
+  email: "AnnesHaven.Chicago@gmail.com",
   peace_email: "annespeacecenter@gmail.com",
   address_street: "5629 W. Irving Park Road",
   address_city: "Chicago, IL 60634",
@@ -25,7 +25,7 @@ const SETTINGS_FALLBACK: SiteSettings = {
   instagram_url: "https://www.instagram.com/annes_haven/",
   facebook_url: "https://www.facebook.com/anneshaefen/",
   youtube_url: "https://www.youtube.com/channel/UCjtbZydkIzWmLytsFxnfSGw",
-  linkedin_url: "",
+  linkedin_url: "https://www.linkedin.com/company/anne-s-haven-501c3",
   footer_year: "2026",
   footer_tagline: "Safe spaces · Women without barriers · Communities without borders",
 };

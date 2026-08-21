@@ -12,38 +12,89 @@ export const metadata: Metadata = {
     "We sincerely thank our funders for supporting women and helping Anne's Haven grow as a peace center, incubator, oasis, and a learning hub for the city of Chicago.",
 };
 
-/** Each previous funder links out to the org (URLs provided by the client). */
-const FUNDER_LINKS: Record<string, string> = {
-  "City of Chicago, Chicago Biz Strong Grant":
-    "https://www.chicago.gov/city/en/depts/mopd/provdrs/advoc/alerts/2021/november/Chi_Biz_Strong-Grant_Program.html",
-  "Allies for Community Business": "https://a4cb.org/",
-  "Union Pacific Foundation":
-    "https://www.up.com/communities/philanthropic-giving/local-grants",
-  "Ross Stores Foundation":
-    "https://corp.rossstores.com/responsibility/supporting-our-communities/",
-  "Awesome Foundation": "https://www.awesomefoundation.org/en",
-  "Women's Club of Wilmette":
-    "https://womansclubofwilmette.org/content.aspx?page_id=22&club_id=220133&module_id=399627",
-  "Little Caesars Foundation":
-    "https://littlecaesars.com/en-us/about-us/giving-back/",
+type DisplayFunder = {
+  name: string;
+  logo: string | null;
+  href: string | null;
 };
 
-const PREVIOUS_FALLBACK = Object.keys(FUNDER_LINKS);
+const CURRENT_FALLBACK: DisplayFunder[] = [
+  {
+    name: "Chicago Foundation for Women",
+    logo: "/images/funders/chicago-foundation-for-women.png",
+    href: "https://www.cfw.org/",
+  },
+];
 
-// Shown under "Current funders" until logos are uploaded via the admin panel.
-const CURRENT_FALLBACK = ["The Chicago Foundation for Women"];
+const PREVIOUS_FALLBACK: DisplayFunder[] = [
+  {
+    name: "City of Chicago Chicago Biz Strong Grant",
+    logo: "/images/funders/city-of-chicago.png",
+    href: "https://www.chicago.gov/city/en/depts/mopd/provdrs/advoc/alerts/2021/november/Chi_Biz_Strong-Grant_Program.html",
+  },
+  {
+    name: "Allies for Community Business",
+    logo: "/images/funders/allies-community-business.png",
+    href: "https://a4cb.org/",
+  },
+  {
+    name: "Union Pacific Foundation",
+    logo: "/images/funders/union-pacific.png",
+    href: "https://www.up.com/communities/philanthropic-giving/local-grants",
+  },
+  {
+    name: "Ross Stores Foundation",
+    logo: "/images/funders/ross-stores.svg",
+    href: "https://corp.rossstores.com/responsibility/supporting-our-communities/",
+  },
+  {
+    name: "Awesome Foundation",
+    logo: "/images/funders/awesome-foundation.png",
+    href: "https://www.awesomefoundation.org/en",
+  },
+  {
+    name: "Woman's Club of Wilmette",
+    logo: null,
+    href: "https://womansclubofwilmette.org/content.aspx?page_id=22&club_id=220133&module_id=399627",
+  },
+  {
+    name: "Little Caesars Foundation",
+    logo: "/images/funders/little-caesars.png",
+    href: "https://littlecaesars.com/en-us/about-us/giving-back/",
+  },
+];
+
+const fallbackByName = new Map(
+  [...CURRENT_FALLBACK, ...PREVIOUS_FALLBACK].map((f) => [f.name, f]),
+);
 
 export default async function FundersPage() {
   const all = await getFunders();
   const current = all.filter((f) => f.status === "current");
   const previous = all.filter((f) => f.status === "previous");
-  const previousFunders: { name: string; logo: string | null }[] =
-    previous.length
-      ? previous.map((f) => ({ name: f.name, logo: f.logo_url }))
-      : PREVIOUS_FALLBACK.map((name) => ({ name, logo: null }));
+  const currentFunders: DisplayFunder[] = current.length
+    ? current.map((f) => {
+        const fallback = fallbackByName.get(f.name);
+        return {
+          name: f.name,
+          logo: f.logo_url || fallback?.logo || null,
+          href: f.website_url || fallback?.href || null,
+        };
+      })
+    : CURRENT_FALLBACK;
+  const previousFunders: DisplayFunder[] = previous.length
+    ? previous.map((f) => {
+        const fallback = fallbackByName.get(f.name);
+        return {
+          name: f.name,
+          logo: f.logo_url || fallback?.logo || null,
+          href: f.website_url || fallback?.href || null,
+        };
+      })
+    : PREVIOUS_FALLBACK;
 
   return (
-    <>
+    <div className="funders-page">
       <section className="page-hero bg-sage">
         <div className="container">
           <p className="crumbs">
@@ -67,35 +118,42 @@ export default async function FundersPage() {
             <h2>Current funders</h2>
           </div>
           <div className="grid grid-3" style={{ maxWidth: 840, marginInline: "auto" }}>
-            {current.length > 0
-              ? current.map((f) => (
-                  <div className="logo-cell" key={f.id}>
-                    {f.logo_url ? (
+            {currentFunders.map((f) => {
+              const content = (
+                <>
+                  {f.logo ? (
                       <div style={{ position: "relative", width: "100%", aspectRatio: "3/2" }}>
                         <Image
-                          src={f.logo_url}
+                          src={f.logo}
                           alt={`${f.name} logo`}
                           fill
                           sizes="(max-width: 760px) 100vw, 260px"
                           style={{ objectFit: "contain" }}
                         />
                       </div>
-                    ) : (
+                  ) : (
                       <span style={{ fontWeight: 600, color: "var(--color-green-900)" }}>
                         {f.name}
                       </span>
-                    )}
-                  </div>
-                ))
-              : CURRENT_FALLBACK.map((name) => (
-                  <div className="logo-cell" key={name}>
-                    <span
-                      style={{ fontWeight: 600, color: "var(--color-green-900)" }}
-                    >
-                      {name}
-                    </span>
-                  </div>
-                ))}
+                  )}
+                </>
+              );
+              return f.href ? (
+                <a
+                  className="logo-cell"
+                  href={f.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  key={f.name}
+                >
+                  {content}
+                </a>
+              ) : (
+                <div className="logo-cell" key={f.name}>
+                  {content}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -114,7 +172,6 @@ export default async function FundersPage() {
           <div className="marquee funder-marquee">
             <div className="marquee-track">
               {[...previousFunders, ...previousFunders].map((f, i) => {
-                const href = FUNDER_LINKS[f.name];
                 const inner = f.logo ? (
                   <span className="funder-logo">
                     <Image
@@ -131,10 +188,10 @@ export default async function FundersPage() {
                     {f.name}
                   </>
                 );
-                return href ? (
+                return f.href ? (
                   <a
                     className="funder-pill"
-                    href={href}
+                    href={f.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     key={`${f.name}-${i}`}
@@ -170,6 +227,6 @@ export default async function FundersPage() {
           Partner With Us
         </Button>
       </CtaBand>
-    </>
+    </div>
   );
 }

@@ -40,7 +40,11 @@ export default async function RolesAdmin() {
             <IconSelect />
             <Field label="Description" name="body" textarea />
             <Field label="Duties (one per line)" name="items" textarea />
-            <Field label="Full role description link (optional)" name="description_url" hint="Paste the full https:// link." />
+            <Field
+              label="Full role description link (optional)"
+              name="description_url"
+              hint="Paste the full public https:// link. Leave blank to use the on-page description."
+            />
             <Field label="Order" name="sort_order" type="number" defaultValue={String(roles.length)} />
             <div className="admin-rowbar">
               <SubmitButton label="Add role" variant="btn-gold" />
@@ -70,7 +74,12 @@ export default async function RolesAdmin() {
               <IconSelect value={r.icon ?? "users"} />
               <Field label="Description" name="body" textarea defaultValue={r.body ?? ""} />
               <Field label="Duties (one per line)" name="items" textarea defaultValue={(r.items ?? []).join("\n")} />
-              <Field label="Full role description link (optional)" name="description_url" defaultValue={r.description_url ?? ""} hint="Paste the full https:// link." />
+              <Field
+                label="Full role description link (optional)"
+                name="description_url"
+                defaultValue={r.description_url ?? ""}
+                hint="Paste the full public https:// link. Leave blank to use the on-page description."
+              />
               <Field label="Order" name="sort_order" type="number" defaultValue={String(r.sort_order ?? i)} />
               <div className="admin-rowbar">
                 <SubmitButton />
