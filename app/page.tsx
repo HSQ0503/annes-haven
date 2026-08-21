@@ -70,8 +70,10 @@ const cardMuted = {
 } as const;
 
 export default async function HomePage() {
-  const page = await getPage("home");
-  const dbTestimonials = await getTestimonials();
+  const [page, dbTestimonials] = await Promise.all([
+    getPage("home"),
+    getTestimonials(),
+  ]);
   const quotes = dbTestimonials.length
     ? dbTestimonials.map((t) => ({ quote: t.quote, cite: t.author ?? "" }))
     : testimonials;

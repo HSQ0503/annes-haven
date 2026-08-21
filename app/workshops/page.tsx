@@ -20,8 +20,7 @@ const PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconName }[] =
 ];
 
 export default async function WorkshopsPage() {
-  const s = await getSettings();
-  const workshops = await getWorkshops();
+  const [s, workshops] = await Promise.all([getSettings(), getWorkshops()]);
   return (
     <>
       <section className="page-hero bg-sage" id="entrepreneurs">

@@ -37,8 +37,10 @@ const stats = [
 ] as const;
 
 export default async function SupportPage() {
-  const page = await getPage("support");
-  const s = await getSettings();
+  const [page, s] = await Promise.all([
+    getPage("support"),
+    getSettings(),
+  ]);
   return (
     <>
       {/* Hero */}

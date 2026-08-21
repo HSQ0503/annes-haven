@@ -50,9 +50,11 @@ function roleAnchor(title: string) {
 }
 
 export default async function GetInvolvedPage() {
-  const page = await getPage("get-involved");
+  const [page, dbRoles] = await Promise.all([
+    getPage("get-involved"),
+    getVolunteerRoles(),
+  ]);
   const applyHref = page.apply_now_url || APPLY_URL;
-  const dbRoles = await getVolunteerRoles();
   const roles: RoleCard[] = dbRoles.length
     ? dbRoles.map((r) => ({
         icon: (r.icon || "users") as IconName,
