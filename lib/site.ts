@@ -94,7 +94,7 @@ export const socials: { label: string; icon: IconName; href: string }[] = [
   {
     label: "LinkedIn",
     icon: "linkedin",
-    href: "https://www.linkedin.com/company/anne-s-haven-501c3",
+    href: "",
   },
 ];
 

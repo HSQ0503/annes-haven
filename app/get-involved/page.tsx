@@ -54,7 +54,7 @@ export default async function GetInvolvedPage() {
     getPage("get-involved"),
     getVolunteerRoles(),
   ]);
-  const applyHref = page.apply_now_url || APPLY_URL;
+  const applyHref = page.apply_url || APPLY_URL;
   const roles: RoleCard[] = dbRoles.length
     ? dbRoles.map((r) => ({
         icon: (r.icon || "users") as IconName,

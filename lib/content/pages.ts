@@ -198,7 +198,7 @@ export const PAGE_CONFIGS: Record<string, PageConfig> = {
       { name: "hero_heading", label: "Hero heading" },
       { name: "hero_lead", label: "Hero paragraph", textarea: true },
       {
-        name: "apply_now_url",
+        name: "apply_url",
         label: "Optional Apply Now link",
       },
       { name: "cta_title", label: "Bottom call-to-action title" },
@@ -208,7 +208,7 @@ export const PAGE_CONFIGS: Record<string, PageConfig> = {
       hero_heading: "Volunteer with us.",
       hero_lead:
         "Join a community, in-person or virtually, dedicated to supporting women entrepreneurs and building peace.",
-      apply_now_url:
+      apply_url:
         "https://docs.google.com/forms/d/e/1FAIpQLSfje4iSaZ8R62BQXrEao3J7M0CClkB_8TOv2StJZ9PhYyjRzQ/viewform?usp=header",
       cta_title: "Be part of something bigger",
       cta_text:

@@ -25,7 +25,7 @@ const SETTINGS_FALLBACK: SiteSettings = {
   instagram_url: "https://www.instagram.com/annes_haven/",
   facebook_url: "https://www.facebook.com/anneshaefen/",
   youtube_url: "https://www.youtube.com/channel/UCjtbZydkIzWmLytsFxnfSGw",
-  linkedin_url: "https://www.linkedin.com/company/anne-s-haven-501c3",
+  linkedin_url: "",
   footer_year: "2026",
   footer_tagline: "Safe spaces · Women without barriers · Communities without borders",
 };

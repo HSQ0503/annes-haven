@@ -3,12 +3,13 @@
 
 alter table funders add column if not exists website_url text;
 
-update site_settings
+insert into site_settings (id, email, linkedin_url, updated_at)
+values (1, 'AnnesHaven.Chicago@gmail.com', '', now())
+on conflict (id) do update
 set
-  email = 'AnnesHaven.Chicago@gmail.com',
-  linkedin_url = 'https://www.linkedin.com/company/anne-s-haven-501c3',
-  updated_at = now()
-where id = 1;
+  email = excluded.email,
+  linkedin_url = excluded.linkedin_url,
+  updated_at = now();
 
 insert into page_content (slug, data, updated_at)
 values
@@ -62,7 +63,7 @@ values
     'get-involved',
     jsonb_build_object(
       'hero_lead', 'Join a community, in-person or virtually, dedicated to supporting women entrepreneurs and building peace.',
-      'apply_now_url', 'https://docs.google.com/forms/d/e/1FAIpQLSfje4iSaZ8R62BQXrEao3J7M0CClkB_8TOv2StJZ9PhYyjRzQ/viewform?usp=header'
+      'apply_url', 'https://docs.google.com/forms/d/e/1FAIpQLSfje4iSaZ8R62BQXrEao3J7M0CClkB_8TOv2StJZ9PhYyjRzQ/viewform?usp=header'
     ),
     now()
   ),
@@ -83,7 +84,7 @@ values
   )
 on conflict (slug) do update
 set
-  data = (page_content.data - 'apply_url') || excluded.data,
+  data = page_content.data || excluded.data,
   updated_at = now();
 
 -- Place the two client-provided videos first and feature the announcement.
