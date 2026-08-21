@@ -4,7 +4,7 @@ import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon, type IconName } from "@/components/icon";
 import { Photo } from "@/components/photo";
-import { site } from "@/lib/site";
+import { getSettings } from "@/lib/content/db";
 import { getPage } from "@/lib/content/pages";
 
 export const metadata: Metadata = {
@@ -100,7 +100,10 @@ const programs: Program[] = [
 ];
 
 export default async function PeaceEducationPage() {
-  const page = await getPage("peace-education");
+  const [page, settings] = await Promise.all([
+    getPage("peace-education"),
+    getSettings(),
+  ]);
   return (
     <>
       <section className="page-hero bg-sage">
@@ -131,7 +134,7 @@ export default async function PeaceEducationPage() {
                 Have questions? Reach out to Jacopo DeMarinis, our Director of
                 Peace Education Programs.
               </p>
-              <Button href={`mailto:${site.peaceEmail}`} className="mt-2">
+              <Button href={`mailto:${settings.peace_email}`} className="mt-2">
                 Email Jacopo <Icon name="arrowRight" />
               </Button>
             </div>

@@ -3,11 +3,12 @@
 
 alter table funders add column if not exists website_url text;
 
-insert into site_settings (id, email, linkedin_url, updated_at)
-values (1, 'AnnesHaven.Chicago@gmail.com', '', now())
+insert into site_settings (id, email, peace_email, linkedin_url, updated_at)
+values (1, 'AnnesHaven.Chicago@gmail.com', 'annespeacecenter@gmail.com', '', now())
 on conflict (id) do update
 set
   email = excluded.email,
+  peace_email = excluded.peace_email,
   linkedin_url = excluded.linkedin_url,
   updated_at = now();
 
