@@ -37,8 +37,10 @@ const stats = [
 ] as const;
 
 export default async function SupportPage() {
-  const page = await getPage("support");
-  const s = await getSettings();
+  const [page, s] = await Promise.all([
+    getPage("support"),
+    getSettings(),
+  ]);
   return (
     <>
       {/* Hero */}
@@ -75,16 +77,8 @@ export default async function SupportPage() {
         <div className="container">
           <div className="section-head center">
             <p className="eyebrow center">Why Give</p>
-            <h2>There is no place like Anne&apos;s</h2>
-            <p className="measure-center">
-              Anne&apos;s is the first secular community peace center in Chicago
-              and a creative incubator for all women who are living with a dream.
-              It&apos;s about freedom, about people learning from people and
-              helping each other grow. Anne&apos;s is exciting, life-changing,
-              fertile ground for the seeds of the future of women and all people
-              who envision a better life for all, and are ready to get to work!
-              Please help provide us with the tools we need.
-            </p>
+            <h2>{page.why_title}</h2>
+            <p className="measure-center">{page.why_body}</p>
           </div>
           <div className="grid grid-3">
             {stats.map((s) => (

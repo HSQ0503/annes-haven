@@ -16,7 +16,7 @@ import type {
 const SETTINGS_FALLBACK: SiteSettings = {
   phone: "(773) 340-1678",
   cell: "773-512-8115",
-  email: "anneshaefene@gmail.com",
+  email: "AnnesHaven.Chicago@gmail.com",
   peace_email: "annespeacecenter@gmail.com",
   address_street: "5629 W. Irving Park Road",
   address_city: "Chicago, IL 60634",

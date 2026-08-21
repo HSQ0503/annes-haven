@@ -14,7 +14,8 @@ export function resend(): Resend | null {
 
 export const EMAIL_FROM =
   process.env.RESEND_FROM ?? "Anne's Haven <onboarding@resend.dev>";
-export const EMAIL_TO = process.env.CONTACT_TO_EMAIL ?? "anneshaefene@gmail.com";
+export const EMAIL_TO =
+  process.env.CONTACT_TO_EMAIL ?? "AnnesHaven.Chicago@gmail.com";
 
 /** Escape user-supplied text before interpolating into email HTML. */
 export function escapeHtml(value: string): string {

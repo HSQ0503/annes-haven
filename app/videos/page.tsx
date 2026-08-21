@@ -15,12 +15,23 @@ type Card = { youtubeId: string | null; title: string; blurb: string };
 
 // Fallback used only if the database has no videos yet.
 const FALLBACK_FEATURED: Card = {
-  youtubeId: "M7MxP_GfHm4",
-  title: "The Anne's Haven Video",
-  blurb:
-    "Want to know more about Anne's Haven? Hear from several women about how the center has helped them in their lives. Founder Janet also speaks about the mission of Anne's and what's happening right now.",
+  youtubeId: "8OHpawJ41ig",
+  title: "Anne's Haven Announcement Video",
+  blurb: "An update from Anne's Haven about the center and the work ahead.",
 };
 const FALLBACK_CARDS: Card[] = [
+  {
+    youtubeId: "8C1BeWK4PSI",
+    title:
+      "Meet Jacopo DeMarinis, the Director of Peace Education programs at Anne's Haven!",
+    blurb: "Meet the director guiding Anne's Haven's Peace Education programs.",
+  },
+  {
+    youtubeId: "M7MxP_GfHm4",
+    title: "The Anne's Haven Video",
+    blurb:
+      "Want to know more about Anne's Haven? Hear from several women about how the center has helped them in their lives. Founder Janet also speaks about the mission of Anne's and what's happening right now.",
+  },
   { youtubeId: "4c0DIDXnnZs", title: "Meet Jacopo DeMarinis", blurb: "Director of our Community Service 2.0 Program." },
   { youtubeId: "h2Uwge4x2sQ", title: "Elena Pozo Perez on Your Health", blurb: "Our guest speaker from Spain visits Anne's." },
   { youtubeId: "z7XvZS49QWA", title: "Sketch, Sip & Self-Care", blurb: "An event in support of our Gathering of Moms." },
@@ -108,7 +119,7 @@ export default async function VideosPage() {
             <p className="eyebrow center gold">More to Watch</p>
             <h2>From our channel</h2>
           </div>
-          <div className="grid grid-3">
+          <div className="video-grid">
             {cards.map((c, i) => (
               <article className="card" key={i}>
                 <Embed card={c} />

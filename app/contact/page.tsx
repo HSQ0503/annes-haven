@@ -13,8 +13,10 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactPage() {
-  const s = await getSettings();
-  const page = await getPage("contact");
+  const [s, page] = await Promise.all([
+    getSettings(),
+    getPage("contact"),
+  ]);
   const phoneHref = `tel:${s.phone.replace(/[^\d]/g, "")}`;
   const cellHref = `tel:${s.cell.replace(/[^\d]/g, "")}`;
   return (

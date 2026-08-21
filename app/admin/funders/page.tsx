@@ -13,8 +13,8 @@ function StatusSelect({ value = "current" }: { value?: string }) {
     <div className="field">
       <label htmlFor="status">Status</label>
       <select id="status" name="status" defaultValue={value}>
-        <option value="current">Current (shown with logo)</option>
-        <option value="previous">Previous (shown as a name pill)</option>
+        <option value="current">Current</option>
+        <option value="previous">Previous</option>
       </select>
     </div>
   );
@@ -33,7 +33,7 @@ export default async function FundersAdmin() {
         icon="gift"
         kicker="Supporters"
         title="Funders"
-        subtitle="The people and foundations who make the work possible. Add a logo for current funders or list past ones as name pills — changes go live the moment you save."
+        subtitle="The people and foundations who make the work possible. Choose current or previous, add a logo, and link to the funder's website. Changes go live the moment you save."
       />
 
       <div className="admin-list">
@@ -41,6 +41,11 @@ export default async function FundersAdmin() {
           <form action={saveFunder}>
             <ImageUpload name="logo_url" folder="funders" />
             <Field label="Name" name="name" required />
+            <Field
+              label="Website link"
+              name="website_url"
+              hint="Paste the full https:// link."
+            />
             <StatusSelect />
             <Field label="Order" name="sort_order" type="number" defaultValue={String(funders.length)} />
             <div className="admin-rowbar">
@@ -70,6 +75,12 @@ export default async function FundersAdmin() {
               <input type="hidden" name="id" value={f.id} />
               <ImageUpload name="logo_url" folder="funders" defaultUrl={f.logo_url ?? ""} />
               <Field label="Name" name="name" defaultValue={f.name} required />
+              <Field
+                label="Website link"
+                name="website_url"
+                defaultValue={f.website_url ?? ""}
+                hint="Paste the full https:// link."
+              />
               <StatusSelect value={f.status} />
               <Field label="Order" name="sort_order" type="number" defaultValue={String(f.sort_order ?? i)} />
               <div className="admin-rowbar">

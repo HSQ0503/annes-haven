@@ -20,11 +20,10 @@ const PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconName }[] =
 ];
 
 export default async function WorkshopsPage() {
-  const s = await getSettings();
-  const workshops = await getWorkshops();
+  const [s, workshops] = await Promise.all([getSettings(), getWorkshops()]);
   return (
     <>
-      <section className="page-hero bg-sage">
+      <section className="page-hero bg-sage" id="entrepreneurs">
         <div className="container">
           <p className="crumbs">
             <Link href="/">Home</Link> &nbsp;/&nbsp; Our Programs &nbsp;/&nbsp;
@@ -44,7 +43,7 @@ export default async function WorkshopsPage() {
       </section>
 
       {/* Current offerings */}
-      <section className="section">
+      <section className="section" id="workshops">
         <div className="container">
           <div className="section-head center">
             <p className="eyebrow center">Now Offering</p>

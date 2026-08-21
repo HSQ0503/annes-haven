@@ -17,25 +17,25 @@ const values = [
     chip: "",
     icon: "handshake",
     title: "Connection",
-    body: "At the core of our strength is the ability to accept, connect with, and uplift other people of all identities, fostering compassionate, peaceful communities.",
+    bodyField: "connection_body",
   },
   {
     chip: "gold",
     icon: "hands",
     title: "Collaboration",
-    body: "Working together is the only path toward change, to build sustainable peace and support women entrepreneurs.",
+    bodyField: "collaboration_body",
   },
   {
     chip: "blue",
     icon: "sparkles",
     title: "Empowerment",
-    body: "Through entrepreneurship and peace education, we equip people with the knowledge and skills to take their businesses, and communities, to new heights.",
+    bodyField: "empowerment_body",
   },
   {
     chip: "",
     icon: "sun",
     title: "Resurrection",
-    body: "Our lives move through stages. We are constantly growing wiser, embracing our imperfection and beginning new chapters.",
+    bodyField: "resurrection_body",
   },
 ] as const;
 
@@ -62,19 +62,8 @@ export default async function AboutPage() {
             <div>
               <p className="eyebrow">Our Mission</p>
               <h2>Safe spaces, built on relationships</h2>
-              <p>
-                Anne&apos;s Haven 501(c)(3) provides programming and dedicated
-                space for people of all identities. Our mission is to create safe
-                spaces, build relationships, educate, and promote personal
-                growth.
-              </p>
-              <p>
-                Our primary focus is supporting women entrepreneurs, especially
-                those in the healing arts, and building peace. We carry out our
-                mission through programming dedicated to entrepreneurship and
-                peace education, and by creating space for a peace center and a
-                women&apos;s incubator.
-              </p>
+              <p>{page.mission_body_1}</p>
+              <p>{page.mission_body_2}</p>
               <div className="grid grid-2" style={{ marginTop: 26, gap: 12 }}>
                 <div className="tag" style={left}>
                   <Icon name="shield" /> Create safe spaces
@@ -119,7 +108,7 @@ export default async function AboutPage() {
                 </span>
                 <h3 style={{ fontSize: "1.25rem" }}>{v.title}</h3>
                 <p style={{ color: "var(--color-muted)", fontSize: ".96rem", margin: 0 }}>
-                  {v.body}
+                  {page[v.bodyField]}
                 </p>
               </div>
             ))}
@@ -143,18 +132,9 @@ export default async function AboutPage() {
             </div>
             <div>
               <p className="eyebrow">What We Do</p>
-              <h2>Women Entrepreneurship &amp; Peace Education</h2>
-              <p>
-                Our Aspiring Entrepreneur program supports women, with a soft
-                spot on those in the healing arts, as they pursue their passions,
-                while strengthening collaboration. It&apos;s conducted as a
-                collective, engaging each individual&apos;s voice and
-                demonstrating the power of <strong>&ldquo;WE.&rdquo;</strong>
-              </p>
-              <p>
-                Our Peace Education programs, also operating as a collective,
-                center on our &ldquo;Peace Payoff&rdquo; framework.
-              </p>
+              <h2>{page.work_heading}</h2>
+              <p>{page.aspiring_body}</p>
+              <p>{page.peace_programs_body}</p>
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 22 }}>
                 <Button href="/peace-education">
                   Peace Education <Icon name="arrowRight" />
@@ -176,9 +156,8 @@ export default async function AboutPage() {
               <p className="eyebrow gold">In Loving Memory</p>
               <h2>About Anne</h2>
               <p>
-                Meet Anne McNicholas-Giangrasse, a woman so inspiring that
-                Anne&apos;s Haven was founded in her name and memory by her
-                daughter Janet.
+                Anne McNicholas-Giangrasse was so inspiring that Anne&apos;s
+                Haven was founded in her name and memory by her daughter Janet.
               </p>
               <p>
                 Born on March 14th, 1926, Anne was strong, independent,

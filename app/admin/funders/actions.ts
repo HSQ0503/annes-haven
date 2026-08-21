@@ -18,6 +18,8 @@ export async function saveFunder(formData: FormData) {
   const row = {
     name,
     logo_url: String(formData.get("logo_url") ?? "").trim() || null,
+    website_url:
+      String(formData.get("website_url") ?? "").trim() || null,
     status: status === "previous" ? "previous" : "current",
     sort_order: Number(formData.get("sort_order") ?? 0),
   };

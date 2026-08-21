@@ -70,8 +70,10 @@ const cardMuted = {
 } as const;
 
 export default async function HomePage() {
-  const page = await getPage("home");
-  const dbTestimonials = await getTestimonials();
+  const [page, dbTestimonials] = await Promise.all([
+    getPage("home"),
+    getTestimonials(),
+  ]);
   const quotes = dbTestimonials.length
     ? dbTestimonials.map((t) => ({ quote: t.quote, cite: t.author ?? "" }))
     : testimonials;
@@ -84,10 +86,7 @@ export default async function HomePage() {
             <p className="kicker">{page.hero_kicker}</p>
             <h1>{page.hero_heading}</h1>
             <p className="lead">{page.hero_lead}</p>
-            <p className="hero-tagline">
-              Inspiring women to learn from each other since 2016 &amp; expanding
-              to build peace for all since 2026
-            </p>
+            <p className="hero-tagline">{page.history_tagline}</p>
             <div className="features">
               {features.map((f) => (
                 <div className="feature" key={f.label.join(" ")}>
@@ -163,7 +162,7 @@ export default async function HomePage() {
             <h2>There&apos;s a place here for you</h2>
             <p className="measure-center">
               Want to host a class, drop in for an event, borrow the space, or
-              just meet the women who keep it running? Start wherever feels right.
+              meet the friends who keep it running? Start wherever feels right.
             </p>
           </div>
           <div className="grid grid-4">
@@ -227,26 +226,29 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link className="card" href="/videos">
-              <div className="snap-card">
-                <Photo
-                  src="/images/meetthewomen.jpeg"
-                  alt="'Women of Anne's' artwork of four faces growing from a tree"
-                  ratio="4/3"
-                  sizes="(max-width: 620px) 100vw, 300px"
-                />
-              </div>
+            <article className="card">
+              <Link href="/videos" aria-label="Meet the Friends of Anne's">
+                <div className="snap-card">
+                  <Photo
+                    src="/images/meetthewomen.jpeg"
+                    alt="'Women of Anne's' artwork of four faces growing from a tree"
+                    ratio="4/3"
+                    sizes="(max-width: 620px) 100vw, 300px"
+                  />
+                </div>
+              </Link>
               <div className="card-pad">
-                <h3 style={{ fontSize: "1.25rem" }}>Meet the Women</h3>
+                <h3 style={{ fontSize: "1.25rem" }}>
+                  <Link href="/videos">Meet the Friends of Anne&apos;s</Link>
+                </h3>
                 <p style={cardMuted}>
-                  The founder, staff, and board who make Anne&apos;s feel like
-                  home.
+                  Hear from the people who make Anne&apos;s feel like home.
                 </p>
-                <span className="textlink">
+                <Link className="textlink" href="/contact">
                   Say hello <Icon name="arrowRight" />
-                </span>
+                </Link>
               </div>
-            </Link>
+            </article>
           </div>
         </div>
       </section>
