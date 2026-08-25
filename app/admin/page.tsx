@@ -22,6 +22,7 @@ const LISTS: Card[] = [
   { href: "/admin/partners", icon: "globe", chip: "blue", title: "Partners", desc: "Organizations you collaborate with." },
   { href: "/admin/funders", icon: "gift", chip: "blue", title: "Funders", desc: "The people who make it possible." },
   { href: "/admin/settings", icon: "settings", chip: "", title: "Site Settings", desc: "Contact info, social links, and footer." },
+  { href: "/admin/admins", icon: "key", chip: "", title: "Admin Access", desc: "Choose who can edit the website." },
 ];
 
 function QuickCard({ href, icon, chip, title, desc }: Card) {

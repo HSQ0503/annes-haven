@@ -6,6 +6,7 @@ import { Icon, type IconName } from "@/components/icon";
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import { Photo } from "@/components/photo";
 import { getSettings, getWorkshops } from "@/lib/content/db";
+import { gmailComposeUrl } from "@/lib/email-links";
 
 export const metadata: Metadata = {
   title: "Workshops & Classes",
@@ -35,7 +36,13 @@ export default async function WorkshopsPage() {
             Haven, and find out how you can attend or join our program.
           </p>
           <div style={{ marginTop: 24 }}>
-            <Button href={`mailto:${s.email}`} large>
+            <Button
+              href={gmailComposeUrl(
+                s.email,
+                "Join or attend an Anne's Haven workshop",
+              )}
+              large
+            >
               Email to Join or Attend <Icon name="arrowRight" />
             </Button>
           </div>
@@ -52,7 +59,15 @@ export default async function WorkshopsPage() {
               Flip through the current offerings from the women entrepreneurs of
               Anne&apos;s Haven. Interested in attending an event or joining our
               entrepreneur program? Email{" "}
-              <a className="textlink" href={`mailto:${s.email}`}>
+              <a
+                className="textlink"
+                href={gmailComposeUrl(
+                  s.email,
+                  "Join or attend an Anne's Haven workshop",
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {s.email}
               </a>
               .

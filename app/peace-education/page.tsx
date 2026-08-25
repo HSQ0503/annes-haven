@@ -6,6 +6,7 @@ import { Icon, type IconName } from "@/components/icon";
 import { Photo } from "@/components/photo";
 import { getSettings } from "@/lib/content/db";
 import { getPage } from "@/lib/content/pages";
+import { gmailComposeUrl } from "@/lib/email-links";
 
 export const metadata: Metadata = {
   title: "Peace Education",
@@ -134,7 +135,13 @@ export default async function PeaceEducationPage() {
                 Have questions? Reach out to Jacopo DeMarinis, our Director of
                 Peace Education Programs.
               </p>
-              <Button href={`mailto:${settings.peace_email}`} className="mt-2">
+              <Button
+                href={gmailComposeUrl(
+                  settings.peace_email,
+                  "Peace Education at Anne's Haven",
+                )}
+                className="mt-2"
+              >
                 Email Jacopo <Icon name="arrowRight" />
               </Button>
             </div>

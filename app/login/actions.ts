@@ -2,7 +2,10 @@
 
 import { headers } from "next/headers";
 import { type EmailOtpType } from "@supabase/supabase-js";
-import { isAdminEmail } from "@/lib/auth/guard";
+import {
+  ADMIN_METADATA_KEY,
+  getAdminAccess,
+} from "@/lib/auth/admin-access";
 import { sendMagicLinkEmail } from "@/lib/email";
 import { createAdminClient } from "@/utils/supabase/admin";
 
@@ -38,8 +41,9 @@ function otpType(value: string | undefined): EmailOtpType {
  * then send the confirm URL through Resend.
  */
 export async function sendMagicLink(_prev: unknown, formData: FormData) {
-  const email = String(formData.get("email") ?? "").trim();
-  if (!isAdminEmail(email, process.env.ADMIN_EMAILS ?? "")) {
+  const email = String(formData.get("email") ?? "").trim().toLowerCase();
+  const access = await getAdminAccess(email);
+  if (!access.bootstrap && !access.managed) {
     return { ok: false, message: "That email isn't authorized for admin access." };
   }
 
@@ -51,30 +55,33 @@ export async function sendMagicLink(_prev: unknown, formData: FormData) {
     };
   }
 
+  if (!access.userId) {
+    const { error } = await admin.auth.admin.createUser({
+      email,
+      email_confirm: true,
+      app_metadata: { [ADMIN_METADATA_KEY]: true },
+    });
+    if (error && !/already|registered|exists/i.test(error.message)) {
+      return { ok: false, message: error.message };
+    }
+  } else if (access.bootstrap && !access.managed) {
+    const { data } = await admin.auth.admin.getUserById(access.userId);
+    const { error } = await admin.auth.admin.updateUserById(access.userId, {
+      app_metadata: {
+        ...(data.user?.app_metadata ?? {}),
+        [ADMIN_METADATA_KEY]: true,
+      },
+    });
+    if (error) return { ok: false, message: error.message };
+  }
+
   const origin = await getOrigin();
   const redirectTo = `${origin}/auth/confirm`;
-
-  let generated = await admin.auth.admin.generateLink({
+  const generated = await admin.auth.admin.generateLink({
     type: "magiclink",
     email,
     options: { redirectTo },
   });
-
-  // First-time allowlisted editors may not have an Auth user yet.
-  if (generated.error && /not found|does not exist|unable to find/i.test(generated.error.message)) {
-    const created = await admin.auth.admin.createUser({
-      email,
-      email_confirm: true,
-    });
-    if (created.error && !/already|registered|exists/i.test(created.error.message)) {
-      return { ok: false, message: created.error.message };
-    }
-    generated = await admin.auth.admin.generateLink({
-      type: "magiclink",
-      email,
-      options: { redirectTo },
-    });
-  }
 
   const hashedToken = generated.data?.properties?.hashed_token;
   if (generated.error || !hashedToken) {
