@@ -1,6 +1,10 @@
 import "server-only";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import {
+  bootstrapAdminEmails,
+  isManagedAdmin,
+} from "@/lib/auth/admin-access";
 
 export function isAdminEmail(
   email: string | undefined | null,
@@ -22,7 +26,12 @@ export async function requireAdmin() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!isAdminEmail(user?.email, process.env.ADMIN_EMAILS ?? "")) {
+  const email = user?.email?.toLowerCase();
+  const authorized =
+    Boolean(email && bootstrapAdminEmails().includes(email)) ||
+    isManagedAdmin(user);
+
+  if (!authorized) {
     redirect("/login");
   }
   return user!;

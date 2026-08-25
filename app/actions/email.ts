@@ -1,6 +1,7 @@
 "use server";
 
 import { EMAIL_FROM, EMAIL_TO, escapeHtml, resend } from "@/lib/email";
+import { subscribeToNewsletter } from "@/lib/mailchimp";
 
 export type FormState = { ok: boolean; message: string };
 
@@ -51,6 +52,18 @@ export async function sendContactMessage(
   if (error) {
     return { ok: false, message: "Something went wrong sending your message. Please try again." };
   }
+
+  if (wantsUpdates) {
+    const subscription = await subscribeToNewsletter(email);
+    if (!subscription.ok) {
+      return {
+        ok: true,
+        message:
+          "Your message was sent, but we couldn't add you to the newsletter. Please try the newsletter form below.",
+      };
+    }
+  }
+
   return { ok: true, message: "Thank you! We'll be in touch soon." };
 }
 
@@ -63,22 +76,7 @@ export async function subscribeNewsletter(
     return { ok: false, message: "Please enter a valid email." };
   }
 
-  const client = resend();
-  if (!client) {
-    return { ok: false, message: "Signups aren't configured yet — please try again later." };
-  }
-
-  const { error } = await client.emails.send({
-    from: EMAIL_FROM,
-    to: [EMAIL_TO],
-    replyTo: email,
-    subject: "[Website] New newsletter signup",
-    html: `<p>New newsletter signup:</p><p><strong>${escapeHtml(email)}</strong></p>`,
-    text: `New newsletter signup: ${email}`,
-  });
-
-  if (error) {
-    return { ok: false, message: "Something went wrong. Please try again." };
-  }
+  const result = await subscribeToNewsletter(email);
+  if (!result.ok) return { ok: false, message: result.message };
   return { ok: true, message: "You're on the list — thank you!" };
 }

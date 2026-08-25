@@ -29,7 +29,13 @@ const GROUPS: NavGroup[] = [
       { href: "/admin/funders", label: "Funders", icon: "gift" },
     ],
   },
-  { label: "Settings", items: [{ href: "/admin/settings", label: "Site Settings", icon: "settings" }] },
+  {
+    label: "Settings",
+    items: [
+      { href: "/admin/settings", label: "Site Settings", icon: "settings" },
+      { href: "/admin/admins", label: "Admin Access", icon: "key" },
+    ],
+  },
 ];
 
 const isActive = (href: string, path: string) =>
