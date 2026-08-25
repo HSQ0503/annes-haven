@@ -270,5 +270,15 @@ export async function getPage(slug: PageSlug): Promise<Record<string, string>> {
     const v = saved[f.name];
     if (typeof v === "string" && v.trim()) merged[f.name] = v;
   }
+
+  // Fix stale CMS hero_kicker for home page that ends with "Chicago IL" instead of "Chicago"
+  if (
+    slug === "home" &&
+    merged.hero_kicker &&
+    /Portage\s*Park,?\s*Chicago\s+IL\s*$/i.test(merged.hero_kicker)
+  ) {
+    merged.hero_kicker = config.defaults.hero_kicker;
+  }
+
   return merged;
 }
