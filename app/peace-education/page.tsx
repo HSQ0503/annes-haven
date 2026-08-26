@@ -51,55 +51,6 @@ const payoff: {
   },
 ];
 
-type Program = {
-  pillar: string;
-  tag: string;
-  name: string;
-  body: string;
-  img: string;
-  alt: string;
-  ratio: string;
-};
-
-const programs: Program[] = [
-  {
-    pillar: "Inner Peace",
-    tag: "",
-    name: "Our Gathering of Moms",
-    body: "A space for overwhelmed moms to promote personal healing and find balance in their lives through mutual support and empowerment.",
-    img: "/images/PeacePrograms/InnerPeace.png",
-    alt: "Release, Renew, Regroup — flyer for the Gathering of Moms, offering childcare, healthy snacks, and stress-relief practices",
-    ratio: "396/449",
-  },
-  {
-    pillar: "Youth Programming",
-    tag: "gold",
-    name: "Community Service 2.0",
-    body: "Our high school program focused on introducing students to peacebuilding and community development while building key leadership, communication, teamwork, and conflict resolution skills. The capstone of the program is creating a community service project in collaboration with community members.",
-    img: "/images/PeacePrograms/Youth.jpeg",
-    alt: "Community Service 2.0 — flyer for a free teen leadership and community service program",
-    ratio: "487/407",
-  },
-  {
-    pillar: "Youth Programming",
-    tag: "gold",
-    name: "The Peace Project",
-    body: "Our fun and educational youth program for 9–14-year-olds this August, which equips children with valuable peacebuilding skills while giving them the opportunity to make new friends and explore their own ideas about peace.",
-    img: "/images/PeacePrograms/Peaceproject.jpeg",
-    alt: "A Peace Project for Kids — flyer for Anne's Haven summer youth program for ages 9 to 14",
-    ratio: "504/422",
-  },
-  {
-    pillar: "Adult Programming",
-    tag: "blue",
-    name: "Interfaith Gatherings",
-    body: "Safe, inclusive space for people of diverse religious, spiritual, and cultural backgrounds to meet, learn about each other, build trust, and engage in respectful dialogue about different topics.",
-    img: "/images/PeacePrograms/adult.jpeg",
-    alt: "Spiritual & Cultural Exchange — flyer for Anne's Haven interfaith gatherings, every last Sunday of the month",
-    ratio: "376/483",
-  },
-];
-
 export default async function PeaceEducationPage() {
   const [page, settings] = await Promise.all([
     getPage("peace-education"),
@@ -230,49 +181,6 @@ export default async function PeaceEducationPage() {
                 >
                   {page[p.bodyField]}
                 </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Current programs */}
-      <section className="section">
-        <div className="container">
-          <div className="section-head center">
-            <p className="eyebrow center">On Offer Now</p>
-            <h2>Current peace education programs</h2>
-            <p style={{ maxWidth: "52ch" }}>Our current programs include:</p>
-          </div>
-
-          <div style={{ display: "grid", gap: "clamp(48px, 7vw, 88px)" }}>
-            {programs.map((p, i) => (
-              <div
-                className={`split${i % 2 === 1 ? " media-left" : ""}`}
-                key={p.name}
-              >
-                <div>
-                  <span className={`tag ${p.tag}`.trim()}>{p.pillar}</span>
-                  <h3 style={{ fontSize: "1.7rem", margin: "0.5em 0 0.4em" }}>
-                    {p.name}
-                  </h3>
-                  <p style={{ color: "var(--color-muted)", margin: 0 }}>
-                    {p.body}
-                  </p>
-                </div>
-                <div className="media">
-                  <div
-                    className="frame bordered"
-                    style={{ maxWidth: 460, marginInline: "auto" }}
-                  >
-                    <Photo
-                      src={p.img}
-                      alt={p.alt}
-                      ratio={p.ratio}
-                      sizes="(max-width: 1000px) 100vw, 460px"
-                    />
-                  </div>
-                </div>
               </div>
             ))}
           </div>
