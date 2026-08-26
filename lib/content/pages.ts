@@ -250,6 +250,27 @@ export const PAGE_CONFIGS: Record<string, PageConfig> = {
         "Please contact us to sign up for a program! You can also use this form to come to us with any idea or concern you may have.",
     },
   },
+  "women-entrepreneurs": {
+    slug: "women-entrepreneurs",
+    title: "Women Entrepreneurs",
+    fields: [
+      { name: "hero_heading", label: "Hero heading" },
+      { name: "hero_lead", label: "Hero paragraph", textarea: true },
+      { name: "body", label: "Program description", textarea: true },
+      { name: "cta_title", label: "Bottom call-to-action title" },
+      { name: "cta_text", label: "Bottom call-to-action text", textarea: true },
+    ],
+    defaults: {
+      hero_heading: "Women Entrepreneurship & Peace Education",
+      hero_lead:
+        "Supporting women, with a soft spot on those in the healing arts, as they pursue their passions and strengthen collaboration.",
+      body:
+        "Our Aspiring Entrepreneur program supports women, with a soft spot on those in the healing arts, as they pursue their passions, while strengthening collaboration. It's conducted as a collective, engaging each individual's voice and demonstrating the power of \"WE.\"",
+      cta_title: "Ready to join our entrepreneur program?",
+      cta_text:
+        "Email us to learn more about joining our Aspiring Entrepreneur collective.",
+    },
+  },
 };
 
 export type PageSlug = keyof typeof PAGE_CONFIGS;
