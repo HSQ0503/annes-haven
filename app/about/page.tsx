@@ -136,8 +136,11 @@ export default async function AboutPage() {
               <p>{page.aspiring_body}</p>
               <p>{page.peace_programs_body}</p>
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 22 }}>
-                <Button href="/peace-education">
-                  Peace Education <Icon name="arrowRight" />
+                <Button href="/women-entrepreneurs">
+                  Women Entrepreneurs <Icon name="arrowRight" />
+                </Button>
+                <Button href="/peace-education" variant="outline">
+                  Peace Education
                 </Button>
                 <Button href="/workshops" variant="outline">
                   Workshops &amp; Classes

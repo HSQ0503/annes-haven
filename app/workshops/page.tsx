@@ -11,7 +11,7 @@ import { gmailComposeUrl } from "@/lib/email-links";
 export const metadata: Metadata = {
   title: "Workshops & Classes",
   description:
-    "See what women entrepreneurs are currently offering at Anne's Haven. Attend a workshop or class, or join our aspiring entrepreneur program.",
+    "See current workshops and classes offered at Anne's Haven. Attend a workshop, join a class, or host your own.",
 };
 
 const PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconName }[] = [
@@ -24,26 +24,26 @@ export default async function WorkshopsPage() {
   const [s, workshops] = await Promise.all([getSettings(), getWorkshops()]);
   return (
     <>
-      <section className="page-hero bg-sage" id="entrepreneurs">
+      <section className="page-hero bg-sage">
         <div className="container">
           <p className="crumbs">
             <Link href="/">Home</Link> &nbsp;/&nbsp; Our Programs &nbsp;/&nbsp;
             Workshops &amp; Classes
           </p>
-          <h1>Aspiring entrepreneurs&apos; workshops &amp; classes</h1>
+          <h1>Workshops &amp; Classes</h1>
           <p className="lead">
-            See what women entrepreneurs are currently offering at Anne&apos;s
-            Haven, and find out how you can attend or join our program.
+            See current workshops and classes at Anne&apos;s Haven, and find out
+            how you can attend or host your own.
           </p>
           <div style={{ marginTop: 24 }}>
             <Button
               href={gmailComposeUrl(
                 s.email,
-                "Join or attend an Anne's Haven workshop",
+                "Attend an Anne's Haven workshop",
               )}
               large
             >
-              Email to Join or Attend <Icon name="arrowRight" />
+              Email to Attend <Icon name="arrowRight" />
             </Button>
           </div>
         </div>
@@ -56,21 +56,24 @@ export default async function WorkshopsPage() {
             <p className="eyebrow center">Now Offering</p>
             <h2>Current workshops &amp; classes</h2>
             <p className="measure-center">
-              Flip through the current offerings from the women entrepreneurs of
-              Anne&apos;s Haven. Interested in attending an event or joining our
-              entrepreneur program? Email{" "}
+              Flip through the current offerings at Anne&apos;s Haven.
+              Interested in attending an event? Email{" "}
               <a
                 className="textlink"
                 href={gmailComposeUrl(
                   s.email,
-                  "Join or attend an Anne's Haven workshop",
+                  "Attend an Anne's Haven workshop",
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {s.email}
               </a>
-              .
+              . Want to join our entrepreneur program? Visit our{" "}
+              <Link href="/women-entrepreneurs" className="textlink">
+                Women Entrepreneurs
+              </Link>{" "}
+              page.
             </p>
           </div>
           <div className="grid grid-3">
