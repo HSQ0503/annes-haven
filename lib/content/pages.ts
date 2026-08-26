@@ -261,7 +261,7 @@ export const PAGE_CONFIGS: Record<string, PageConfig> = {
       { name: "cta_text", label: "Bottom call-to-action text", textarea: true },
     ],
     defaults: {
-      hero_heading: "Women Entrepreneurship & Peace Education",
+      hero_heading: "Women Entrepreneurship",
       hero_lead:
         "Supporting women, with a soft spot on those in the healing arts, as they pursue their passions and strengthen collaboration.",
       body:
