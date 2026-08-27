@@ -5,31 +5,16 @@ import { CtaBand } from "@/components/cta-band";
 import { HeroCarousel, type HeroSlide } from "@/components/hero-carousel";
 import { Icon } from "@/components/icon";
 import { Photo } from "@/components/photo";
-import { getPrograms } from "@/lib/content/db";
+import {
+  getPeaceProgramTitles,
+  getEntreProgramTitles,
+} from "@/lib/content/programs";
 
 export const metadata: Metadata = {
   title: "Programs & Events",
   description:
     "Anne's Haven supports women entrepreneurs and peace education. Explore the many programs and events we've hosted over the years.",
 };
-
-const ENTRE_FALLBACK = [
-  "Vendor markets",
-  "Women's Networking & Bartering Collective",
-  "Business Expos",
-  "Women's Business events",
-  "Marketing workshops",
-  "Financial advisory workshops",
-];
-
-const PEACE_FALLBACK = [
-  "Conflict Resolution Forums",
-  "Immigrant Appreciation Days",
-  "Support groups",
-  "Yoga, mindfulness, meditation & mind mapping",
-  "Community Service 2.0",
-  "MeToo support circles",
-];
 
 const aboutSlides: HeroSlide[] = [
   { src: "/images/Programs/about/1.jpeg", alt: "Community members gathered at an Anne's Haven program" },
@@ -41,11 +26,10 @@ const aboutSlides: HeroSlide[] = [
 ];
 
 export default async function ProgramsPage() {
-  const all = await getPrograms();
-  const entre = all.filter((p) => p.category === "entrepreneurship");
-  const peace = all.filter((p) => p.category === "peace");
-  const entreItems = entre.length ? entre.map((p) => p.title) : ENTRE_FALLBACK;
-  const peaceItems = peace.length ? peace.map((p) => p.title) : PEACE_FALLBACK;
+  const [entreItems, peaceItems] = await Promise.all([
+    getEntreProgramTitles(),
+    getPeaceProgramTitles(),
+  ]);
   return (
     <>
       <section className="page-hero bg-sage">

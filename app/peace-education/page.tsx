@@ -6,6 +6,7 @@ import { Icon, type IconName } from "@/components/icon";
 import { Photo } from "@/components/photo";
 import { getSettings } from "@/lib/content/db";
 import { getPage } from "@/lib/content/pages";
+import { getPeaceProgramTitles } from "@/lib/content/programs";
 import { gmailComposeUrl } from "@/lib/email-links";
 
 export const metadata: Metadata = {
@@ -52,9 +53,10 @@ const payoff: {
 ];
 
 export default async function PeaceEducationPage() {
-  const [page, settings] = await Promise.all([
+  const [page, settings, peaceItems] = await Promise.all([
     getPage("peace-education"),
     getSettings(),
+    getPeaceProgramTitles(),
   ]);
   return (
     <>
@@ -183,6 +185,27 @@ export default async function PeaceEducationPage() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hosted Programs */}
+      <section className="section bg-cream">
+        <div className="container">
+          <div className="section-head center">
+            <p className="eyebrow center gold">Past Programs</p>
+            <h2>A few of the many we&apos;ve hosted</h2>
+          </div>
+          <div className="card card-pad" style={{ maxWidth: 560, marginInline: "auto" }}>
+            <span className="chip">
+              <Icon name="dove" />
+            </span>
+            <h3>Peace Education</h3>
+            <ul className="checklist" style={{ marginTop: 14 }}>
+              {peaceItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
