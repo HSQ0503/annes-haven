@@ -5,10 +5,6 @@ import { CtaBand } from "@/components/cta-band";
 import { HeroCarousel, type HeroSlide } from "@/components/hero-carousel";
 import { Icon } from "@/components/icon";
 import { Photo } from "@/components/photo";
-import {
-  getPeaceProgramTitles,
-  getEntreProgramTitles,
-} from "@/lib/content/programs";
 
 export const metadata: Metadata = {
   title: "Programs & Events",
@@ -26,10 +22,6 @@ const aboutSlides: HeroSlide[] = [
 ];
 
 export default async function ProgramsPage() {
-  const [entreItems, peaceItems] = await Promise.all([
-    getEntreProgramTitles(),
-    getPeaceProgramTitles(),
-  ]);
   return (
     <>
       <section className="page-hero bg-sage">
@@ -113,51 +105,22 @@ export default async function ProgramsPage() {
               programs across two main areas.
             </p>
           </div>
-          <div className="grid grid-2">
-            <div className="card card-pad">
-              <div
-                className="frame"
-                style={{ margin: "-30px -30px 24px", borderRadius: 0 }}
-              >
-                <Photo
-                  src="/images/Programs/past/women.jpeg"
-                  alt="Women entrepreneurs at an Anne's Haven vendor market"
-                  ratio="16/9"
-                  sizes="(max-width: 620px) 100vw, 560px"
-                />
-              </div>
-              <span className="chip gold">
-                <Icon name="storefront" />
-              </span>
-              <h3>Women Entrepreneurship</h3>
-              <ul className="checklist" style={{ marginTop: 14 }}>
-                {entreItems.map((i) => (
-                  <li key={i}>{i}</li>
-                ))}
-              </ul>
+          <div className="card card-pad" style={{ maxWidth: 560, margin: "0 auto" }}>
+            <div
+              className="frame"
+              style={{ margin: "-30px -30px 24px", borderRadius: 0 }}
+            >
+              <Photo
+                src="/images/Programs/past/women.jpeg"
+                alt="Women entrepreneurs at an Anne's Haven vendor market"
+                ratio="16/9"
+                sizes="(max-width: 620px) 100vw, 560px"
+              />
             </div>
-            <div className="card card-pad">
-              <div
-                className="frame"
-                style={{ margin: "-30px -30px 24px", borderRadius: 0 }}
-              >
-                <Photo
-                  src="/images/Programs/past/peace.jpeg"
-                  alt="A peace education gathering at Anne's Haven"
-                  ratio="16/9"
-                  sizes="(max-width: 620px) 100vw, 560px"
-                />
-              </div>
-              <span className="chip">
-                <Icon name="dove" />
-              </span>
-              <h3>Peace Education</h3>
-              <ul className="checklist" style={{ marginTop: 14 }}>
-                {peaceItems.map((i) => (
-                  <li key={i}>{i}</li>
-                ))}
-              </ul>
-            </div>
+            <span className="chip gold">
+              <Icon name="storefront" />
+            </span>
+            <h3>Women Entrepreneurship</h3>
           </div>
         </div>
       </section>
