@@ -71,7 +71,11 @@ export default async function WomenEntrepreneursPage() {
 
       <section className="section bg-cream">
         <div className="container">
-          <div className="card card-pad" style={{ maxWidth: 560, margin: "0 auto" }}>
+          <div className="section-head center">
+            <p className="eyebrow center gold">Past Programs</p>
+            <h2>A few of the many we&apos;ve hosted</h2>
+          </div>
+          <div className="card card-pad" style={{ maxWidth: 560, marginInline: "auto" }}>
             <div
               className="frame"
               style={{ margin: "-30px -30px 24px", borderRadius: 0 }}
@@ -86,7 +90,7 @@ export default async function WomenEntrepreneursPage() {
             <span className="chip gold">
               <Icon name="storefront" />
             </span>
-            <h3>A few of the many we&apos;ve hosted</h3>
+            <h3>Women Entrepreneurship</h3>
             <ul className="checklist" style={{ marginTop: 14 }}>
               {entreItems.map((i) => (
                 <li key={i}>{i}</li>
