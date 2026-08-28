@@ -6,6 +6,7 @@ import { Icon } from "@/components/icon";
 import { Photo } from "@/components/photo";
 import { getSettings } from "@/lib/content/db";
 import { getPage } from "@/lib/content/pages";
+import { getEntreProgramTitles } from "@/lib/content/programs";
 import { gmailComposeUrl } from "@/lib/email-links";
 
 export const metadata: Metadata = {
@@ -15,9 +16,10 @@ export const metadata: Metadata = {
 };
 
 export default async function WomenEntrepreneursPage() {
-  const [page, settings] = await Promise.all([
+  const [page, settings, entreItems] = await Promise.all([
     getPage("women-entrepreneurs"),
     getSettings(),
+    getEntreProgramTitles(),
   ]);
   return (
     <>
@@ -63,6 +65,33 @@ export default async function WomenEntrepreneursPage() {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-cream">
+        <div className="container">
+          <div className="card card-pad" style={{ maxWidth: 560, margin: "0 auto" }}>
+            <div
+              className="frame"
+              style={{ margin: "-30px -30px 24px", borderRadius: 0 }}
+            >
+              <Photo
+                src="/images/Programs/past/women.jpeg"
+                alt="Women entrepreneurs at an Anne's Haven vendor market"
+                ratio="16/9"
+                sizes="(max-width: 620px) 100vw, 560px"
+              />
+            </div>
+            <span className="chip gold">
+              <Icon name="storefront" />
+            </span>
+            <h3>A few of the many we&apos;ve hosted</h3>
+            <ul className="checklist" style={{ marginTop: 14 }}>
+              {entreItems.map((i) => (
+                <li key={i}>{i}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
