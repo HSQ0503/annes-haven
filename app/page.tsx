@@ -10,7 +10,7 @@ import { getPage } from "@/lib/content/pages";
 const features: { icon: IconName; tone: string; label: [string, string] }[] = [
   { icon: "users", tone: "", label: ["Community", "Events"] },
   { icon: "sprout", tone: "gold", label: ["Peace", "Education"] },
-  { icon: "palette", tone: "blue", label: ["Workshops", "& Classes"] },
+  { icon: "palette", tone: "blue", label: ["Workshops,", "Classes, and Programs"] },
   { icon: "storefront", tone: "cyan", label: ["Women", "Entrepreneurs"] },
 ];
 

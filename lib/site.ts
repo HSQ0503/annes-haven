@@ -48,7 +48,7 @@ export const nav: NavItem[] = [
         desc: "Our aspiring entrepreneur program",
       },
       {
-        label: "Workshops & Classes",
+        label: "Workshops, Classes, and Programs",
         href: "/workshops",
         desc: "Current offerings",
       },
@@ -106,7 +106,7 @@ export const footerLinks = {
     { label: "Our Funders", href: "/funders" },
     { label: "Peace Education", href: "/peace-education" },
     { label: "Women Entrepreneurs", href: "/women-entrepreneurs" },
-    { label: "Workshops & Classes", href: "/workshops" },
+    { label: "Workshops, Classes, and Programs", href: "/workshops" },
     { label: "Use the Space", href: "/use-the-space" },
   ],
   connect: [
