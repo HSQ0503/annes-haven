@@ -4,7 +4,6 @@ import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { HeroCarousel, type HeroSlide } from "@/components/hero-carousel";
 import { Icon } from "@/components/icon";
-import { Photo } from "@/components/photo";
 
 export const metadata: Metadata = {
   title: "Programs & Events",
@@ -90,37 +89,6 @@ export default async function ProgramsPage() {
                 Get in touch <Icon name="arrowRight" />
               </Button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Past programs */}
-      <section className="section bg-cream">
-        <div className="container">
-          <div className="section-head center">
-            <p className="eyebrow center gold">Past Programs</p>
-            <h2>A few of the many we&apos;ve hosted</h2>
-            <p className="measure-center">
-              Over the years, Anne&apos;s Haven has been home to dozens of
-              programs across two main areas.
-            </p>
-          </div>
-          <div className="card card-pad" style={{ maxWidth: 560, margin: "0 auto" }}>
-            <div
-              className="frame"
-              style={{ margin: "-30px -30px 24px", borderRadius: 0 }}
-            >
-              <Photo
-                src="/images/Programs/past/women.jpeg"
-                alt="Women entrepreneurs at an Anne's Haven vendor market"
-                ratio="16/9"
-                sizes="(max-width: 620px) 100vw, 560px"
-              />
-            </div>
-            <span className="chip gold">
-              <Icon name="storefront" />
-            </span>
-            <h3>Women Entrepreneurship</h3>
           </div>
         </div>
       </section>
