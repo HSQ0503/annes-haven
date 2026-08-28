@@ -48,7 +48,7 @@ export default async function ProgramsPage() {
               Peace Education <Icon name="arrowRight" />
             </Button>
             <Button href="/workshops" variant="outline">
-              Workshops &amp; Classes
+              Workshops, Classes, and Programs
             </Button>
           </div>
         </div>

@@ -9,7 +9,7 @@ import { getSettings, getWorkshops } from "@/lib/content/db";
 import { gmailComposeUrl } from "@/lib/email-links";
 
 export const metadata: Metadata = {
-  title: "Workshops & Classes",
+  title: "Workshops, Classes, and Programs",
   description:
     "See current workshops and classes offered at Anne's Haven. Attend a workshop, join a class, or host your own.",
 };
@@ -28,9 +28,9 @@ export default async function WorkshopsPage() {
         <div className="container">
           <p className="crumbs">
             <Link href="/">Home</Link> &nbsp;/&nbsp; Our Programs &nbsp;/&nbsp;
-            Workshops &amp; Classes
+            Workshops, Classes, and Programs
           </p>
-          <h1>Workshops &amp; Classes</h1>
+          <h1>Workshops, Classes, and Programs</h1>
           <p className="lead">
             See current workshops and classes at Anne&apos;s Haven, and find out
             how you can attend or host your own.

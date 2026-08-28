@@ -143,7 +143,7 @@ export default async function AboutPage() {
                   Peace Education
                 </Button>
                 <Button href="/workshops" variant="outline">
-                  Workshops &amp; Classes
+                  Workshops, Classes, and Programs
                 </Button>
               </div>
             </div>
