@@ -9,6 +9,7 @@ import type {
   Partner,
   Funder,
   Workshop,
+  CurrentProgram,
 } from "./types";
 
 /** Fallbacks so the public site still renders if a row/table is empty or the
@@ -66,3 +67,4 @@ export const getVolunteerRoles = () => readCollection<VolunteerRole>("volunteer_
 export const getPartners = () => readCollection<Partner>("partners");
 export const getFunders = () => readCollection<Funder>("funders");
 export const getWorkshops = () => readCollection<Workshop>("workshops");
+export const getCurrentPrograms = () => readCollection<CurrentProgram>("current_programs");

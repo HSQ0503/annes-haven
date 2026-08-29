@@ -17,6 +17,7 @@ const GROUPS: NavGroup[] = [
       { href: "/admin/team", label: "About & Team", icon: "users" },
       { href: "/admin/programs", label: "Programs", icon: "sprout" },
       { href: "/admin/workshops", label: "Workshops", icon: "gradCap" },
+      { href: "/admin/current-programs", label: "Current Programs", icon: "calendar" },
     ],
   },
   {
