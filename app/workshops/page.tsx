@@ -5,7 +5,7 @@ import { CtaBand } from "@/components/cta-band";
 import { Icon, type IconName } from "@/components/icon";
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import { Photo } from "@/components/photo";
-import { getSettings, getWorkshops } from "@/lib/content/db";
+import { getSettings, getWorkshops, getCurrentPrograms } from "@/lib/content/db";
 import { gmailComposeUrl } from "@/lib/email-links";
 
 export const metadata: Metadata = {
@@ -14,14 +14,24 @@ export const metadata: Metadata = {
     "See current workshops and classes offered at Anne's Haven. Attend a workshop, join a class, or host your own.",
 };
 
-const PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconName }[] = [
+const WORKSHOP_PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconName }[] = [
   { tag: "Healing Arts", tagClass: "gold", tagIcon: "palette" },
   { tag: "Workshop", tagClass: "", tagIcon: "lightbulb" },
   { tag: "Community", tagClass: "blue", tagIcon: "users" },
 ];
 
+const PROGRAM_PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconName }[] = [
+  { tag: "Community", tagClass: "blue", tagIcon: "users" },
+  { tag: "Program", tagClass: "gold", tagIcon: "sprout" },
+  { tag: "Ongoing", tagClass: "", tagIcon: "calendar" },
+];
+
 export default async function WorkshopsPage() {
-  const [s, workshops] = await Promise.all([getSettings(), getWorkshops()]);
+  const [s, workshops, currentPrograms] = await Promise.all([
+    getSettings(),
+    getWorkshops(),
+    getCurrentPrograms(),
+  ]);
   return (
     <>
       <section className="page-hero bg-sage">
@@ -107,7 +117,7 @@ export default async function WorkshopsPage() {
                     </div>
                   </div>
                 ))
-              : PLACEHOLDER_TAGS.map((o, i) => (
+              : WORKSHOP_PLACEHOLDER_TAGS.map((o, i) => (
                   <div className="card" key={o.tag}>
                     <div className="frame" style={{ borderRadius: 0 }}>
                       <ImagePlaceholder
@@ -125,6 +135,70 @@ export default async function WorkshopsPage() {
                       </h3>
                       <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
                         Drop in a class flyer and details here.
+                      </p>
+                    </div>
+                  </div>
+                ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Current programs */}
+      <section className="section" id="programs">
+        <div className="container">
+          <div className="section-head center">
+            <p className="eyebrow center">Now Offering</p>
+            <h2>Current programs</h2>
+          </div>
+          <div className="grid grid-3">
+            {currentPrograms.length > 0
+              ? currentPrograms.map((p) => (
+                  <div className="card" key={p.id}>
+                    <div className="frame" style={{ borderRadius: 0 }}>
+                      {p.flyer_url ? (
+                        <Photo
+                          src={p.flyer_url}
+                          alt={`Flyer for ${p.title}`}
+                          ratio="3/4"
+                          sizes="(max-width: 620px) 100vw, 380px"
+                        />
+                      ) : (
+                        <ImagePlaceholder caption="Flyer" icon="sprout" className="aspect-[3/4]" />
+                      )}
+                    </div>
+                    <div className="card-pad">
+                      {p.tag && (
+                        <span className={`tag ${p.tone ?? ""}`.trim()}>
+                          <Icon name={(p.icon || "sprout") as IconName} /> {p.tag}
+                        </span>
+                      )}
+                      <h3 style={{ fontSize: "1.2rem", marginTop: 12 }}>{p.title}</h3>
+                      {p.blurb && (
+                        <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
+                          {p.blurb}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))
+              : PROGRAM_PLACEHOLDER_TAGS.map((o, i) => (
+                  <div className="card" key={o.tag}>
+                    <div className="frame" style={{ borderRadius: 0 }}>
+                      <ImagePlaceholder
+                        caption={`Program flyer ${i + 1}`}
+                        icon="sprout"
+                        className="aspect-[3/4]"
+                      />
+                    </div>
+                    <div className="card-pad">
+                      <span className={`tag ${o.tagClass}`.trim()}>
+                        <Icon name={o.tagIcon} /> {o.tag}
+                      </span>
+                      <h3 style={{ fontSize: "1.2rem", marginTop: 12 }}>
+                        Add your flyer
+                      </h3>
+                      <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
+                        Drop in a program flyer and details here.
                       </p>
                     </div>
                   </div>

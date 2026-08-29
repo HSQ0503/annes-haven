@@ -14,6 +14,7 @@ const PAGES: Card[] = [
   { href: "/admin/programs", icon: "sprout", chip: "", title: "Programs", desc: "Update what's running now." },
   { href: "/admin/team", icon: "users", chip: "", title: "About & Team", desc: "Add or update people and bios." },
   { href: "/admin/workshops", icon: "gradCap", chip: "", title: "Workshops", desc: "Post your current workshop flyers." },
+  { href: "/admin/current-programs", icon: "calendar", chip: "", title: "Current Programs", desc: "Upload program flyers for the workshops page." },
 ];
 
 const LISTS: Card[] = [

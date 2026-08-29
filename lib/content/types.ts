@@ -91,3 +91,5 @@ export type Workshop = {
   blurb: string | null;
   sort_order: number;
 };
+
+export type CurrentProgram = Workshop;
