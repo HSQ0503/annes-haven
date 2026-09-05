@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     "See current workshops and classes offered at Anne's Haven. Attend a workshop, join a class, or host your own.",
 };
 
+// Keep CMS edits (workshops / current programs) fresh on the public page.
+export const revalidate = 60;
+
 const WORKSHOP_PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconName }[] = [
   { tag: "Healing Arts", tagClass: "gold", tagIcon: "palette" },
   { tag: "Workshop", tagClass: "", tagIcon: "lightbulb" },
