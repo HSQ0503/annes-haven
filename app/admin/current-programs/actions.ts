@@ -6,6 +6,7 @@ import { createClient } from "@/utils/supabase/server";
 
 function refresh() {
   revalidatePath("/workshops");
+  revalidatePath("/strategic-entrepreneurship");
   revalidatePath("/admin/current-programs");
 }
 
@@ -21,6 +22,7 @@ export async function saveCurrentProgram(formData: FormData) {
     tone: String(formData.get("tone") ?? "").trim(),
     icon: String(formData.get("icon") ?? "").trim() || "palette",
     blurb: String(formData.get("blurb") ?? "").trim(),
+    href: String(formData.get("href") ?? "").trim() || null,
     sort_order: Number(formData.get("sort_order") ?? 0),
   };
   const supabase = await createClient();

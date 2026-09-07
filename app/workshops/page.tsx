@@ -155,35 +155,52 @@ export default async function WorkshopsPage() {
           </div>
           <div className="grid grid-3">
             {currentPrograms.length > 0
-              ? currentPrograms.map((p) => (
-                  <div className="card" key={p.id}>
-                    <div className="frame" style={{ borderRadius: 0 }}>
-                      {p.flyer_url ? (
-                        <Photo
-                          src={p.flyer_url}
-                          alt={`Flyer for ${p.title}`}
-                          ratio="3/4"
-                          sizes="(max-width: 620px) 100vw, 380px"
-                        />
-                      ) : (
-                        <ImagePlaceholder caption="Flyer" icon="sprout" className="aspect-[3/4]" />
-                      )}
+              ? currentPrograms.map((p) => {
+                  const card = (
+                    <>
+                      <div className="frame" style={{ borderRadius: 0 }}>
+                        {p.flyer_url ? (
+                          <Photo
+                            src={p.flyer_url}
+                            alt={`Flyer for ${p.title}`}
+                            ratio="3/4"
+                            sizes="(max-width: 620px) 100vw, 380px"
+                          />
+                        ) : (
+                          <ImagePlaceholder caption="Flyer" icon="sprout" className="aspect-[3/4]" />
+                        )}
+                      </div>
+                      <div className="card-pad">
+                        {p.tag && (
+                          <span className={`tag ${p.tone ?? ""}`.trim()}>
+                            <Icon name={(p.icon || "sprout") as IconName} /> {p.tag}
+                          </span>
+                        )}
+                        <h3 style={{ fontSize: "1.2rem", marginTop: 12 }}>{p.title}</h3>
+                        {p.blurb && (
+                          <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
+                            {p.blurb}
+                          </p>
+                        )}
+                      </div>
+                    </>
+                  );
+
+                  return p.href ? (
+                    <Link
+                      className="card"
+                      href={p.href}
+                      key={p.id}
+                      aria-label={`View ${p.title}`}
+                    >
+                      {card}
+                    </Link>
+                  ) : (
+                    <div className="card" key={p.id}>
+                      {card}
                     </div>
-                    <div className="card-pad">
-                      {p.tag && (
-                        <span className={`tag ${p.tone ?? ""}`.trim()}>
-                          <Icon name={(p.icon || "sprout") as IconName} /> {p.tag}
-                        </span>
-                      )}
-                      <h3 style={{ fontSize: "1.2rem", marginTop: 12 }}>{p.title}</h3>
-                      {p.blurb && (
-                        <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
-                          {p.blurb}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                ))
+                  );
+                })
               : PROGRAM_PLACEHOLDER_TAGS.map((o, i) => (
                   <div className="card" key={o.tag}>
                     <div className="frame" style={{ borderRadius: 0 }}>
