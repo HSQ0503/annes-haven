@@ -10,7 +10,6 @@ import { gmailComposeUrl } from "@/lib/email-links";
 const PROGRAM_ID = "df524cba-9a4e-4167-83a0-afd6f227b8b7";
 const PROGRAM_TITLE =
   "Strategic Entrepreneurship: The Peace Payoff in Business";
-const PROGRAM_TAG = "Peace Education";
 const PROGRAM_BLURB =
   "This groundbreaking business program, facilitated by Chimbuani Ngaliae, a prominent business consultant and founder of Horizon Peace, and Jacopo DeMarinis, Director of Peace Education programs at Anne's Haven, will help you take your business to new heights through adopting a peace-based approach to marketing, customer relations, community engagement, branding, and more!";
 const PROGRAM_FLYER =
@@ -30,7 +29,6 @@ export default async function StrategicEntrepreneurshipPage() {
   ]);
   const program = programs.find((item) => item.id === PROGRAM_ID);
   const title = program?.title || PROGRAM_TITLE;
-  const tag = program?.tag || PROGRAM_TAG;
   const blurb = program?.blurb || PROGRAM_BLURB;
   const flyer = program?.flyer_url || PROGRAM_FLYER;
   const peaceEmail = settings.peace_email || settings.email;
@@ -52,7 +50,7 @@ export default async function StrategicEntrepreneurshipPage() {
           <div className="split">
             <div>
               <span className="tag gold">
-                <Icon name="dove" /> {tag}
+                <Icon name="dove" /> Program Description
               </span>
               <p style={{ marginTop: 24 }}>{blurb}</p>
             </div>
