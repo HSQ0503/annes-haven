@@ -11,6 +11,7 @@ type PhotoProps = {
   position?: string;
   fit?: "cover" | "contain";
   priority?: boolean;
+  unoptimized?: boolean;
   className?: string;
 };
 
@@ -22,6 +23,7 @@ export function Photo({
   position,
   fit = "cover",
   priority = false,
+  unoptimized = false,
   className = "",
 }: PhotoProps) {
   const style: CSSProperties = { aspectRatio: ratio };
@@ -33,6 +35,7 @@ export function Photo({
         fill
         sizes={sizes}
         priority={priority}
+        unoptimized={unoptimized}
         style={{ objectFit: fit, objectPosition: position }}
       />
     </div>

@@ -62,6 +62,7 @@ export default async function WomenEntrepreneursPage() {
                   alt="Smiling group of women entrepreneurs together indoors at Anne's Haven"
                   ratio="4/3"
                   sizes="(max-width: 1000px) 100vw, 560px"
+                  unoptimized
                 />
               </div>
             </div>
