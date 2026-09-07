@@ -58,7 +58,7 @@ export default async function WomenEntrepreneursPage() {
             <div className="media">
               <div className="frame bordered">
                 <Photo
-                  src="/api/power-of-we-photo?v=20260907"
+                  src="/images/power-of-we-women-20260907.jpeg"
                   alt="Group of women smiling together indoors at Anne's Haven"
                   ratio="4/3"
                   sizes="(max-width: 1000px) 100vw, 560px"
