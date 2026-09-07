@@ -5,7 +5,7 @@ import { CtaBand } from "@/components/cta-band";
 import { Icon, type IconName } from "@/components/icon";
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import { Photo } from "@/components/photo";
-import { getSettings, getWorkshops, getCurrentPrograms } from "@/lib/content/db";
+import { getSettings, getCurrentPrograms } from "@/lib/content/db";
 import { gmailComposeUrl } from "@/lib/email-links";
 
 export const metadata: Metadata = {
@@ -17,12 +17,6 @@ export const metadata: Metadata = {
 // Keep CMS edits (workshops / current programs) fresh on the public page.
 export const revalidate = 60;
 
-const WORKSHOP_PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconName }[] = [
-  { tag: "Healing Arts", tagClass: "gold", tagIcon: "palette" },
-  { tag: "Workshop", tagClass: "", tagIcon: "lightbulb" },
-  { tag: "Community", tagClass: "blue", tagIcon: "users" },
-];
-
 const PROGRAM_PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconName }[] = [
   { tag: "Community", tagClass: "blue", tagIcon: "users" },
   { tag: "Program", tagClass: "gold", tagIcon: "sprout" },
@@ -30,9 +24,8 @@ const PROGRAM_PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconNa
 ];
 
 export default async function WorkshopsPage() {
-  const [s, workshops, currentPrograms] = await Promise.all([
+  const [s, currentPrograms] = await Promise.all([
     getSettings(),
-    getWorkshops(),
     getCurrentPrograms(),
   ]);
   return (
@@ -62,12 +55,12 @@ export default async function WorkshopsPage() {
         </div>
       </section>
 
-      {/* Current offerings */}
-      <section className="section" id="workshops">
+      {/* Current programs */}
+      <section className="section" id="programs">
         <div className="container">
           <div className="section-head center">
             <p className="eyebrow center">Now Offering</p>
-            <h2>Current workshops &amp; classes</h2>
+            <h2>Current programs</h2>
             <p className="measure-center">
               Flip through the current offerings at Anne&apos;s Haven.
               Interested in attending an event? Email{" "}
@@ -88,70 +81,6 @@ export default async function WorkshopsPage() {
               </Link>{" "}
               page.
             </p>
-          </div>
-          <div className="grid grid-3">
-            {workshops.length > 0
-              ? workshops.map((w) => (
-                  <div className="card" key={w.id}>
-                    <div className="frame" style={{ borderRadius: 0 }}>
-                      {w.flyer_url ? (
-                        <Photo
-                          src={w.flyer_url}
-                          alt={`Flyer for ${w.title}`}
-                          ratio="3/4"
-                          sizes="(max-width: 620px) 100vw, 380px"
-                        />
-                      ) : (
-                        <ImagePlaceholder caption="Flyer" icon="palette" className="aspect-[3/4]" />
-                      )}
-                    </div>
-                    <div className="card-pad">
-                      {w.tag && (
-                        <span className={`tag ${w.tone ?? ""}`.trim()}>
-                          <Icon name={(w.icon || "palette") as IconName} /> {w.tag}
-                        </span>
-                      )}
-                      <h3 style={{ fontSize: "1.2rem", marginTop: 12 }}>{w.title}</h3>
-                      {w.blurb && (
-                        <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
-                          {w.blurb}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                ))
-              : WORKSHOP_PLACEHOLDER_TAGS.map((o, i) => (
-                  <div className="card" key={o.tag}>
-                    <div className="frame" style={{ borderRadius: 0 }}>
-                      <ImagePlaceholder
-                        caption={`Workshop flyer ${i + 1}`}
-                        icon="palette"
-                        className="aspect-[3/4]"
-                      />
-                    </div>
-                    <div className="card-pad">
-                      <span className={`tag ${o.tagClass}`.trim()}>
-                        <Icon name={o.tagIcon} /> {o.tag}
-                      </span>
-                      <h3 style={{ fontSize: "1.2rem", marginTop: 12 }}>
-                        Add your flyer
-                      </h3>
-                      <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
-                        Drop in a class flyer and details here.
-                      </p>
-                    </div>
-                  </div>
-                ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Current programs */}
-      <section className="section" id="programs">
-        <div className="container">
-          <div className="section-head center">
-            <p className="eyebrow center">Now Offering</p>
-            <h2>Current programs</h2>
           </div>
           <div className="grid grid-3">
             {currentPrograms.length > 0
