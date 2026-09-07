@@ -74,29 +74,36 @@ export default async function StrategicEntrepreneurshipPage() {
           <p style={{ marginTop: 24 }}>
             Strategic Entrepreneurship will cover the following topics:
           </p>
-          <ol style={{ marginTop: 12, paddingLeft: 24, lineHeight: 1.6 }}>
+          <ol
+            style={{
+              marginTop: 12,
+              paddingLeft: 0,
+              lineHeight: 1.6,
+              listStyleType: "none",
+            }}
+          >
             <li>
-              Strengthening Self-Awareness and Business Identity: Projecting an
+              1. Strengthening Self-Awareness and Business Identity: Projecting an
               Appealing Image
             </li>
             <li>
-              Enhancing your Reputation through Community Building and
+              2. Enhancing your Reputation through Community Building and
               Trust-Building
             </li>
             <li>
-              Growing a Diverse Customer Base through Inclusive Partnerships and
+              3. Growing a Diverse Customer Base through Inclusive Partnerships and
               Community Outreach
             </li>
             <li>
-              Increasing your Sales Volume through Peace-based and Needs-Sensitive
+              4. Increasing your Sales Volume through Peace-based and Needs-Sensitive
               Product Marketing
             </li>
             <li>
-              Communicating with Confidence through Leveraging your Conflict
+              5. Communicating with Confidence through Leveraging your Conflict
               Resolution Skills
             </li>
             <li>
-              Maintaining Stability and Security through Mutual Aid and Collective
+              6. Maintaining Stability and Security through Mutual Aid and Collective
               Empowerment
             </li>
           </ol>
