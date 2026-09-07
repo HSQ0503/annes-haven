@@ -68,6 +68,49 @@ export default async function StrategicEntrepreneurshipPage() {
         </div>
       </section>
 
+      <section className="section">
+        <div className="container" style={{ maxWidth: 820 }}>
+          <strong style={{ color: "#000" }}>Program Curriculum</strong>
+          <p style={{ marginTop: 24 }}>
+            Strategic Entrepreneurship will cover the following topics:
+          </p>
+          <ol style={{ marginTop: 12, paddingLeft: 24, lineHeight: 1.6 }}>
+            <li>
+              Strengthening Self-Awareness and Business Identity: Projecting an
+              Appealing Image
+            </li>
+            <li>
+              Enhancing your Reputation through Community Building and
+              Trust-Building
+            </li>
+            <li>
+              Growing a Diverse Customer Base through Inclusive Partnerships and
+              Community Outreach
+            </li>
+            <li>
+              Increasing your Sales Volume through Peace-based and Needs-Sensitive
+              Product Marketing
+            </li>
+            <li>
+              Communicating with Confidence through Leveraging your Conflict
+              Resolution Skills
+            </li>
+            <li>
+              Maintaining Stability and Security through Mutual Aid and Collective
+              Empowerment
+            </li>
+          </ol>
+          <p style={{ marginTop: 20 }}>
+            Each workshop will consist of a mixture of short PowerPoint
+            presentations, individual reflections and exercises, group activities,
+            and discussions about key takeaways. By the end of each workshop,
+            participants will be able to identify time-efficient ways to enhance
+            their business strategy regarding each week&apos;s topic. Our program is
+            perfect for busy entrepreneurs on a budget!
+          </p>
+        </div>
+      </section>
+
       <section className="section bg-cream">
         <div className="container" style={{ maxWidth: 720 }}>
           <StrategicEntrepreneurshipRegistrationForm />
