@@ -15,6 +15,24 @@ type PhotoProps = {
   className?: string;
 };
 
+/** next/image rejects absolute same-origin URLs (INVALID_IMAGE_OPTIMIZE_REQUEST). */
+function normalizeSrc(src: string): string {
+  try {
+    if (src.startsWith("/")) return src;
+    const u = new URL(src);
+    const host = u.hostname.replace(/^www\./, "");
+    if (
+      (host === "anneshaven.net" || host.endsWith(".anneshaven.net")) &&
+      u.pathname.startsWith("/images/")
+    ) {
+      return `${u.pathname}${u.search}`;
+    }
+  } catch {
+    /* keep original */
+  }
+  return src;
+}
+
 export function Photo({
   src,
   alt,
@@ -30,7 +48,7 @@ export function Photo({
   return (
     <div className={`relative ${className}`} style={style}>
       <Image
-        src={src}
+        src={normalizeSrc(src)}
         alt={alt}
         fill
         sizes={sizes}
