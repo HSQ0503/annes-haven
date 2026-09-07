@@ -265,7 +265,7 @@ export const PAGE_CONFIGS: Record<string, PageConfig> = {
       hero_lead:
         "Supporting women, with a soft spot on those in the healing arts, as they pursue their passions and strengthen collaboration.",
       body:
-        "Our Aspiring Entrepreneur program supports women, with a soft spot on those in the healing arts, as they pursue their passions, while strengthening collaboration. It's conducted as a collective, engaging each individual's voice and demonstrating the power of \"WE.\"",
+        "Anne's Haven is committed to helping women entrepreneurs find their way to a more fulfilling and financially stable life.\n\nAlthough we have a focus on those in the healing arts, being most overlooked by the widespread support programs, we are wide open to all women entrepreneurs. Working together as a collective, we find exciting and innovating ways to create growth. Staying true to our mission of learning from one another, we value the impact each and every woman has on our ability to grow, personally and professionally. We have regular networking events with speakers, and our entrepreneurs engage in a bartering circle that opens up connections and ways for advancement we didn't think possible! Each of us has the freedom to put an idea forward, have it considered by all, and if the majority think it helpful, it's a go!! It's an exciting, inviting, and an uplifting experience. We are always looking for diverse groups of women from all communities throughout the Chicagoland area.",
       cta_title: "Ready to join our entrepreneur program?",
       cta_text:
         "Email us to learn more about joining our Aspiring Entrepreneur collective.",

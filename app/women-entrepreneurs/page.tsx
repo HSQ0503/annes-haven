@@ -40,7 +40,9 @@ export default async function WomenEntrepreneursPage() {
             <div>
               <p className="eyebrow">Aspiring Entrepreneur Program</p>
               <h2>The power of &ldquo;WE&rdquo;</h2>
-              <p>{page.body}</p>
+              {page.body.split(/\n\n+/).filter(Boolean).map((para) => (
+                <p key={para.slice(0, 32)}>{para}</p>
+              ))}
               <p>
                 Interested in joining our entrepreneur program? Get in touch to
                 learn more.
