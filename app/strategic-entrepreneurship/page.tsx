@@ -4,6 +4,7 @@ import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon } from "@/components/icon";
 import { Photo } from "@/components/photo";
+import { StrategicEntrepreneurshipRegistrationForm } from "@/components/strategic-entrepreneurship-registration-form";
 import { getCurrentPrograms, getSettings } from "@/lib/content/db";
 import { gmailComposeUrl } from "@/lib/email-links";
 
@@ -64,6 +65,12 @@ export default async function StrategicEntrepreneurshipPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section bg-cream">
+        <div className="container" style={{ maxWidth: 720 }}>
+          <StrategicEntrepreneurshipRegistrationForm />
         </div>
       </section>
 
