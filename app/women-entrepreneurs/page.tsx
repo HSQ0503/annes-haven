@@ -58,8 +58,8 @@ export default async function WomenEntrepreneursPage() {
             <div className="media">
               <div className="frame bordered">
                 <Photo
-                  src="/images/entrepreneurship-peace.jpeg"
-                  alt="Smiling group of women entrepreneurs together indoors at Anne's Haven"
+                  src="/api/power-of-we-photo?v=20260907"
+                  alt="Group of women smiling together indoors at Anne's Haven"
                   ratio="4/3"
                   sizes="(max-width: 1000px) 100vw, 560px"
                   unoptimized
