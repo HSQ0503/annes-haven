@@ -49,9 +49,7 @@ export default async function StrategicEntrepreneurshipPage() {
         <div className="container">
           <div className="split">
             <div>
-              <span className="tag gold">
-                <Icon name="dove" /> Program Description
-              </span>
+              <strong style={{ color: "#000" }}>Program Description</strong>
               <p style={{ marginTop: 24 }}>{blurb}</p>
             </div>
             <div className="media">
