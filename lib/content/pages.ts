@@ -150,7 +150,7 @@ export const PAGE_CONFIGS: Record<string, PageConfig> = {
       hero_quote:
         "The potential for peace and opportunities to build peace are ever-present in our communities. We just have to learn to recognize them.",
       intro_text:
-        "Our Peace Education programs are centered around our “Peace Payoff” framework. They help people and communities become agents of peace.",
+        "Our Peace Education programs are centered around our “Peace Payoff” framework and engage with youth, adults, businesses, and entire communities. They help people and communities become agents of peace.",
       payoff_1_title: "Peace Payoff",
       payoff_1_body:
         "The clear economic, emotional, social, and community benefits of embracing peaceful practices in your personal life and professional career.",
