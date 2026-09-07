@@ -59,7 +59,7 @@ export default async function WomenEntrepreneursPage() {
               <div className="frame bordered">
                 <Photo
                   src="/images/entrepreneurship-peace.jpeg"
-                  alt="People gathered around tables for a workshop in the warm, plant-filled room"
+                  alt="Smiling group of women entrepreneurs together indoors at Anne's Haven"
                   ratio="4/3"
                   sizes="(max-width: 1000px) 100vw, 560px"
                 />
