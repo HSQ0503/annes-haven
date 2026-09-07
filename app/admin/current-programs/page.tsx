@@ -56,6 +56,12 @@ export default async function CurrentProgramsAdmin() {
             <Field label="Tag label (e.g. Community)" name="tag" />
             <ToneSelect />
             <IconSelect />
+            <Field
+              label="Program page link (optional)"
+              name="href"
+              placeholder="/strategic-entrepreneurship"
+              hint="Use a site path beginning with / or paste a full https:// link."
+            />
             <Field label="Order" name="sort_order" type="number" defaultValue={String(items.length)} />
             <div className="admin-rowbar">
               <SubmitButton label="Add program" variant="btn-gold" />
@@ -89,6 +95,13 @@ export default async function CurrentProgramsAdmin() {
               <Field label="Tag label (e.g. Community)" name="tag" defaultValue={p.tag ?? ""} />
               <ToneSelect value={p.tone ?? ""} />
               <IconSelect value={p.icon ?? "palette"} />
+              <Field
+                label="Program page link (optional)"
+                name="href"
+                defaultValue={p.href ?? ""}
+                placeholder="/strategic-entrepreneurship"
+                hint="Use a site path beginning with / or paste a full https:// link."
+              />
               <Field label="Order" name="sort_order" type="number" defaultValue={String(p.sort_order ?? i)} />
               <div className="admin-rowbar">
                 <SubmitButton />

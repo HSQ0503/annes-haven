@@ -92,4 +92,6 @@ export type Workshop = {
   sort_order: number;
 };
 
-export type CurrentProgram = Workshop;
+export type CurrentProgram = Workshop & {
+  href?: string | null;
+};
