@@ -16,14 +16,6 @@ const nextConfig: NextConfig = {
         ]
       : [],
   },
-  async rewrites() {
-    return [
-      {
-        source: "/images/entrepreneurship-peace.jpeg",
-        destination: "/api/power-of-we-photo",
-      },
-    ];
-  },
 };
 
 export default nextConfig;
