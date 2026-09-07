@@ -63,6 +63,7 @@ export default async function StrategicEntrepreneurshipPage() {
                   alt={`Flyer for ${title}`}
                   ratio="3/4"
                   sizes="(max-width: 1000px) 100vw, 520px"
+                  fit="contain"
                 />
               </div>
             </div>

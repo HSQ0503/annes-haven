@@ -9,6 +9,7 @@ type PhotoProps = {
   sizes?: string;
   /** object-position, e.g. "center 35%". */
   position?: string;
+  fit?: "cover" | "contain";
   priority?: boolean;
   className?: string;
 };
@@ -19,6 +20,7 @@ export function Photo({
   ratio = "4/3",
   sizes = "(max-width: 1000px) 100vw, 600px",
   position,
+  fit = "cover",
   priority = false,
   className = "",
 }: PhotoProps) {
@@ -31,8 +33,7 @@ export function Photo({
         fill
         sizes={sizes}
         priority={priority}
-        className="object-cover"
-        style={position ? { objectPosition: position } : undefined}
+        style={{ objectFit: fit, objectPosition: position }}
       />
     </div>
   );
