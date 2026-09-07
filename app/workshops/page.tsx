@@ -92,7 +92,18 @@ export default async function WorkshopsPage() {
                           <Photo
                             src={p.flyer_url}
                             alt={`Flyer for ${p.title}`}
-                            ratio="3/4"
+                            ratio={
+                              p.flyer_url.includes("women-healers") ||
+                              p.title.includes("Health Hub")
+                                ? "1/1"
+                                : "3/4"
+                            }
+                            fit={
+                              p.flyer_url.includes("women-healers") ||
+                              p.title.includes("Health Hub")
+                                ? "contain"
+                                : "cover"
+                            }
                             sizes="(max-width: 620px) 100vw, 380px"
                           />
                         ) : (
