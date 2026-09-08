@@ -48,7 +48,7 @@ export default async function StrategicEntrepreneurshipPage() {
 
       <section className="section">
         <div className="container">
-          <div className="split">
+          <div className="split" style={{ alignItems: "start" }}>
             <div>
               <strong style={{ color: "#000" }}>Program Description</strong>
               <p style={{ marginTop: 24 }}>{blurb}</p>
