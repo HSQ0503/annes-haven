@@ -93,17 +93,14 @@ export default async function WorkshopsPage() {
                             src={p.flyer_url}
                             alt={`Flyer for ${p.title}`}
                             ratio={
-                              p.flyer_url.includes("health-hub") ||
+                              p.flyer_url.includes("women-healers") ||
                               p.title.includes("Health Hub")
-                                ? "940/788"
-                                : p.flyer_url.includes("women-healers")
-                                  ? "1/1"
-                                  : "3/4"
+                                ? "1/1"
+                                : "3/4"
                             }
                             fit={
-                              p.flyer_url.includes("health-hub") ||
-                              p.title.includes("Health Hub") ||
-                              p.flyer_url.includes("women-healers")
+                              p.flyer_url.includes("women-healers") ||
+                              p.title.includes("Health Hub")
                                 ? "contain"
                                 : "cover"
                             }
