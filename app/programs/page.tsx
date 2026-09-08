@@ -27,10 +27,14 @@ const aboutSlides: HeroSlide[] = [
   {
     src: "/images/Programs/about/20260908/04-strategic-entrepreneurship-peace-payoff.jpg",
     alt: "Strategic Entrepreneurship: The Peace Payoff in Business workshop flyer — Anne's Haven and Horizon Peace",
+    // Keep title + teal mid callout readable/centered in the 4/3 frame.
+    position: "center 42%",
   },
   {
     src: "/images/Programs/about/20260908/05-space-available-fb.jpg",
     alt: "Space Available flyer for Anne's Haven — pop-ups, workshops, seminars, and retreats",
+    // Nudge slightly downward without clipping footer contact.
+    position: "center 60%",
   },
 ];
 
