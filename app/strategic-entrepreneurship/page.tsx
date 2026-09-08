@@ -12,7 +12,7 @@ const PROGRAM_ID = "df524cba-9a4e-4167-83a0-afd6f227b8b7";
 const PROGRAM_TITLE =
   "Strategic Entrepreneurship: The Peace Payoff in Business";
 const PROGRAM_BLURB =
-  "This groundbreaking business program, facilitated by Chimbuani Ngaliae, a prominent business consultant and founder of Horizon Peace, and Jacopo DeMarinis, Director of Peace Education programs at Anne's Haven, will help you take your business to new heights through adopting a peace-based approach to marketing, customer relations, community engagement, branding, and more!";
+  "Wow, these really are challenging times we're living in. You- hardworking business entrepreneurs- are facing many challenges, from rising costs, to intense competition from major corporations, to difficulty attracting new customers and managing an overwhelming workload. And, as customers are also stressed and strapped for cash, building customer relationships grounded in trust, connection, and an  understanding of people's needs and priorities is more important than ever. \"Strategic Entrepreneurship: The Peace Payoff in Business\" will help you grow these critical relationships by adopting simple and effective practices that are time and cost efficient. Our program is truly for busy entrepreneurs on a budget!";
 const PROGRAM_FLYER =
   "/images/current-programs/strategic-entrepreneurship-peace-payoff.jpg";
 
