@@ -12,12 +12,26 @@ export const metadata: Metadata = {
 };
 
 const aboutSlides: HeroSlide[] = [
-  { src: "/images/Programs/about/1.jpeg", alt: "Community members gathered at an Anne's Haven program" },
-  { src: "/images/Programs/about/2.jpeg", alt: "A program participant at Anne's Haven" },
-  { src: "/images/Programs/about/3.jpeg", alt: "An Anne's Haven workshop in progress" },
-  { src: "/images/Programs/about/4.jpeg", alt: "People connecting at an Anne's Haven gathering" },
-  { src: "/images/Programs/about/5.jpeg", alt: "A community event hosted at Anne's Haven" },
-  { src: "/images/Programs/about/6.jpeg", alt: "Attendees sharing a moment at Anne's Haven" },
+  {
+    src: "/images/Programs/about/20260908/01-health-hub-facebook-post.jpg",
+    alt: "Flyer for Anne's Health Hub at 6417 West Irving Park Road, Chicago — welcome to our health hub for women in the holistic healing arts",
+  },
+  {
+    src: "/images/Programs/about/20260908/02-women-healers-fb.jpg",
+    alt: "Flyer calling out to Women Healers at Anne's Haven — contact Mary.MJCWellness@gmail.com",
+  },
+  {
+    src: "/images/Programs/about/20260908/03-women-entrepreneurs-forever.jpg",
+    alt: "Flyer for All Women Networking/Bartering Collective at Anne's Haven for women entrepreneurs",
+  },
+  {
+    src: "/images/Programs/about/20260908/04-strategic-entrepreneurship-peace-payoff.jpg",
+    alt: "Strategic Entrepreneurship: The Peace Payoff in Business workshop flyer — Anne's Haven and Horizon Peace",
+  },
+  {
+    src: "/images/Programs/about/20260908/05-space-available-fb.jpg",
+    alt: "Space Available flyer for Anne's Haven — pop-ups, workshops, seminars, and retreats",
+  },
 ];
 
 export default async function ProgramsPage() {
@@ -68,7 +82,7 @@ export default async function ProgramsPage() {
                     overflow: "hidden",
                   }}
                 >
-                  <HeroCarousel slides={aboutSlides} />
+                  <HeroCarousel slides={aboutSlides} fit="contain" />
                 </div>
               </div>
             </div>

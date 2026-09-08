@@ -9,9 +9,15 @@ type HeroCarouselProps = {
   slides: HeroSlide[];
   /** Time each slide is held, in ms. */
   interval?: number;
+  /** object-fit for slide images. Default cover. */
+  fit?: "cover" | "contain";
 };
 
-export function HeroCarousel({ slides, interval = 5000 }: HeroCarouselProps) {
+export function HeroCarousel({
+  slides,
+  interval = 5000,
+  fit = "cover",
+}: HeroCarouselProps) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -28,6 +34,8 @@ export function HeroCarousel({ slides, interval = 5000 }: HeroCarouselProps) {
     );
     return () => window.clearInterval(id);
   }, [paused, slides.length, interval]);
+
+  const fitClass = fit === "contain" ? "object-contain" : "object-cover";
 
   return (
     <div
@@ -47,7 +55,7 @@ export function HeroCarousel({ slides, interval = 5000 }: HeroCarouselProps) {
             fill
             priority={i === 0}
             sizes="(max-width: 1000px) 100vw, 600px"
-            className="object-cover"
+            className={fitClass}
           />
         </div>
       ))}
