@@ -100,6 +100,55 @@ export default async function StrategicEntrepreneurshipPage() {
                 their business strategy regarding each week&apos;s topic. Our program is
                 perfect for busy entrepreneurs on a budget!
               </p>
+
+              <strong style={{ color: "#000", display: "block", marginTop: 36 }}>
+                About your Facilitators:
+              </strong>
+
+              <strong style={{ color: "#000", display: "block", marginTop: 24 }}>
+                Chimbuani Ngaliae:
+              </strong>
+              <p style={{ marginTop: 12 }}>
+                Chimbuani is the founder of Horizon Peace, a London-based consultancy
+                dedicated to advancing peace education and peace-centred leadership. She
+                brings more than two decades of experience leading global teams and
+                delivering complex international programmes across the technology,
+                telecommunications, and banking sectors.
+              </p>
+              <p style={{ marginTop: 12 }}>
+                In 2026, she chose to dedicate her work fully to peacebuilding and
+                developed a distinctive approach to peace education that integrates
+                emotional intelligence, cultural intelligence, human dignity, and
+                long-term sustainability. Through the Peace Intelligence framework, she
+                explores new ways of strengthening leadership, social cohesion, and
+                conflict resolution, helping individuals and organisations build the
+                skills needed to create more peaceful and constructive environments.
+              </p>
+
+              <strong style={{ color: "#000", display: "block", marginTop: 24 }}>
+                Jacopo DeMarinis:
+              </strong>
+              <p style={{ marginTop: 12 }}>
+                Jacopo is the Director of Peace Education programs at Anne&apos;s Haven.
+                He also currently works as a Substitute Teacher at Chicago Public
+                Schools.
+              </p>
+              <p style={{ marginTop: 12 }}>
+                He received a BS in Agricultural and Consumer Economics from the
+                University of Illinois at Urbana-Champaign and his Master&apos;s in Peace
+                and Conflict Studies from Ulster University in Northern Ireland. While
+                studying in Northern Ireland, he facilitated a community vision board
+                workshop on community relations, and his research was featured on BBC
+                Northern Ireland.
+              </p>
+              <p style={{ marginTop: 12 }}>
+                He is pursuing a career in peace education and is particularly passionate
+                about engaging with youth and businesses. His approach to peace education
+                focuses on strengthening communication, conflict resolution, and
+                leadership skills, helping individuals and businesses succeed personally
+                and professionally through embracing peaceful practices, and fostering
+                civic engagement.
+              </p>
             </div>
             <div className="media">
               <div className="frame bordered">
