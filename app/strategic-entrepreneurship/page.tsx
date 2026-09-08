@@ -54,54 +54,6 @@ export default async function StrategicEntrepreneurshipPage() {
               <p style={{ marginTop: 24 }}>{blurb}</p>
 
               <strong style={{ color: "#000", display: "block", marginTop: 36 }}>
-                Program Curriculum
-              </strong>
-              <p style={{ marginTop: 24 }}>
-                Strategic Entrepreneurship will cover the following topics:
-              </p>
-              <ol
-                style={{
-                  marginTop: 12,
-                  paddingLeft: 0,
-                  lineHeight: 1.6,
-                  listStyleType: "none",
-                }}
-              >
-                <li>
-                  1. Strengthening Self-Awareness and Business Identity: Projecting an
-                  Appealing Image
-                </li>
-                <li>
-                  2. Enhancing your Reputation through Community Building and
-                  Trust-Building
-                </li>
-                <li>
-                  3. Growing a Diverse Customer Base through Inclusive Partnerships and
-                  Community Outreach
-                </li>
-                <li>
-                  4. Increasing your Sales Volume through Peace-based and Needs-Sensitive
-                  Product Marketing
-                </li>
-                <li>
-                  5. Communicating with Confidence through Leveraging your Conflict
-                  Resolution Skills
-                </li>
-                <li>
-                  6. Maintaining Stability and Security through Mutual Aid and Collective
-                  Empowerment
-                </li>
-              </ol>
-              <p style={{ marginTop: 20 }}>
-                Each workshop will consist of a mixture of short PowerPoint
-                presentations, individual reflections and exercises, group activities,
-                and discussions about key takeaways. By the end of each workshop,
-                participants will be able to identify time-efficient ways to enhance
-                their business strategy regarding each week&apos;s topic. Our program is
-                perfect for busy entrepreneurs on a budget!
-              </p>
-
-              <strong style={{ color: "#000", display: "block", marginTop: 36 }}>
                 About your Facilitators:
               </strong>
 
@@ -150,16 +102,65 @@ export default async function StrategicEntrepreneurshipPage() {
                 civic engagement.
               </p>
             </div>
-            <div className="media">
-              <div className="frame bordered">
-                <Photo
-                  src={flyer}
-                  alt={`Flyer for ${title}`}
-                  ratio="3/4"
-                  sizes="(max-width: 1000px) 100vw, 520px"
-                  fit="contain"
-                />
-              </div>
+
+            <div>
+              <strong style={{ color: "#000" }}>Program Curriculum</strong>
+              <p style={{ marginTop: 24 }}>
+                Strategic Entrepreneurship will cover the following topics:
+              </p>
+              <ol
+                style={{
+                  marginTop: 12,
+                  paddingLeft: 0,
+                  lineHeight: 1.6,
+                  listStyleType: "none",
+                }}
+              >
+                <li>
+                  1. Strengthening Self-Awareness and Business Identity: Projecting an
+                  Appealing Image
+                </li>
+                <li>
+                  2. Enhancing your Reputation through Community Building and
+                  Trust-Building
+                </li>
+                <li>
+                  3. Growing a Diverse Customer Base through Inclusive Partnerships and
+                  Community Outreach
+                </li>
+                <li>
+                  4. Increasing your Sales Volume through Peace-based and Needs-Sensitive
+                  Product Marketing
+                </li>
+                <li>
+                  5. Communicating with Confidence through Leveraging your Conflict
+                  Resolution Skills
+                </li>
+                <li>
+                  6. Maintaining Stability and Security through Mutual Aid and Collective
+                  Empowerment
+                </li>
+              </ol>
+              <p style={{ marginTop: 20 }}>
+                Each workshop will consist of a mixture of short PowerPoint
+                presentations, individual reflections and exercises, group activities,
+                and discussions about key takeaways. By the end of each workshop,
+                participants will be able to identify time-efficient ways to enhance
+                their business strategy regarding each week&apos;s topic. Our program is
+                perfect for busy entrepreneurs on a budget!
+              </p>
+            </div>
+          </div>
+
+          <div className="media" style={{ marginTop: 40, maxWidth: 560, marginInline: "auto" }}>
+            <div className="frame bordered">
+              <Photo
+                src={flyer}
+                alt={`Flyer for ${title}`}
+                ratio="3/4"
+                sizes="(max-width: 1000px) 100vw, 560px"
+                fit="contain"
+              />
             </div>
           </div>
         </div>
