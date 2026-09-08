@@ -196,7 +196,7 @@ export default async function HomePage() {
                 />
               </div>
               <div className="card-pad">
-                <h3 style={{ fontSize: "1.25rem" }}>Programs &amp; Events</h3>
+                <h3 style={{ fontSize: "1.25rem" }}>Anne's Health Hub</h3>
                 <p style={cardMuted}>
                   Workshops, markets, support circles, and peace education.
                 </p>
