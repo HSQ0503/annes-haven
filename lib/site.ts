@@ -52,7 +52,7 @@ export const nav: NavItem[] = [
         href: "/workshops",
         desc: "Current offerings",
       },
-      { label: "Anne's Health Hub", href: "/programs", desc: "Past & present" },
+      { label: "Anne's Haven's Health Hub", href: "/programs", desc: "Past & present" },
     ],
   },
   {
@@ -112,7 +112,7 @@ export const footerLinks = {
   connect: [
     { label: "Volunteer", href: "/get-involved" },
     { label: "Support Us", href: "/support" },
-    { label: "Anne's Health Hub", href: "/programs" },
+    { label: "Anne's Haven's Health Hub", href: "/programs" },
     { label: "Videos", href: "/videos" },
     { label: "Contact Us", href: "/contact" },
   ],
