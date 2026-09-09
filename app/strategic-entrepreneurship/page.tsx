@@ -15,6 +15,8 @@ const PROGRAM_BLURB =
   "Wow, these really are challenging times we're living in. You- hardworking business entrepreneurs- are facing many challenges, from rising costs, to intense competition from major corporations, to difficulty attracting new customers and managing an overwhelming workload. And, as customers are also stressed and strapped for cash, building customer relationships grounded in trust, connection, and an  understanding of people's needs and priorities is more important than ever. \"Strategic Entrepreneurship: The Peace Payoff in Business\" will help you grow these critical relationships by adopting simple and effective practices that are time and cost efficient. Our program is truly for busy entrepreneurs on a budget!";
 const PROGRAM_FLYER =
   "/images/current-programs/strategic-entrepreneurship-peace-payoff.jpg";
+const FACILITATORS_FLYER =
+  "/images/current-programs/strategic-entrepreneurship-program-facilitators.png";
 
 export const metadata: Metadata = {
   title: PROGRAM_TITLE,
@@ -48,15 +50,36 @@ export default async function StrategicEntrepreneurshipPage() {
 
       <section className="section">
         <div className="container">
-          <div className="media" style={{ maxWidth: 560, marginInline: "auto", marginBottom: 40 }}>
-            <div className="frame bordered">
-              <Photo
-                src={flyer}
-                alt={`Flyer for ${title}`}
-                ratio="3/4"
-                sizes="(max-width: 1000px) 100vw, 560px"
-                fit="contain"
-              />
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: 24,
+              alignItems: "start",
+              marginBottom: 40,
+            }}
+          >
+            <div className="media">
+              <div className="frame bordered">
+                <Photo
+                  src={flyer}
+                  alt={`Flyer for ${title}`}
+                  ratio="3/4"
+                  sizes="(max-width: 1000px) 100vw, 480px"
+                  fit="contain"
+                />
+              </div>
+            </div>
+            <div className="media">
+              <div className="frame bordered">
+                <Photo
+                  src={FACILITATORS_FLYER}
+                  alt="Program Facilitators — Jacopo DeMarinis and Chimbuani Ngaliae"
+                  ratio="3/2"
+                  sizes="(max-width: 1000px) 100vw, 480px"
+                  fit="contain"
+                />
+              </div>
             </div>
           </div>
           <div className="split" style={{ alignItems: "start" }}>
