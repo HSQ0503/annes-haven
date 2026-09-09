@@ -43,7 +43,6 @@ export async function sendContactMessage(
   const { error } = await client.emails.send({
     from: EMAIL_FROM,
     to: ["anneshaven.chicago@gmail.com"],
-    bcc: ["hsq0503@gmail.com"],
     replyTo: email,
     subject: `[Website] ${subject}`,
     html,
