@@ -48,6 +48,17 @@ export default async function StrategicEntrepreneurshipPage() {
 
       <section className="section">
         <div className="container">
+          <div className="media" style={{ maxWidth: 560, marginInline: "auto", marginBottom: 40 }}>
+            <div className="frame bordered">
+              <Photo
+                src={flyer}
+                alt={`Flyer for ${title}`}
+                ratio="3/4"
+                sizes="(max-width: 1000px) 100vw, 560px"
+                fit="contain"
+              />
+            </div>
+          </div>
           <div className="split" style={{ alignItems: "start" }}>
             <div>
               <strong style={{ color: "#000" }}>Program Description</strong>
@@ -187,17 +198,6 @@ export default async function StrategicEntrepreneurshipPage() {
             </div>
           </div>
 
-          <div className="media" style={{ marginTop: 40, maxWidth: 560, marginInline: "auto" }}>
-            <div className="frame bordered">
-              <Photo
-                src={flyer}
-                alt={`Flyer for ${title}`}
-                ratio="3/4"
-                sizes="(max-width: 1000px) 100vw, 560px"
-                fit="contain"
-              />
-            </div>
-          </div>
         </div>
       </section>
 
