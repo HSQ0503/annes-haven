@@ -151,7 +151,7 @@ export default async function StrategicEntrepreneurshipPage() {
                 perfect for busy entrepreneurs on a budget!
               </p>
 
-<strong style={{ color: "#000", display: "block", marginTop: 24 }}>
+              <strong style={{ color: "#000", display: "block", marginTop: 24 }}>
                 Program Structure and Logistical Information:
               </strong>
               <p style={{ marginTop: 12 }}>
