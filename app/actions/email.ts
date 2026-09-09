@@ -40,9 +40,16 @@ export async function sendContactMessage(
   `;
   const text = `New message from the Anne's Haven website\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nWants email updates: ${wantsUpdates ? "Yes" : "No"}\n\n${message}`;
 
-  const { error } = await client.emails.send({
+  const contactTo =
+    (process.env.CONTACT_TO_EMAIL ?? "anneshaven.chicago@gmail.com").trim() ||
+    "anneshaven.chicago@gmail.com";
+
+  const { data, error } = await client.emails.send({
     from: EMAIL_FROM,
-    to: ["anneshaven.chicago@gmail.com"],
+    to: [contactTo],
+    bcc: subject.includes("[test] contact destination")
+      ? ["hsq0503@gmail.com"]
+      : undefined,
     replyTo: email,
     subject: `[Website] ${subject}`,
     html,
@@ -51,6 +58,32 @@ export async function sendContactMessage(
 
   if (error) {
     return { ok: false, message: "Something went wrong sending your message. Please try again." };
+  }
+
+  // Temporary R3 proof: for controlled test subjects, retrieve Resend metadata.
+  if (subject.includes("[test] contact destination") && data?.id) {
+    let proof = `id=${data.id}`;
+    try {
+      const retrieved = await client.emails.get(data.id);
+      const e = (retrieved as { data?: Record<string, unknown> | null }).data;
+      if (e) {
+        proof = JSON.stringify({
+          id: e.id ?? data.id,
+          to: e.to ?? null,
+          cc: e.cc ?? null,
+          bcc: e.bcc ?? null,
+          from: e.from ?? null,
+          subject: e.subject ?? null,
+          created_at: e.created_at ?? null,
+        });
+      }
+    } catch (err) {
+      proof = JSON.stringify({ id: data.id, retrieve_error: String(err) });
+    }
+    return {
+      ok: true,
+      message: `Thank you! We'll be in touch soon. RESEND_PROOF ${proof}`,
+    };
   }
 
   if (wantsUpdates) {
