@@ -1,6 +1,6 @@
 "use server";
 
-import { EMAIL_FROM, EMAIL_TO, escapeHtml, resend } from "@/lib/email";
+import { CONTACT_EMAIL_TO, EMAIL_FROM, EMAIL_TO, escapeHtml, resend } from "@/lib/email";
 import { subscribeToNewsletter } from "@/lib/mailchimp";
 
 export type FormState = { ok: boolean; message: string };
@@ -42,7 +42,7 @@ export async function sendContactMessage(
 
   const { error } = await client.emails.send({
     from: EMAIL_FROM,
-    to: [EMAIL_TO],
+    to: [CONTACT_EMAIL_TO],
     replyTo: email,
     subject: `[Website] ${subject}`,
     html,

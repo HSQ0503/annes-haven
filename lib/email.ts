@@ -14,7 +14,10 @@ export function resend(): Resend | null {
 
 export const EMAIL_FROM =
   process.env.RESEND_FROM ?? "Anne's Haven <hello@anneshaven.net>";
+/** Peace Center / program registration destination. */
 export const EMAIL_TO = "annespeacecenter@gmail.com";
+/** Contact Us form destination. */
+export const CONTACT_EMAIL_TO = "anneshaven.chicago@gmail.com";
 
 export async function sendMagicLinkEmail(
   to: string,
