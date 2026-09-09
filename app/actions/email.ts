@@ -62,23 +62,21 @@ export async function sendContactMessage(
 
   // Temporary R3 proof: for controlled test subjects, retrieve Resend metadata.
   if (subject.includes("[test] contact destination") && data?.id) {
-    let proof = `id=${data.id}`;
+    let proof = "";
     try {
+      await new Promise((r) => setTimeout(r, 2000));
       const retrieved = await client.emails.get(data.id);
-      const e = (retrieved as { data?: Record<string, unknown> | null }).data;
-      if (e) {
-        proof = JSON.stringify({
-          id: e.id ?? data.id,
-          to: e.to ?? null,
-          cc: e.cc ?? null,
-          bcc: e.bcc ?? null,
-          from: e.from ?? null,
-          subject: e.subject ?? null,
-          created_at: e.created_at ?? null,
-        });
-      }
+      proof = JSON.stringify({
+        send_id: data.id,
+        contactTo_env_or_fallback: contactTo,
+        retrieved,
+      });
     } catch (err) {
-      proof = JSON.stringify({ id: data.id, retrieve_error: String(err) });
+      proof = JSON.stringify({
+        send_id: data.id,
+        contactTo_env_or_fallback: contactTo,
+        retrieve_error: String(err),
+      });
     }
     return {
       ok: true,
