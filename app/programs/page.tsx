@@ -6,9 +6,9 @@ import { HeroCarousel, type HeroSlide } from "@/components/hero-carousel";
 import { Icon } from "@/components/icon";
 
 export const metadata: Metadata = {
-  title: "Programs & Events",
+  title: "Anne's Health Hub",
   description:
-    "Anne's Haven supports women entrepreneurs and peace education. Explore the many programs and events we've hosted over the years.",
+    "Anne's Health Hub at 6417 West Irving Park Road — private soundproof rooms, storage, and rental space for women in the holistic and healing arts, plus networking and bartering events.",
 };
 
 const aboutSlides: HeroSlide[] = [
@@ -44,14 +44,14 @@ export default async function ProgramsPage() {
       <section className="page-hero bg-sage">
         <div className="container">
           <p className="crumbs">
-            <Link href="/">Home</Link> &nbsp;/&nbsp; Our Programs &nbsp;/&nbsp;
-            Programs &amp; Events
+            <Link href="/">Home</Link> &nbsp;/&nbsp; Anne&apos;s Health Hub
           </p>
-          <h1>About our programs &amp; events</h1>
+          <h1>Anne&apos;s Health Hub</h1>
           <p className="lead">
-            Anne&apos;s Haven is a woman-founded peace center. We support women
-            entrepreneurs, especially those in the healing arts, and offer
-            peace education programs.
+            Anne&apos;s Health Hub is located down the road at 6417 West Irving
+            Park Road. We have private, soundproof rooms, a large waiting room
+            and storage available for women in the holistic and healing arts who
+            are looking for space for their practice.
           </p>
           <div
             style={{
@@ -91,17 +91,28 @@ export default async function ProgramsPage() {
               </div>
             </div>
             <div>
-              <p className="eyebrow">About Our Programs</p>
-              <h2>Where passions meet purpose</h2>
+              <p className="eyebrow">About Our Health Hub</p>
+              <h2>
+                Anne&apos;s Health Hub is located down the road at 6417 West
+                Irving Park Road
+              </h2>
               <p>
-                We support women entrepreneurs, focusing on those in the healing
-                arts, and offer peace education programs rooted in community. Every
-                gathering is a chance to learn, connect, and build something
-                lasting together.
+                We have private, soundproof rooms, a large waiting room and
+                storage available for women in the holistic and healing arts who
+                are looking for space for their practice.
               </p>
               <p>
-                If you&apos;re interested in learning more, attending an event, or
-                hosting your own, we&apos;d love to hear from you.
+                As we are a nonprofit with supporting women entrepreneurs built
+                into our mission, rates are affordable and we look to work
+                together to build each up throughout our journey.
+              </p>
+              <p>
+                Along with the individual rooms there will be the larger space
+                available to rent for classes or larger events.
+              </p>
+              <p>
+                Join our all women networking/bartering events and start to find
+                sisterhood on your road to success!
               </p>
               <Button href="/contact" className="mt-[14px]">
                 Get in touch <Icon name="arrowRight" />
