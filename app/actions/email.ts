@@ -44,12 +44,9 @@ export async function sendContactMessage(
     (process.env.CONTACT_TO_EMAIL ?? "anneshaven.chicago@gmail.com").trim() ||
     "anneshaven.chicago@gmail.com";
 
-  const { data, error } = await client.emails.send({
+  const { error } = await client.emails.send({
     from: EMAIL_FROM,
     to: [contactTo],
-    bcc: subject.includes("[test] contact destination")
-      ? ["hsq0503@gmail.com"]
-      : undefined,
     replyTo: email,
     subject: `[Website] ${subject}`,
     html,
@@ -58,30 +55,6 @@ export async function sendContactMessage(
 
   if (error) {
     return { ok: false, message: "Something went wrong sending your message. Please try again." };
-  }
-
-  // Temporary R3 proof: for controlled test subjects, retrieve Resend metadata.
-  if (subject.includes("[test] contact destination") && data?.id) {
-    let proof = "";
-    try {
-      await new Promise((r) => setTimeout(r, 2000));
-      const retrieved = await client.emails.get(data.id);
-      proof = JSON.stringify({
-        send_id: data.id,
-        contactTo_env_or_fallback: contactTo,
-        retrieved,
-      });
-    } catch (err) {
-      proof = JSON.stringify({
-        send_id: data.id,
-        contactTo_env_or_fallback: contactTo,
-        retrieve_error: String(err),
-      });
-    }
-    return {
-      ok: true,
-      message: `Thank you! We'll be in touch soon. RESEND_PROOF ${proof}`,
-    };
   }
 
   if (wantsUpdates) {
