@@ -6,9 +6,9 @@ import { HeroCarousel, type HeroSlide } from "@/components/hero-carousel";
 import { Icon } from "@/components/icon";
 
 export const metadata: Metadata = {
-  title: "Anne's Health Hub",
+  title: "Anne's Haven's Health Hub",
   description:
-    "Anne's Health Hub at 6417 West Irving Park Road — private soundproof rooms, storage, and rental space for women in the holistic and healing arts, plus networking and bartering events.",
+    "Anne's Haven's Health Hub is located down the road at 6417 West Irving Park Rd. — private soundproof rooms, storage, and rental space for women in the holistic and healing arts, plus networking and bartering events.",
 };
 
 const aboutSlides: HeroSlide[] = [
@@ -44,14 +44,15 @@ export default async function ProgramsPage() {
       <section className="page-hero bg-sage">
         <div className="container">
           <p className="crumbs">
-            <Link href="/">Home</Link> &nbsp;/&nbsp; Anne&apos;s Health Hub
+            <Link href="/">Home</Link> &nbsp;/&nbsp; Anne&apos;s Haven&apos;s
+            Health Hub
           </p>
-          <h1>Anne&apos;s Health Hub</h1>
+          <h1>Anne&apos;s Haven&apos;s Health Hub</h1>
           <p className="lead">
-            Anne&apos;s Health Hub is located down the road at 6417 West Irving
-            Park Road. We have private, soundproof rooms, a large waiting room
-            and storage available for women in the holistic and healing arts who
-            are looking for space for their practice.
+            Anne&apos;s Haven&apos;s Health Hub is located down the road at 6417
+            West Irving Park Rd. We have private, soundproof rooms, a large
+            waiting room and storage available for women in the holistic and
+            healing arts who are looking for space for their practice.
           </p>
           <div
             style={{
@@ -92,10 +93,11 @@ export default async function ProgramsPage() {
             </div>
             <div>
               <p className="eyebrow">About Our Health Hub</p>
-              <h2>
-                Anne&apos;s Health Hub is located down the road at 6417 West
-                Irving Park Road
-              </h2>
+              <h2>Anne&apos;s Haven&apos;s Health Hub</h2>
+              <p>
+                Anne&apos;s Haven&apos;s Health Hub is located down the road at
+                6417 West Irving Park Rd.
+              </p>
               <p>
                 We have private, soundproof rooms, a large waiting room and
                 storage available for women in the holistic and healing arts who
