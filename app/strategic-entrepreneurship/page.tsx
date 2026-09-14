@@ -18,6 +18,20 @@ const PROGRAM_FLYER =
 const FACILITATORS_FLYER =
   "/images/current-programs/strategic-entrepreneurship-program-facilitators.png";
 
+
+function renderBlurbWithBoldTitle(blurb: string) {
+  const phrase = "Strategic Entrepreneurship: The Peace Payoff in Business";
+  if (!blurb.includes(phrase)) return blurb;
+  return blurb.split(phrase).flatMap((part, index) =>
+    index === 0
+      ? [part]
+      : [
+          <strong key={`title-${index}`}>{phrase}</strong>,
+          part,
+        ],
+  );
+}
+
 export const metadata: Metadata = {
   title: PROGRAM_TITLE,
   description: PROGRAM_BLURB,
@@ -85,7 +99,7 @@ export default async function StrategicEntrepreneurshipPage() {
           <div className="split" style={{ alignItems: "start" }}>
             <div>
               <strong style={{ color: "#000" }}>Program Description</strong>
-              <p style={{ marginTop: 24 }}>{blurb}</p>
+              <p style={{ marginTop: 24 }}>{renderBlurbWithBoldTitle(blurb)}</p>
 
               <strong style={{ color: "#000", display: "block", marginTop: 36 }}>
                 About your Facilitators:
@@ -143,39 +157,40 @@ export default async function StrategicEntrepreneurshipPage() {
               <p style={{ marginTop: 24 }}>
                 Strategic Entrepreneurship will cover the following topics:
               </p>
-              <ol
+              <ul
                 style={{
                   marginTop: 12,
                   paddingLeft: 0,
                   lineHeight: 1.6,
                   listStyleType: "none",
+                  listStyle: "none",
                 }}
               >
                 <li>
-                  1. Strengthening Self-Awareness and Business Identity: Projecting an
-                  Appealing Image
+                  <strong>1.</strong> Strengthening Self-Awareness and Business Identity:
+                  Projecting an Appealing Image
                 </li>
                 <li>
-                  2. Enhancing your Reputation through Community Building and
-                  Trust-Building
+                  <strong>2.</strong> Enhancing your Reputation through Community Building
+                  and Trust-Building
                 </li>
                 <li>
-                  3. Growing a Diverse Customer Base through Inclusive Partnerships and
-                  Community Outreach
+                  <strong>3.</strong> Growing a Diverse Customer Base through Inclusive
+                  Partnerships and Community Outreach
                 </li>
                 <li>
-                  4. Increasing your Sales Volume through Peace-based and Needs-Sensitive
-                  Product Marketing
+                  <strong>4.</strong> Increasing your Sales Volume through Peace-based and
+                  Needs-Sensitive Product Marketing
                 </li>
                 <li>
-                  5. Communicating with Confidence through Leveraging your Conflict
-                  Resolution Skills
+                  <strong>5.</strong> Communicating with Confidence through Leveraging your
+                  Conflict Resolution Skills
                 </li>
                 <li>
-                  6. Maintaining Stability and Security through Mutual Aid and Collective
-                  Empowerment
+                  <strong>6.</strong> Maintaining Stability and Security through Mutual Aid
+                  and Collective Empowerment
                 </li>
-              </ol>
+              </ul>
               <p style={{ marginTop: 20 }}>
                 Each workshop will consist of a mixture of short PowerPoint
                 presentations, individual reflections and exercises, group activities,
