@@ -201,29 +201,48 @@ export default async function StrategicEntrepreneurshipPage() {
               </p>
 
               <strong style={{ color: "#000", display: "block", marginTop: 24 }}>
-                Program Structure and Logistical Information:
+                Logistical Information
               </strong>
               <p style={{ marginTop: 12 }}>
                 This program consists of 6, 1-hour Zoom workshops on Wednesdays from
-                12-1 pm CDT (6-7 pm UKT) and runs from October 14th to November 18th. The
-                program only costs $150 for early bird enrollment, after which the program cost increases to the full price of $180.
+                12-1 pm CDT (6-7 pm UKT) and runs from October 14th to November 18th.
               </p>
+
+              <strong style={{ color: "#000", display: "block", marginTop: 24 }}>
+                Program Pricing
+              </strong>
               <p style={{ marginTop: 12 }}>
-                The early bird enrollment deadline is Wednesday, September 30th.
+                The program only costs $150 for early bird enrollment, after which the
+                program cost increases to the full price of $180. The early bird
+                enrollment deadline is Wednesday, September 30th.
               </p>
               <p style={{ marginTop: 12 }}>
                 Register now by filling the questionnaire below and completing your
-                payment using one of the following payment details: Zelle (
-                <a href="mailto:anneshaven.chicago@gmail.com">
-                  anneshaven.chicago@gmail.com
-                </a>
-                ), Venmo (
-                <a href="tel:7735128115">773-512-8115</a>
-                ), or PayPal (to{" "}
-                <a href="mailto:anneshaven.chicago@gmail.com">
-                  anneshaven.chicago@gmail.com
-                </a>
-                ). In the memo, please include your name and what the payment is for.
+                payment using one of the following payment details:
+              </p>
+              <ol style={{ marginTop: 12, paddingLeft: 24, lineHeight: 1.6 }}>
+                <li>
+                  Zelle (
+                  <a href="mailto:anneshaven.chicago@gmail.com">
+                    anneshaven.chicago@gmail.com
+                  </a>
+                  )
+                </li>
+                <li>
+                  Venmo (
+                  <a href="tel:7735128115">773-512-8115</a>
+                  )
+                </li>
+                <li>
+                  PayPal (to{" "}
+                  <a href="mailto:anneshaven.chicago@gmail.com">
+                    anneshaven.chicago@gmail.com
+                  </a>
+                  )
+                </li>
+              </ol>
+              <p style={{ marginTop: 12 }}>
+                In the memo, please include your name and what the payment is for.
                 Upon payment, you will receive an email confirming your enrollment in
                 the program.
               </p>
