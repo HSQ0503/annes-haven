@@ -83,8 +83,9 @@ export function StrategicEntrepreneurshipRegistrationForm() {
         </div>
         <div className="field">
           <label>
-            I understand that the early bird enrollment cost is $150 and that
-            the deadline for early bird enrollment is Sunday, September 13th. I
+            I understand that the early bird enrollment cost is $150 (full price $180 after
+            early bird) and that the deadline for early bird enrollment is Wednesday,
+            September 30th. I
             can pay via Zelle (to anneshaven.chicago@gmail.com), Venmo (to
             773-512-8115), or PayPal (to anneshaven.chicago@gmail.com).{" "}
             <span className="req">*</span>

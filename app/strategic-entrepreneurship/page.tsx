@@ -206,10 +206,10 @@ export default async function StrategicEntrepreneurshipPage() {
               <p style={{ marginTop: 12 }}>
                 This program consists of 6, 1-hour Zoom workshops on Wednesdays from
                 12-1 pm CDT (6-7 pm UKT) and runs from October 14th to November 18th. The
-                program only costs $150 for early bird enrollment!
+                program only costs $150 for early bird enrollment, after which the program cost increases to the full price of $180.
               </p>
               <p style={{ marginTop: 12 }}>
-                The early bird enrollment deadline is Sunday, September 13th.
+                The early bird enrollment deadline is Wednesday, September 30th.
               </p>
               <p style={{ marginTop: 12 }}>
                 Register now by filling the questionnaire below and completing your
