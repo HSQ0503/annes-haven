@@ -74,9 +74,9 @@ export const PAGE_CONFIGS: Record<string, PageConfig> = {
       hero_lead:
         "A woman-founded peace center and women's incubator providing programming and dedicated space for people of all ethnic, racial, sexual, religious, and nondiscriminatory ideological identities.",
       mission_body_1:
-        "Anne's Haven 501(c)(3) provides programming and dedicated space for people of all ethnic, racial, sexual, religious, and nondiscriminatory ideological identities. Our mission is to create safe spaces, build relationships, educate, and promote personal growth.",
+        "Anne's Haven 501(c)(3) provides programming and dedicated space for people of all ethnic, racial, sexual, religious, and nondiscriminatory ideological identities to learn from and support one another. Our mission is to create safe spaces and build relationships among diverse groups of people to encourage collective learning.",
       mission_body_2:
-        "Our primary focus is supporting women entrepreneurs, especially those in the healing arts, and building peace. We carry out our mission through programming dedicated to entrepreneurship and Peace Education, and by creating space for a peace center and a women's incubator.",
+        "While there are many ways to carry out this mission, the two paths we have chosen are supporting women entrepreneurs, especially those in the healing arts, and advancing peace education through our programming. We therefore operate as a women's incubator and Chicago's first secular peace center.",
       connection_body:
         "At the core of our strength is the ability to accept, connect with, and uplift other people of all identities, fostering compassionate, peaceful communities.",
       collaboration_body:
