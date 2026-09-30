@@ -64,6 +64,32 @@ export default async function StrategicEntrepreneurshipPage() {
 
       <section className="section">
         <div className="container">
+          <div style={{ fontSize: "1.1rem", marginBottom: 32 }}>
+            <p style={{ marginTop: 0 }}>
+              <strong>
+                <em>Entire program is only $180</em>
+              </strong>
+              , and two experienced facilitators will help you develop:
+            </p>
+            <ul
+              style={{
+                marginTop: 12,
+                paddingLeft: 24,
+                lineHeight: 1.6,
+                listStyleType: "disc",
+              }}
+            >
+              <li>A solid business growth framework to apply for your business</li>
+              <li>
+                Enhanced awareness, knowledge and skills in the fundamentals of
+                entrepreneurship and business management
+              </li>
+              <li>
+                And a more ready mindset to navigate the complexity of our world and to
+                thrive in your community.
+              </li>
+            </ul>
+          </div>
           <div
             style={{
               display: "grid",
@@ -211,30 +237,6 @@ export default async function StrategicEntrepreneurshipPage() {
               <strong style={{ color: "#000", display: "block", marginTop: 24 }}>
                 Program Pricing
               </strong>
-              <p style={{ marginTop: 12 }}>
-                <strong>
-                  <em>Entire program is only $180</em>
-                </strong>
-                , and two experienced facilitators will help you develop:
-              </p>
-              <ul
-                style={{
-                  marginTop: 12,
-                  paddingLeft: 24,
-                  lineHeight: 1.6,
-                  listStyleType: "disc",
-                }}
-              >
-                <li>A solid business growth framework to apply for your business</li>
-                <li>
-                  Enhanced awareness, knowledge and skills in the fundamentals of
-                  entrepreneurship and business management
-                </li>
-                <li>
-                  And a more ready mindset to navigate the complexity of our world and to
-                  thrive in your community.
-                </li>
-              </ul>
               <p style={{ marginTop: 12 }}>
                 The program only costs $150 for early bird enrollment, after which the
                 program cost increases to the full price of $180. The early bird
