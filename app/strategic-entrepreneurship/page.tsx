@@ -64,7 +64,7 @@ export default async function StrategicEntrepreneurshipPage() {
 
       <section className="section">
         <div className="container">
-          <div style={{ fontSize: "1.1rem", marginBottom: 32 }}>
+          <div style={{ fontSize: "1.3rem", marginBottom: 32 }}>
             <p style={{ marginTop: 0 }}>
               <strong>
                 <em>Entire program is only $180</em>
