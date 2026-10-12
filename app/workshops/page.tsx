@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Fragment, type ReactNode } from "react";
 import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon, type IconName } from "@/components/icon";
@@ -25,7 +26,27 @@ const PROGRAM_PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconNa
 
 // Turn bare URLs in a program blurb into external links (only used when the
 // card itself is not a link, to avoid nested anchors).
-function renderBlurb(text: string) {
+// Minimal inline markdown for blurbs: **bold** and [label](https://url).
+// Text without these markers renders exactly as before via renderPlain.
+function renderBlurb(text: string): ReactNode[] {
+  return text
+    .split(/(\*\*[^*]+\*\*|\[[^\]]+\]\(https?:\/\/[^)\s]+\))/g)
+    .map((part, i) => {
+      const bold = /^\*\*([^*]+)\*\*$/.exec(part);
+      if (bold) return <strong key={i}>{renderBlurb(bold[1])}</strong>;
+      const link = /^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/.exec(part);
+      if (link) {
+        return (
+          <a key={i} className="textlink" href={link[2]} target="_blank" rel="noopener noreferrer">
+            {link[1]}
+          </a>
+        );
+      }
+      return <Fragment key={i}>{renderPlain(part)}</Fragment>;
+    });
+}
+
+function renderPlain(text: string) {
   return text
     .split(
       /(https?:\/\/[^\s]+|[\w.+-]+@[\w-]+(?:\.[\w-]+)+\b|\(?\d{3}\)?[-. ]?\d{3}-\d{4})/g,
@@ -140,6 +161,8 @@ export default async function WorkshopsPage() {
                                 ? "940/788"
                                 : p.flyer_url.includes("strategic-entrepreneurship-updated")
                                   ? "791/1024"
+                                  : p.flyer_url.includes("creative-peacebuilders")
+                                    ? "768/1024"
                                   : p.flyer_url.includes("women-healers") ||
                                     p.title.includes("Health Hub")
                                   ? "1/1"
@@ -148,6 +171,7 @@ export default async function WorkshopsPage() {
                             fit={
                               p.flyer_url.includes("fall-fest") ||
                               p.flyer_url.includes("strategic-entrepreneurship-updated") ||
+                              p.flyer_url.includes("creative-peacebuilders") ||
                               p.flyer_url.includes("women-healers") ||
                               p.title.includes("Health Hub")
                                 ? "contain"
