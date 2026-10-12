@@ -26,8 +26,31 @@ const PROGRAM_PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconNa
 // Turn bare URLs in a program blurb into external links (only used when the
 // card itself is not a link, to avoid nested anchors).
 function renderBlurb(text: string) {
-  return text.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
-    /^https?:\/\//.test(part) ? (
+  return text
+    .split(
+      /(https?:\/\/[^\s]+|[\w.+-]+@[\w-]+(?:\.[\w-]+)+\b|\(?\d{3}\)?[-. ]?\d{3}-\d{4})/g,
+    )
+    .map((part, i) => {
+      if (/^[\w.+-]+@[\w-]+(?:\.[\w-]+)+$/.test(part)) {
+        return (
+          <a key={i} className="textlink" href={`mailto:${part}`}>
+            {part}
+          </a>
+        );
+      }
+      if (/^\(?\d{3}\)?[-. ]?\d{3}-\d{4}$/.test(part)) {
+        return (
+          <a key={i} className="textlink" href={`tel:${part.replace(/\D/g, "")}`}>
+            {part}
+          </a>
+        );
+      }
+      return renderUrl(part, i);
+    });
+}
+
+function renderUrl(part: string, i: number) {
+  return /^https?:\/\//.test(part) ? (
       <a
         key={i}
         className="textlink"
@@ -40,8 +63,7 @@ function renderBlurb(text: string) {
       </a>
     ) : (
       part
-    ),
-  );
+    );
 }
 
 export default async function WorkshopsPage() {
@@ -116,13 +138,16 @@ export default async function WorkshopsPage() {
                             ratio={
                               p.flyer_url.includes("fall-fest")
                                 ? "940/788"
-                                : p.flyer_url.includes("women-healers") ||
+                                : p.flyer_url.includes("strategic-entrepreneurship-updated")
+                                  ? "791/1024"
+                                  : p.flyer_url.includes("women-healers") ||
                                     p.title.includes("Health Hub")
                                   ? "1/1"
                                   : "3/4"
                             }
                             fit={
                               p.flyer_url.includes("fall-fest") ||
+                              p.flyer_url.includes("strategic-entrepreneurship-updated") ||
                               p.flyer_url.includes("women-healers") ||
                               p.title.includes("Health Hub")
                                 ? "contain"
