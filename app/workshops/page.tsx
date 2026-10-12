@@ -23,6 +23,27 @@ const PROGRAM_PLACEHOLDER_TAGS: { tag: string; tagClass: string; tagIcon: IconNa
   { tag: "Ongoing", tagClass: "", tagIcon: "calendar" },
 ];
 
+// Turn bare URLs in a program blurb into external links (only used when the
+// card itself is not a link, to avoid nested anchors).
+function renderBlurb(text: string) {
+  return text.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
+    /^https?:\/\//.test(part) ? (
+      <a
+        key={i}
+        className="textlink"
+        href={part}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ wordBreak: "break-all" }}
+      >
+        {part}
+      </a>
+    ) : (
+      part
+    ),
+  );
+}
+
 export default async function WorkshopsPage() {
   const [s, currentPrograms] = await Promise.all([
     getSettings(),
@@ -93,12 +114,15 @@ export default async function WorkshopsPage() {
                             src={p.flyer_url}
                             alt={`Flyer for ${p.title}`}
                             ratio={
-                              p.flyer_url.includes("women-healers") ||
-                              p.title.includes("Health Hub")
-                                ? "1/1"
-                                : "3/4"
+                              p.flyer_url.includes("fall-fest")
+                                ? "940/788"
+                                : p.flyer_url.includes("women-healers") ||
+                                    p.title.includes("Health Hub")
+                                  ? "1/1"
+                                  : "3/4"
                             }
                             fit={
+                              p.flyer_url.includes("fall-fest") ||
                               p.flyer_url.includes("women-healers") ||
                               p.title.includes("Health Hub")
                                 ? "contain"
@@ -118,8 +142,8 @@ export default async function WorkshopsPage() {
                         )}
                         <h3 style={{ fontSize: "1.2rem", marginTop: 12 }}>{p.title}</h3>
                         {p.blurb && (
-                          <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0 }}>
-                            {p.blurb}
+                          <p style={{ color: "var(--color-muted)", fontSize: ".92rem", margin: 0, whiteSpace: "pre-line" }}>
+                            {p.href ? p.blurb : renderBlurb(p.blurb)}
                           </p>
                         )}
                       </div>
