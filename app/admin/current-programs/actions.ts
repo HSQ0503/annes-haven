@@ -6,7 +6,6 @@ import { createClient } from "@/utils/supabase/server";
 
 function refresh() {
   revalidatePath("/workshops");
-  revalidatePath("/strategic-entrepreneurship");
   revalidatePath("/admin/current-programs");
 }
 

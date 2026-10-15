@@ -16,6 +16,21 @@ const nextConfig: NextConfig = {
         ]
       : [],
   },
+  async redirects() {
+    return [
+      // Strategic Entrepreneurship page retired (Oct 2026); program lives on Current Programs.
+      {
+        source: "/strategic-entrepreneurship",
+        destination: "/workshops",
+        permanent: true,
+      },
+      {
+        source: "/strategic-entrepreneurship/:path*",
+        destination: "/workshops",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -59,7 +59,7 @@ export default async function CurrentProgramsAdmin() {
             <Field
               label="Program page link (optional)"
               name="href"
-              placeholder="/strategic-entrepreneurship"
+              placeholder="/workshops"
               hint="Use a site path beginning with / or paste a full https:// link."
             />
             <Field label="Order" name="sort_order" type="number" defaultValue={String(items.length)} />
@@ -99,7 +99,7 @@ export default async function CurrentProgramsAdmin() {
                 label="Program page link (optional)"
                 name="href"
                 defaultValue={p.href ?? ""}
-                placeholder="/strategic-entrepreneurship"
+                placeholder="/workshops"
                 hint="Use a site path beginning with / or paste a full https:// link."
               />
               <Field label="Order" name="sort_order" type="number" defaultValue={String(p.sort_order ?? i)} />
