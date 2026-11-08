@@ -56,6 +56,14 @@ export const nav: NavItem[] = [
     ],
   },
   {
+    label: "Anne's Community Peace Center",
+    key: "peace-center",
+    children: [
+      { label: "Peace Education Programs", href: "/peace-education", desc: "Community-focused peace education" },
+      { label: "Event Space", href: "/use-the-space", desc: "Host & amenities" },
+    ],
+  },
+  {
     label: "Get Involved",
     key: "involved",
     children: [
@@ -75,12 +83,12 @@ export const activeKeyForPath = (path: string): string => {
     "/team": "about",
     "/partners": "about",
     "/funders": "about",
-    "/peace-education": "programs",
     "/women-entrepreneurs": "programs",
     "/workshops": "programs",
     "/programs": "programs",
+    "/peace-education": "peace-center",
+    "/use-the-space": "peace-center",
     "/get-involved": "involved",
-    "/use-the-space": "involved",
     "/support": "involved",
     "/videos": "videos",
     "/contact": "contact",
