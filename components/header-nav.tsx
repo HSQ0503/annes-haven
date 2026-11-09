@@ -59,10 +59,17 @@ export function HeaderNav({ donateUrl }: { donateUrl: string }) {
                     <ul className="dropdown">
                       {item.children.map((c) => (
                         <li key={c.href}>
-                          <Link href={c.href} onClick={closeMenus}>
-                            {c.label}
-                            {c.desc && <small>{c.desc}</small>}
-                          </Link>
+                          {c.disabled ? (
+                            <span className="nav-disabled" aria-disabled="true">
+                              {c.label}
+                              {c.desc && <small>{c.desc}</small>}
+                            </span>
+                          ) : (
+                            <Link href={c.href} onClick={closeMenus}>
+                              {c.label}
+                              {c.desc && <small>{c.desc}</small>}
+                            </Link>
+                          )}
                         </li>
                       ))}
                     </ul>
@@ -110,11 +117,22 @@ export function HeaderNav({ donateUrl }: { donateUrl: string }) {
                 <Icon name="caret" className="caret" />
               </summary>
               <div className="sub">
-                {item.children.map((c) => (
-                  <Link key={c.href} href={c.href} onClick={closeMenus}>
-                    {c.label}
-                  </Link>
-                ))}
+                {item.children.map((c) =>
+                  c.disabled ? (
+                    <span
+                      key={c.href}
+                      className="nav-disabled"
+                      aria-disabled="true"
+                    >
+                      {c.label}
+                      {c.desc && <small> · {c.desc}</small>}
+                    </span>
+                  ) : (
+                    <Link key={c.href} href={c.href} onClick={closeMenus}>
+                      {c.label}
+                    </Link>
+                  ),
+                )}
               </div>
             </details>
           ) : (

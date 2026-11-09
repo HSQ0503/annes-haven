@@ -18,7 +18,13 @@ export const site = {
   peaceEmail: "annespeacecenter@gmail.com",
 };
 
-export type NavChild = { label: string; href: string; desc: string };
+export type NavChild = {
+  label: string;
+  href: string;
+  desc: string;
+  /** Show the item in menus but render it as non-clickable text (no link). */
+  disabled?: boolean;
+};
 export type NavItem = {
   label: string;
   key: string;
@@ -60,7 +66,7 @@ export const nav: NavItem[] = [
     key: "peace-center",
     children: [
       { label: "Peace Education Programs", href: "/peace-education", desc: "Community-focused peace education" },
-      { label: "Event Space", href: "/use-the-space", desc: "Host & amenities" },
+      { label: "Event Space", href: "/use-the-space", desc: "Coming soon", disabled: true },
     ],
   },
   {
