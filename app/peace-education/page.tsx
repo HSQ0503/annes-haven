@@ -85,6 +85,45 @@ export default async function PeaceEducationPage() {
         </div>
       </section>
 
+      {/* Welcome + Peace Education programs (copy from Jacopo, verbatim) */}
+      <section className="section-sm bg-cream peace-welcome">
+        <div className="container">
+          <div className="peace-welcome-inner">
+            <p className="peace-welcome-lead">
+              {"Welcome to Anne's (and your) Community Peace Center, serving all Chicagoland communities! Located at 5631 W. Irving Park Road (right next door to Anne's Haven) our Community Peace Center is part of Anne's Haven and provides space for our peace education programs."}
+            </p>
+
+            <h2 className="peace-welcome-heading">Our Peace Education programs:</h2>
+
+            <p>
+              {"Here, you will find truly unique peace education programs led by Jacopo DeMarinis and/or other experienced practitioners and community members. Our programs focus on the \u201cPeace Payoff\u201d: helping individuals and communities understand the many personal, social, and economic benefits of peacebuilding, learn simple peaceful practices, and develop/nurture the concrete skills and qualities to be agents of peace."}
+            </p>
+            <p>
+              {"Our programs, interconnected and building off each other, focus on:"}
+            </p>
+
+            <ol className="peace-welcome-list">
+              <li>
+                <strong>Personal peace</strong>
+                {": Promoting skills and practices that foster self-esteem, mindfulness, and general inner peace. For example, Cheryl, Davis, an experienced yoga practitioner, is hosting weekly yoga classes at Anne's. Previous workshops have included tapping, sound bath, mind mapping, reiki, and other classes focused on promoting personal healing and peace."}
+              </li>
+              <li>
+                <strong>Relationship-building and Building Communication Skills</strong>
+                {": Working with children, youth, adults, families, and entire communities to build communication and conflict de-escalation skills that are critical to professional success and societal peace. For example we recently held \u201cFamily Ties,\u201d a family communication program, and \u201cCreative Peacebuilders,\u201d a youth peace and arts program."}
+              </li>
+              <li>
+                <strong>Social Cohesion, Community Empowerment and Social Equality:</strong>
+                {" Bringing people together across racial, ethnic, cultural, religious, and political differences to address public issues and build more united communities. For example, we are planning community vision board workshops to empower Portage Park, Belmont Cragin, and Austin residents and bring them together!"}
+              </li>
+              <li>
+                <strong>Empowering Agents of Peace:</strong>
+                {" Helping children, teens, and adults integrate peacebuilding into their daily lives and careers. Our \u201cStrategic Entrepreneurship: the Peace Payoff in Business\u201d program will teach entrepreneurs how simple \u201cpeaceful practices\u201d can grow their business. Start date TBD."}
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
       {/* Intro */}
       <section className="section">
         <div className="container">

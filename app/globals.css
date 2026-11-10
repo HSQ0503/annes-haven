@@ -1067,6 +1067,64 @@ body.nav-locked {
   margin: 0 auto;
   text-wrap: balance;
 }
+/* Peace Education page only: welcome + programs block below the hero. */
+.peace-welcome-inner {
+  max-width: 68ch;
+  margin-inline: auto;
+}
+.peace-welcome-inner p,
+.peace-welcome-list li {
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.08rem);
+  line-height: 1.7;
+}
+.peace-welcome-inner .peace-welcome-lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+  line-height: 1.55;
+  color: var(--color-green-900);
+  margin-bottom: 1.4em;
+}
+.peace-welcome-heading {
+  font-size: clamp(1.45rem, 1.2rem + 1vw, 1.9rem);
+  font-weight: 700;
+  margin: 0 0 0.6em;
+}
+.peace-welcome-list {
+  list-style: none;
+  counter-reset: peace-item;
+  padding: 0;
+  margin: 1.2em 0 0;
+  display: grid;
+  gap: 14px;
+}
+.peace-welcome-list li {
+  counter-increment: peace-item;
+  position: relative;
+  padding: 16px 18px 16px 60px;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+}
+.peace-welcome-list li::before {
+  content: counter(peace-item);
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--color-green-700);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+@media (max-width: 560px) {
+  .peace-welcome-list li {
+    padding: 52px 16px 16px;
+  }
+}
 .page-hero p.lead {
   max-width: 60ch;
   margin-inline: auto;
