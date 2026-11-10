@@ -4,10 +4,8 @@ import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
 import { Icon, type IconName } from "@/components/icon";
 import { Photo } from "@/components/photo";
-import { getSettings } from "@/lib/content/db";
 import { getPage } from "@/lib/content/pages";
 import { getPeaceProgramTitles } from "@/lib/content/programs";
-import { gmailComposeUrl } from "@/lib/email-links";
 
 export const metadata: Metadata = {
   title: "Peace Education",
@@ -53,9 +51,8 @@ const payoff: {
 ];
 
 export default async function PeaceEducationPage() {
-  const [page, settings, peaceItems] = await Promise.all([
+  const [page, peaceItems] = await Promise.all([
     getPage("peace-education"),
-    getSettings(),
     getPeaceProgramTitles(),
   ]);
   return (
@@ -129,22 +126,8 @@ export default async function PeaceEducationPage() {
         <div className="container">
           <div className="split">
             <div>
-              <p className="eyebrow">Peace Education</p>
               <h2>Rooted in a simple conviction</h2>
               <p>{page.intro_text}</p>
-              <p>
-                Have questions? Reach out to Jacopo DeMarinis, our Director of
-                Peace Education Programs.
-              </p>
-              <Button
-                href={gmailComposeUrl(
-                  settings.peace_email,
-                  "Peace Education at Anne's Haven",
-                )}
-                className="mt-2"
-              >
-                Email Jacopo <Icon name="arrowRight" />
-              </Button>
             </div>
             <div className="media">
               <div className="frame bordered">
