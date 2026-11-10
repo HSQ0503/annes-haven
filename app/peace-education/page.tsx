@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/button";
 import { CtaBand } from "@/components/cta-band";
@@ -224,6 +225,36 @@ export default async function PeaceEducationPage() {
       </section>
 
       {/* Hosted Programs */}
+      {/* About Jacopo */}
+      <section className="section peace-about">
+        <div className="container">
+          <div className="peace-about-inner">
+            <h2 className="peace-about-heading">About Jacopo:</h2>
+            <div className="peace-about-photo">
+              <Image
+                src="/images/PeacePrograms/jacopo-headshot.jpg"
+                alt="Jacopo DeMarinis"
+                width={210}
+                height={245}
+                sizes="210px"
+              />
+            </div>
+            <p>
+              {"Jacopo DeMarinis, Director of Peace Education at Anne\u2019s Haven, manages the Peace Center. He received his Master\u2019s in Peace and Conflict Studies from Ulster University, Northern Ireland (with distinction). His research was featured on the BBC and he has advised the Northern Irish Department of Education on community peacebuilding. Apart from his peace education work at Anne\u2019s Haven, he is also a substitute teacher at Chicago Public Schools. He is fluent in Spanish."}
+            </p>
+            <p className="peace-about-contact">
+              <em>
+                {"To learn more about our peace education programs or suggest a new program for your Community Peace Center, contact Jacopo at "}
+                <a href="tel:3125054453">(312)-505-4453</a>
+                {" or "}
+                <a href="mailto:annespeacecenter@gmail.com">annespeacecenter@gmail.com</a>
+                {". I am looking forward to connecting with you!"}
+              </em>
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="section bg-cream">
         <div className="container">
           <div className="section-head center">
