@@ -128,6 +128,9 @@ export default async function PeaceEducationPage() {
             <div>
               <h2>Rooted in a simple conviction</h2>
               <p>{page.intro_text}</p>
+              <p style={{ fontWeight: 700, color: "var(--color-green-700)" }}>
+                Explore our framework below!
+              </p>
             </div>
             <div className="media">
               <div className="frame bordered">
