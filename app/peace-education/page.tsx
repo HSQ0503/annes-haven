@@ -67,12 +67,20 @@ export default async function PeaceEducationPage() {
             Peace Education
           </p>
           <p className="peace-hero-title">Anne&apos;s Community Peace Center</p>
-          <h1>{page.hero_heading}</h1>
+          <h1 className="peace-hero-h1">{page.hero_heading}</h1>
           <p
             className="quote"
-            style={{ maxWidth: "46ch", marginInline: "auto", marginTop: ".6em" }}
+            style={{
+              maxWidth: "46ch",
+              marginInline: "auto",
+              marginTop: ".6em",
+              marginBottom: ".4em",
+            }}
           >
             &ldquo;{page.hero_quote}&rdquo;
+          </p>
+          <p className="peace-hero-attribution">
+            &mdash; Jacopo DeMarinis, Director of Peace Ed at Anne&apos;s Haven
           </p>
         </div>
       </section>

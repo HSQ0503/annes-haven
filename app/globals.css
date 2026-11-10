@@ -1054,6 +1054,19 @@ body.nav-locked {
   border-radius: 3px;
   background: var(--color-gold);
 }
+/* Peace Education page only: smaller h1 under the script title. */
+.page-hero .peace-hero-h1 {
+  font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem);
+}
+/* Peace Education page only: attribution line under the hero quote. */
+.page-hero .peace-hero-attribution {
+  font-size: clamp(0.92rem, 0.85rem + 0.3vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-green-700);
+  margin: 0 auto;
+  text-wrap: balance;
+}
 .page-hero p.lead {
   max-width: 60ch;
   margin-inline: auto;
