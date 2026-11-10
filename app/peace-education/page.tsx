@@ -66,6 +66,7 @@ export default async function PeaceEducationPage() {
             <Link href="/">Home</Link> &nbsp;/&nbsp; Our Programs &nbsp;/&nbsp;
             Peace Education
           </p>
+          <p className="peace-hero-title">Anne&apos;s Community Peace Center</p>
           <h1>{page.hero_heading}</h1>
           <p
             className="quote"

@@ -1035,6 +1035,25 @@ body.nav-locked {
 .page-hero .crumbs a {
   color: var(--color-green-600);
 }
+/* Peace Education page only: decorative script title above the hero h1. */
+.page-hero .peace-hero-title {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: clamp(2.3rem, 1.5rem + 3.4vw, 4rem);
+  line-height: 1.05;
+  color: var(--color-green-700);
+  margin: 0 auto 0.3em;
+  text-wrap: balance;
+}
+.page-hero .peace-hero-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin: 0.25em auto 0;
+  border-radius: 3px;
+  background: var(--color-gold);
+}
 .page-hero p.lead {
   max-width: 60ch;
   margin-inline: auto;
