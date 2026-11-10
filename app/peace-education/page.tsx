@@ -6,7 +6,6 @@ import { CtaBand } from "@/components/cta-band";
 import { Icon, type IconName } from "@/components/icon";
 import { Photo } from "@/components/photo";
 import { getPage } from "@/lib/content/pages";
-import { getPeaceProgramTitles } from "@/lib/content/programs";
 
 export const metadata: Metadata = {
   title: "Peace Education",
@@ -52,10 +51,7 @@ const payoff: {
 ];
 
 export default async function PeaceEducationPage() {
-  const [page, peaceItems] = await Promise.all([
-    getPage("peace-education"),
-    getPeaceProgramTitles(),
-  ]);
+  const page = await getPage("peace-education");
   return (
     <>
       <section className="page-hero bg-sage">
@@ -251,26 +247,6 @@ export default async function PeaceEducationPage() {
                 {". I am looking forward to connecting with you!"}
               </em>
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section bg-cream">
-        <div className="container">
-          <div className="section-head center">
-            <p className="eyebrow center gold">Past Programs</p>
-            <h2>A few of the many we&apos;ve hosted</h2>
-          </div>
-          <div className="card card-pad" style={{ maxWidth: 560, marginInline: "auto" }}>
-            <span className="chip">
-              <Icon name="dove" />
-            </span>
-            <h3>Peace Education</h3>
-            <ul className="checklist" style={{ marginTop: 14 }}>
-              {peaceItems.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>

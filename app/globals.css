@@ -1126,6 +1126,10 @@ body.nav-locked {
   }
 }
 /* Peace Education page only: About Jacopo section. */
+.section.peace-about {
+  /* The CTA band (section-sm) follows directly; avoid a doubled gap. */
+  padding-bottom: clamp(16px, 2vw, 28px);
+}
 .peace-about-inner {
   max-width: 68ch;
   margin-inline: auto;
