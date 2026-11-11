@@ -60,14 +60,13 @@ export default async function PeaceEducationPage() {
             <Link href="/">Home</Link> &nbsp;/&nbsp; Our Programs &nbsp;/&nbsp;
             Peace Education
           </p>
-          <p className="peace-hero-title">Anne&apos;s Community Peace Center</p>
-          <h1 className="peace-hero-h1">{page.hero_heading}</h1>
+          <h1 className="peace-hero-title">Anne&apos;s Community Peace Center</h1>
           <p
             className="quote"
             style={{
               maxWidth: "46ch",
               marginInline: "auto",
-              marginTop: ".6em",
+              marginTop: ".5em",
               marginBottom: ".4em",
             }}
           >

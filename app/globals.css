@@ -1035,12 +1035,14 @@ body.nav-locked {
 .page-hero .crumbs a {
   color: var(--color-green-600);
 }
-/* Peace Education page only: decorative script title above the hero h1. */
+/* Peace Education page only: decorative script title (rendered as the page h1;
+   letter-spacing reset neutralizes the global h1 rule so it looks unchanged). */
 .page-hero .peace-hero-title {
   font-family: var(--font-hand);
   font-weight: 700;
   font-size: clamp(2.3rem, 1.5rem + 3.4vw, 4rem);
   line-height: 1.05;
+  letter-spacing: normal;
   color: var(--color-green-700);
   margin: 0 auto 0.3em;
   text-wrap: balance;
@@ -1053,10 +1055,6 @@ body.nav-locked {
   margin: 0.25em auto 0;
   border-radius: 3px;
   background: var(--color-gold);
-}
-/* Peace Education page only: smaller h1 under the script title. */
-.page-hero .peace-hero-h1 {
-  font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem);
 }
 /* Peace Education page only: attribution line under the hero quote. */
 .page-hero .peace-hero-attribution {
