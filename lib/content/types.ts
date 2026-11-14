@@ -94,4 +94,6 @@ export type Workshop = {
 
 export type CurrentProgram = Workshop & {
   href?: string | null;
+  /** false = hidden from the public Current Programs page (row kept). */
+  is_active?: boolean | null;
 };

@@ -6,7 +6,7 @@ import { CtaBand } from "@/components/cta-band";
 import { Icon, type IconName } from "@/components/icon";
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import { Photo } from "@/components/photo";
-import { getSettings, getCurrentPrograms } from "@/lib/content/db";
+import { getSettings, getVisibleCurrentPrograms } from "@/lib/content/db";
 import { gmailComposeUrl } from "@/lib/email-links";
 
 export const metadata: Metadata = {
@@ -90,7 +90,7 @@ function renderUrl(part: string, i: number) {
 export default async function WorkshopsPage() {
   const [s, currentPrograms] = await Promise.all([
     getSettings(),
-    getCurrentPrograms(),
+    getVisibleCurrentPrograms(),
   ]);
   return (
     <>

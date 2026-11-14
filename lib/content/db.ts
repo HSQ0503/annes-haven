@@ -68,3 +68,6 @@ export const getPartners = () => readCollection<Partner>("partners");
 export const getFunders = () => readCollection<Funder>("funders");
 export const getWorkshops = () => readCollection<Workshop>("workshops");
 export const getCurrentPrograms = () => readCollection<CurrentProgram>("current_programs");
+/** Public Current Programs: all rows except ones explicitly hidden (is_active = false). */
+export const getVisibleCurrentPrograms = async () =>
+  (await getCurrentPrograms()).filter((p) => p.is_active !== false);
