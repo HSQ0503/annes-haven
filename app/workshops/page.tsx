@@ -158,7 +158,8 @@ export default async function WorkshopsPage() {
                             alt={`Flyer for ${p.title}`}
                             ratio={
                               p.flyer_url.includes("fall-fest") ||
-                              p.flyer_url.includes("holiday-market")
+                              p.flyer_url.includes("holiday-market") ||
+                              p.flyer_url.includes("moms-support")
                                 ? "940/788"
                                 : p.flyer_url.includes("strategic-entrepreneurship-updated")
                                   ? "791/1024"
@@ -172,6 +173,7 @@ export default async function WorkshopsPage() {
                             fit={
                               p.flyer_url.includes("fall-fest") ||
                               p.flyer_url.includes("holiday-market") ||
+                              p.flyer_url.includes("moms-support") ||
                               p.flyer_url.includes("strategic-entrepreneurship-updated") ||
                               p.flyer_url.includes("creative-peacebuilders") ||
                               p.flyer_url.includes("women-healers") ||
